@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Soptionssix"
-include ':app'
+include(":app")
