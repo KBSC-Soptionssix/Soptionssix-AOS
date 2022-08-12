@@ -4,6 +4,8 @@
 # ✨Code Convention
 [Code Convention](https://azure-sawfish-822.notion.site/Code-convention-12ec748d180745238dea21850538cd72)
 
+<br>
+
 # ✨Git Convention
 ## Branch Strategy
 ### Git Flow
@@ -20,5 +22,5 @@
 7. 종료된 Issue와 Pull Request의 Label과 Project를 관리한다.
 ```
 
-* 참고
+* 참고 <br>
 [Git Convention](https://azure-sawfish-822.notion.site/Git-Convention-7fe068db8e23471c980577c61f096b78)
