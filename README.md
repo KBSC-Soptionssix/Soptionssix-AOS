@@ -6,8 +6,8 @@
 
 <br>
 
-# ✨Git Convention
-## Branch Strategy
+## *Git Convention*
+### Branch Strategy
 ### Git Flow
 
 기본적으로 Git Flow 전략을 이용한다. 작업 시작 시 선행되어야 할 작업은 다음과 같다.
