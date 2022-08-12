@@ -7,7 +7,7 @@
 <br>
 
 ## *Git Convention*
-### Branch Strategy
+[Git Convention](https://azure-sawfish-822.notion.site/Git-Convention-7fe068db8e23471c980577c61f096b78)
 ### Git Flow
 
 기본적으로 Git Flow 전략을 이용한다. 작업 시작 시 선행되어야 할 작업은 다음과 같다.
@@ -22,5 +22,3 @@
 7. 종료된 Issue와 Pull Request의 Label과 Project를 관리한다.
 ```
 
-* 참고 <br>
-[Git Convention](https://azure-sawfish-822.notion.site/Git-Convention-7fe068db8e23471c980577c61f096b78)
