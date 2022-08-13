@@ -17,7 +17,7 @@ object Versions {
     const val lifecycleKTXVersion = "2.6.0-alpha01"
     const val fragmentKTXVersion = "1.5.0"
 
-    const val kotlinVersion = "1.6.20"
+    const val kotlinVersion = "1.6.10"
 
     const val composeActivityVersion = "1.5.1"
     const val composeVersion = "1.1.1"
