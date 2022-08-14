@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -25,11 +26,16 @@ import com.kbcs.soptionssix.R
 fun DonationBoxes() {
     Row {
         CommonDonationBox(
+            modifier = Modifier
+                .weight(1.0f)
+                .padding(end = 4.dp),
             contentText = R.string.make_donation,
             contentImage = R.drawable.ic_temp_fire
         )
-        Spacer(modifier = Modifier.size(8.dp))
         CommonDonationBox(
+            modifier = Modifier
+                .weight(1.0f)
+                .padding(start = 4.dp),
             contentText = R.string.get_donation,
             contentImage = R.drawable.ic_temp_fire
         )
@@ -38,13 +44,15 @@ fun DonationBoxes() {
 
 @Composable
 private fun CommonDonationBox(
+    modifier: Modifier,
     @StringRes contentText: Int,
     @DrawableRes contentImage: Int
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(Color.White)
+            .background(Color.White),
+        contentAlignment = Alignment.Center
     ) {
         Row {
             Text(
@@ -63,7 +71,7 @@ private fun CommonDonationBox(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun DonationBoxPreview() {
     DonationBoxes()
