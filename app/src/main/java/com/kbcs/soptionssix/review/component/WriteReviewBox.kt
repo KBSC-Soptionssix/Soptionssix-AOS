@@ -88,26 +88,34 @@ private fun WriteReviewTextField(
 @Composable
 private fun StoreInformation(menuItem: List<String>) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
-        CommonBox(
-            boxIcon = R.drawable.ic_temp_location_on,
-            boxText = "광진구 능동"
-        )
-        Spacer(modifier = Modifier.size(4.dp))
+        Box(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            CommonBox(
+                boxIcon = R.drawable.ic_temp_location_on,
+                boxText = "광진구 능동"
+            )
+        }
         Text(
             text = "|",
             fontSize = 24.sp
         )
-        CommonBox(
-            boxIcon = R.drawable.ic_temp_storefront,
-            boxText = stringResource(id = R.string.store),
-            isDropDownMenu = true,
-            menuItem = menuItem
-        )
+        Box(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            CommonBox(
+                boxIcon = R.drawable.ic_temp_storefront,
+                boxText = stringResource(id = R.string.store),
+                isDropDownMenu = true,
+                menuItem = menuItem
+            )
+        }
     }
 }
 
@@ -119,16 +127,26 @@ private fun CommonBox(
     menuItem: List<String> = emptyList()
 ) {
     Row(
-        modifier = Modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
+            Spacer(modifier = Modifier.size(22.dp))
             Image(painter = painterResource(id = boxIcon), contentDescription = "")
             Spacer(modifier = Modifier.size(4.dp))
             Text(text = boxText)
+            if (isDropDownMenu) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 16.dp)
+                    ,
+                    contentAlignment = Alignment.CenterEnd
+                ) {
+                    DropDownMenu(menuItem = menuItem)
+                }
+            }
         }
-        if (isDropDownMenu) DropDownMenu(menuItem = menuItem)
     }
 }
 
