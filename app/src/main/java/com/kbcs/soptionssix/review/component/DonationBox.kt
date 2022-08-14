@@ -24,12 +24,12 @@ fun DonationBoxes() {
     Row {
         CommonDonationBox(
             contentText = R.string.app_name,
-            contentImage = R.drawable.ic_launcher_foreground
+            contentImage = R.drawable.ic_temp_fire
         )
         Spacer(modifier = Modifier.size(8.dp))
         CommonDonationBox(
             contentText = R.string.app_name,
-            contentImage = R.drawable.ic_launcher_foreground
+            contentImage = R.drawable.ic_temp_fire
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.kbcs.soptionssix.review.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -11,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kbcs.soptionssix.R
 
 @Composable
 fun DonationDescriptionBox() {
@@ -32,7 +35,7 @@ fun DonationDescriptionBox() {
                 text = "지구를 지키고, \n" +
                     "나눔을 실천하는 법"
             )
-            Text(text = ">")
+            Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
         }
     }
 }

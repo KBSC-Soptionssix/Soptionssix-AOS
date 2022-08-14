@@ -95,7 +95,7 @@ private fun StoreInformation(menuItem: List<String>) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         CommonBox(
-            boxIcon = R.drawable.ic_launcher_foreground,
+            boxIcon = R.drawable.ic_temp_location_on,
             boxText = R.string.app_name
         )
         Spacer(modifier = Modifier.size(4.dp))
@@ -104,7 +104,7 @@ private fun StoreInformation(menuItem: List<String>) {
             fontSize = 24.sp
         )
         CommonBox(
-            boxIcon = R.drawable.ic_launcher_foreground,
+            boxIcon = R.drawable.ic_temp_storefront,
             boxText = R.string.app_name,
             isDropDownMenu = true,
             menuItem = menuItem

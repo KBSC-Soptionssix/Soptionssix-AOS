@@ -25,7 +25,7 @@ fun DropDownMenu(
         Image(
             modifier = Modifier
                 .clickable { isExpanded = true },
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            painter = painterResource(id = R.drawable.ic_temp_expand_more),
             contentDescription = ""
         )
 
