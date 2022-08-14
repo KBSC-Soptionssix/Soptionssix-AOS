@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
@@ -31,10 +32,7 @@ fun DonationDescriptionBox() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = "지구를 지키고, \n" +
-                    "나눔을 실천하는 법"
-            )
+            Text(text = stringResource(id = R.string.donation_description))
             Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
         }
     }

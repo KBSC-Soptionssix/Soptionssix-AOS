@@ -1,7 +1,6 @@
 package com.kbcs.soptionssix.review.component
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -57,7 +56,7 @@ private fun WriteReviewTextField(
             .background(Color.White)
     ) {
         BasicTextField(
-            value = reviewText.ifEmpty { "따뜻한 후기 캠페인에 참여하세요" },
+            value = reviewText.ifEmpty { stringResource(id = R.string.review_empty) },
             onValueChange = {},
             textStyle = TextStyle(
                 color = colorResource(id = R.color.black)
@@ -79,7 +78,7 @@ private fun WriteReviewTextField(
                 modifier = Modifier
                     .padding(end = 16.dp, bottom = 8.dp)
                     .fillMaxWidth(),
-                text = "완료",
+                text = stringResource(id = R.string.registration),
                 textAlign = TextAlign.End
             )
         }
@@ -96,7 +95,7 @@ private fun StoreInformation(menuItem: List<String>) {
     ) {
         CommonBox(
             boxIcon = R.drawable.ic_temp_location_on,
-            boxText = R.string.app_name
+            boxText = "광진구 능동"
         )
         Spacer(modifier = Modifier.size(4.dp))
         Text(
@@ -105,7 +104,7 @@ private fun StoreInformation(menuItem: List<String>) {
         )
         CommonBox(
             boxIcon = R.drawable.ic_temp_storefront,
-            boxText = R.string.app_name,
+            boxText = stringResource(id = R.string.store),
             isDropDownMenu = true,
             menuItem = menuItem
         )
@@ -115,7 +114,7 @@ private fun StoreInformation(menuItem: List<String>) {
 @Composable
 private fun CommonBox(
     @DrawableRes boxIcon: Int,
-    @StringRes boxText: Int,
+    boxText: String,
     isDropDownMenu: Boolean = false,
     menuItem: List<String> = emptyList()
 ) {
@@ -127,7 +126,7 @@ private fun CommonBox(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(painter = painterResource(id = boxIcon), contentDescription = "")
             Spacer(modifier = Modifier.size(4.dp))
-            Text(text = stringResource(id = boxText))
+            Text(text = boxText)
         }
         if (isDropDownMenu) DropDownMenu(menuItem = menuItem)
     }
