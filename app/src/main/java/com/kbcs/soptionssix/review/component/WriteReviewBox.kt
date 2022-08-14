@@ -34,7 +34,7 @@ import com.kbcs.soptionssix.R
 
 @Composable
 fun WriteReviewBox() {
-    Column {
+    Column(Modifier.background(Color.White)) {
         StoreInformation(mutableListOf("A", "B", "C", "D", "E"))
         Divider(
             modifier = Modifier
@@ -50,11 +50,7 @@ private fun WriteReviewTextField(
     reviewText: String = ""
 ) {
     val maxChar = 300
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.White)
-    ) {
+    Column(modifier = Modifier.fillMaxWidth()) {
         BasicTextField(
             value = reviewText.ifEmpty { stringResource(id = R.string.review_empty) },
             onValueChange = {},
@@ -126,25 +122,19 @@ private fun CommonBox(
     isDropDownMenu: Boolean = false,
     menuItem: List<String> = emptyList()
 ) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Spacer(modifier = Modifier.size(22.dp))
-            Image(painter = painterResource(id = boxIcon), contentDescription = "")
-            Spacer(modifier = Modifier.size(4.dp))
-            Text(text = boxText)
-            if (isDropDownMenu) {
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(end = 16.dp)
-                    ,
-                    contentAlignment = Alignment.CenterEnd
-                ) {
-                    DropDownMenu(menuItem = menuItem)
-                }
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Spacer(modifier = Modifier.size(22.dp))
+        Image(painter = painterResource(id = boxIcon), contentDescription = "")
+        Spacer(modifier = Modifier.size(4.dp))
+        Text(text = boxText)
+        if (isDropDownMenu) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 16.dp),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                DropDownMenu(menuItem = menuItem)
             }
         }
     }
