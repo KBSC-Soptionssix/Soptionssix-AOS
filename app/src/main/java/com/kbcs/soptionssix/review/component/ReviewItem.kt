@@ -20,15 +20,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kbcs.soptionssix.review.Review
 
 @Composable
-fun ReviewItem(
-    title: String,
-    time: String,
-    address: String,
-    content: String,
-    storeName: String
-) {
+fun ReviewItem(review: Review) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -38,14 +33,14 @@ fun ReviewItem(
             modifier = Modifier.padding(16.dp)
         ) {
             ReviewInformation(
-                title = title,
-                time = time,
-                address = address
+                title = review.title,
+                time = review.time,
+                address = review.address
             )
             Spacer(Modifier.size(4.dp))
-            ReviewContent(content = content)
+            ReviewContent(content = review.content)
             Spacer(Modifier.size(16.dp))
-            StoreInformation(storeName = storeName)
+            StoreInformation(storeName = review.storeName)
         }
     }
 }
@@ -100,13 +95,15 @@ private fun StoreInformation(storeName: String) {
 @Composable
 fun ReviewPreview() {
     ReviewItem(
-        title = "맑은비",
-        time = "5분 전",
-        address = "백현동",
-        content = "첫번째 방문에 너무 득템했는데\n" +
-            "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-            "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-            "이거까지 보이나요???",
-        storeName = "몽실 베이커리"
+        Review(
+            title = "맑은비",
+            time = "5분 전",
+            address = "백현동",
+            content = "첫번째 방문에 너무 득템했는데\n" +
+                "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
+                "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
+                "이거까지 보이나요???",
+            storeName = "몽실 베이커리"
+        )
     )
 }
