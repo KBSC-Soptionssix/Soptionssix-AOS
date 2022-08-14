@@ -20,7 +20,22 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun DonationBox(
+fun DonationBoxes() {
+    Row {
+        CommonDonationBox(
+            contentText = R.string.app_name,
+            contentImage = R.drawable.ic_launcher_foreground
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        CommonDonationBox(
+            contentText = R.string.app_name,
+            contentImage = R.drawable.ic_launcher_foreground
+        )
+    }
+}
+
+@Composable
+private fun CommonDonationBox(
     @StringRes contentText: Int,
     @DrawableRes contentImage: Int
 ) {
@@ -48,8 +63,5 @@ fun DonationBox(
 @Preview
 @Composable
 fun DonationBoxPreview() {
-    DonationBox(
-        contentText = R.string.app_name,
-        contentImage = R.drawable.ic_launcher_foreground
-    )
+    DonationBoxes()
 }
