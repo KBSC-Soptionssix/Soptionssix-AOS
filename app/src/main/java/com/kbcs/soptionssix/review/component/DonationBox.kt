@@ -56,14 +56,12 @@ private fun CommonDonationBox(
     ) {
         Row {
             Text(
-                modifier = Modifier
-                    .padding(start = 16.dp, top = 16.dp),
+                modifier = Modifier.padding(top = 16.dp, start = 12.dp),
                 text = stringResource(id = contentText)
             )
-            Spacer(modifier = Modifier.size(22.dp))
+            Spacer(modifier = Modifier.size(14.dp))
             Image(
-                modifier = Modifier
-                    .padding(end = 11.dp, top = 11.dp, bottom = 11.dp),
+                modifier = Modifier.padding(vertical = 12.dp),
                 painter = painterResource(id = contentImage),
                 contentDescription = ""
             )
@@ -74,5 +72,7 @@ private fun CommonDonationBox(
 @Preview(showBackground = true)
 @Composable
 fun DonationBoxPreview() {
-    DonationBoxes()
+    Box(Modifier.background(Color.Gray)) {
+        DonationBoxes()
+    }
 }

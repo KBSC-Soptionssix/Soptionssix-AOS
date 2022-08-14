@@ -1,15 +1,18 @@
 package com.kbcs.soptionssix.review.component
 
 import androidx.annotation.DrawableRes
-import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kbcs.soptionssix.R
@@ -53,8 +57,16 @@ fun WriteReviewBox() {
 @Composable
 private fun WriteReviewTextField() {
     var reviewText by remember { mutableStateOf("") }
-    val maxChar = 300
-    Column(modifier = Modifier.fillMaxWidth()) {
+    val offsetAnimation: Dp by animateDpAsState(
+        if (reviewText.isNotEmpty()) 170.dp else 50.dp,
+        tween(durationMillis = 500)
+    )
+    val maxChar = 301
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(IntrinsicSize.Min)
+    ) {
         BasicTextField(
             value = reviewText,
             onValueChange = { if (it.length < maxChar) reviewText = it },
@@ -63,9 +75,9 @@ private fun WriteReviewTextField() {
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(if (reviewText.isNotEmpty()) 170.dp else 50.dp)
-                .padding(16.dp)
-                .animateContentSize(),
+                .height(offsetAnimation)
+                .fillMaxHeight()
+                .padding(16.dp),
             cursorBrush = SolidColor(colorResource(id = R.color.black))
         ) { innerTextField ->
             if (reviewText.isEmpty()) {
@@ -77,25 +89,30 @@ private fun WriteReviewTextField() {
             innerTextField()
         }
         if (reviewText.isNotEmpty()) {
-            Text(
-                modifier = Modifier.padding(start = 19.dp),
-                text = "${reviewText.length} / 300"
-            )
-            Spacer(modifier = Modifier.size(4.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 16.dp, bottom = 8.dp),
-                contentAlignment = Alignment.CenterEnd
-            ) {
-                Text(
-                    modifier = Modifier
-                        .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
-                        .padding(vertical = 6.dp, horizontal = 14.dp),
-                    text = stringResource(id = R.string.registration)
-                )
-            }
+            ExpandingElements(reviewText = reviewText)
         }
+    }
+}
+
+@Composable
+private fun ExpandingElements(reviewText: String) {
+    Text(
+        modifier = Modifier.padding(start = 19.dp),
+        text = "${reviewText.length} / 300"
+    )
+    Spacer(modifier = Modifier.size(4.dp))
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(end = 16.dp, bottom = 8.dp),
+        contentAlignment = Alignment.CenterEnd
+    ) {
+        Text(
+            modifier = Modifier
+                .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
+                .padding(vertical = 6.dp, horizontal = 14.dp),
+            text = stringResource(id = R.string.registration)
+        )
     }
 }
 
