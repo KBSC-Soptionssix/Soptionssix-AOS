@@ -56,6 +56,7 @@ dependencies {
         implementation(appCompat)
         implementation(constraintLayout)
         implementation(coil)
+        implementation(recyclerView)
 
         testImplementation(jUnit)
         androidTestImplementation(androidTest)
