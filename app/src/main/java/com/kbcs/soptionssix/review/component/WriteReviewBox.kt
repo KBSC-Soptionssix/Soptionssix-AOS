@@ -65,7 +65,6 @@ private fun WriteReviewTextField() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(IntrinsicSize.Min)
     ) {
         BasicTextField(
             value = reviewText,
@@ -76,7 +75,6 @@ private fun WriteReviewTextField() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(offsetAnimation)
-                .fillMaxHeight()
                 .padding(16.dp),
             cursorBrush = SolidColor(colorResource(id = R.color.black))
         ) { innerTextField ->
