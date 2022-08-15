@@ -6,16 +6,16 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -56,26 +57,34 @@ fun WriteReviewBox() {
 
 @Composable
 private fun WriteReviewTextField() {
+    val density = LocalDensity.current
     var reviewText by remember { mutableStateOf("") }
+    var maxHeight by remember { mutableStateOf(120.dp) }
     val offsetAnimation: Dp by animateDpAsState(
-        if (reviewText.isNotEmpty()) 170.dp else 50.dp,
+        if (reviewText.isNotEmpty()) maxHeight + 30.dp else 50.dp,
         tween(durationMillis = 500)
     )
     val maxChar = 301
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
+    Column(modifier = Modifier.fillMaxWidth()) {
         BasicTextField(
             value = reviewText,
             onValueChange = { if (it.length < maxChar) reviewText = it },
             textStyle = TextStyle(
                 color = colorResource(id = R.color.black)
             ),
+            onTextLayout = { textLayoutResult ->
+                with(density) {
+                    if (textLayoutResult.lastBaseline.toDp() > 120.dp) {
+                        maxHeight = textLayoutResult.lastBaseline.toDp() + 20.dp
+                    } else if (textLayoutResult.lastBaseline.toDp() < 120.dp) maxHeight = 120.dp
+                }
+            },
             modifier = Modifier
+                .focusable()
                 .fillMaxWidth()
                 .height(offsetAnimation)
-                .padding(16.dp),
+                .padding(16.dp)
+                .imePadding(),
             cursorBrush = SolidColor(colorResource(id = R.color.black))
         ) { innerTextField ->
             if (reviewText.isEmpty()) {
@@ -176,7 +185,11 @@ private fun CommonBox(
 @Preview(showBackground = true)
 @Composable
 fun WriteReviewBoxPreview() {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Gray)
+    ) {
         WriteReviewBox()
     }
 }
