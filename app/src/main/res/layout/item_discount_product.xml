@@ -150,7 +150,7 @@
             app:layout_constraintEnd_toEndOf="@+id/tv_amount"
             tools:text="1개 기부 완료" />
 
-        <Button
+        <TextView
             android:id="@+id/btn_buy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -158,13 +158,14 @@
             android:background="@drawable/shape_red_fill_5_rectangle"
             android:paddingVertical="12dp"
             android:text="구입하기"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="13dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_donation"
             app:layout_constraintStart_toStartOf="@id/iv_product"
             app:layout_constraintTop_toBottomOf="@+id/iv_product" />
 
-        <Button
+        <TextView
             android:id="@+id/btn_donation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -172,13 +173,14 @@
             android:background="@drawable/shape_green_fill_5_rectangle"
             android:paddingVertical="12dp"
             android:text="기부하기"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="13dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_donation_waiting"
             app:layout_constraintStart_toEndOf="@+id/btn_buy"
             app:layout_constraintTop_toTopOf="@+id/btn_buy" />
 
-        <Button
+        <TextView
             android:id="@+id/btn_donation_waiting"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -186,6 +188,7 @@
             android:background="@drawable/shape_gray_fill_5_rectangle"
             android:paddingVertical="12dp"
             android:text="기부 기다리기"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="13dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -197,7 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="인증 후 이용가능"
+            android:text="@string/itemDiscountProductAuthAfterUse"
             android:textColor="@color/white"
             android:textSize="5dp"
             app:layout_constraintBottom_toBottomOf="@id/btn_donation_waiting"

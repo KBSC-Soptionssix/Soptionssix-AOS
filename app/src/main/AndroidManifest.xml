@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Soptionssix"
         tools:targetApi="31">
         <activity
+            android:name=".DiscountProductAllSeeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

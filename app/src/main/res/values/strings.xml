@@ -8,4 +8,6 @@
     <string name="discountWaitingProduct">기부를 기다리는 상품</string>
     <string name="itemProductPercent">%</string>
     <string name="itemProductWaiting">명이 기다리는 중</string>
+    <string name="discountAllSeeActivity">상품 전체보기</string>
+    <string name="itemDiscountProductAuthAfterUse">인증 후 이용가능</string>
 </resources>
