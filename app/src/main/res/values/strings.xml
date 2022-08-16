@@ -6,4 +6,6 @@
     <string name="discountProduct">반짝할인 상품</string>
     <string name="discountAllSee">전체보기</string>
     <string name="discountWaitingProduct">기부를 기다리는 상품</string>
+    <string name="itemProductPercent">%</string>
+    <string name="itemProductWaiting">명이 기다리는 중</string>
 </resources>
