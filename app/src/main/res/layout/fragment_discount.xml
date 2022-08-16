@@ -97,7 +97,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/btn_right"
                         app:layout_constraintTop_toTopOf="@id/tv_product" />
 
-                    <Button
+                    <ImageView
                         android:id="@+id/btn_right"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
