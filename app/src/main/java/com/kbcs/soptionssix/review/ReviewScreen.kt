@@ -1,6 +1,7 @@
 package com.kbcs.soptionssix.review
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -8,8 +9,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.review.component.DonationBoxes
@@ -51,18 +56,26 @@ fun ReviewScreen() {
             storeName = "몽실 베이커리"
         )
     )
+    val focusManager = LocalFocusManager.current
+    val isFocus = remember { mutableStateOf(false) }
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Gray)
             .padding(horizontal = 16.dp)
+            .pointerInput(Unit) {
+                detectTapGestures(onTap = {
+                    focusManager.clearFocus()
+                    isFocus.value = false
+                })
+            }
     ) {
         item {
             DonationDescriptionBox()
             Spacer(modifier = Modifier.size(16.dp))
             DonationBoxes()
             Spacer(modifier = Modifier.size(26.dp))
-            WriteReviewBox()
+            WriteReviewBox(isFocus = isFocus)
         }
         items(dummyReviewList) { review ->
             Spacer(modifier = Modifier.size(16.dp))
