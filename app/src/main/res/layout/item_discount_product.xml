@@ -52,6 +52,7 @@
             android:includeFontPadding="false"
             android:textColor="#717171"
             android:textSize="9dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/iv_rank"
             app:layout_constraintStart_toEndOf="@+id/iv_rank"
             app:layout_constraintTop_toTopOf="@id/iv_rank"
@@ -75,6 +76,8 @@
             android:layout_marginEnd="7dp"
             android:textColor="@color/black"
             android:textSize="11dp"
+            app:layout_constraintStart_toEndOf="@id/tv_name"
+            android:textAlignment="textEnd"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_name"
@@ -146,8 +149,10 @@
             android:layout_height="wrap_content"
             android:textColor="#BBBBBB"
             android:textSize="9dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_original_price"
             app:layout_constraintBottom_toBottomOf="@+id/iv_product"
             app:layout_constraintEnd_toEndOf="@+id/tv_amount"
+            android:textAlignment="textEnd"
             tools:text="1개 기부 완료" />
 
         <TextView

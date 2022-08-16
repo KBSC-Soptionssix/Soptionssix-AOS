@@ -4,10 +4,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="discountStoreTop">반짝할인 가게</string>
     <string name="discountProduct">반짝할인 상품</string>
-    <string name="discountAllSee">전체보기</string>
+    <string name="discountProductMoreSee">반짝할인 상품 더 보기</string>
     <string name="discountWaitingProduct">기부를 기다리는 상품</string>
     <string name="itemProductPercent">%</string>
     <string name="itemProductWaiting">명 대기 중</string>
     <string name="discountAllSeeActivity">상품 전체보기</string>
     <string name="itemDiscountProductAuthAfterUse">인증 후 이용가능</string>
+    <string name="discountDonationWaitingMoreSee">기부 대기 상품 더 보기</string>
 </resources>
