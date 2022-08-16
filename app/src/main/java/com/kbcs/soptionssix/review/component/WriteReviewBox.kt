@@ -51,7 +51,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun WriteReviewBox(isFocus: MutableState<Boolean>) {
     Column(Modifier.background(Color.White)) {
-        StoreInformation(mutableListOf("A", "B", "C", "D", "E"))
+        StoreInformation(mutableListOf("또보겠지떡볶이 붕붕허허허 벌판", "민제의 타코야끼 공릉점", "서우네 버블티카페 달콤데이터점 ", "야옹이버거 ", "강사장 참맛불닭라멘", "Park’s Shout Our Salad"))
         Divider(
             modifier = Modifier
                 .fillMaxWidth()
