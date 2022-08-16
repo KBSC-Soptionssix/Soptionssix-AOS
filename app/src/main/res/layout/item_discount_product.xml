@@ -192,6 +192,18 @@
             app:layout_constraintStart_toEndOf="@+id/btn_donation"
             app:layout_constraintTop_toTopOf="@+id/btn_buy" />
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="인증 후 이용가능"
+            android:textColor="@color/white"
+            android:textSize="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_donation_waiting"
+            app:layout_constraintEnd_toEndOf="@id/btn_donation_waiting"
+            app:layout_constraintStart_toStartOf="@+id/btn_donation_waiting" />
+
         <ImageView
             android:id="@+id/iv_waiting_people"
             android:layout_width="wrap_content"
