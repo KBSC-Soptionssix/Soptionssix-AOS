@@ -8,13 +8,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EAEAEA"
         tools:context=".discount.DiscountFragment">
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv"
+            android:id="@+id/nsv_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
