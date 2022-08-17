@@ -21,6 +21,7 @@ object Dependencies {
     const val lifecycleKTX =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleKTXVersion}"
     const val fragmentKTX = "androidx.fragment:fragment-ktx:${Versions.fragmentKTXVersion}"
+    const val pager = "com.google.accompanist:accompanist-pager:${Versions.pager}"
 
     const val composeActivity =
         "androidx.activity:activity-compose:${Versions.composeActivityVersion}"

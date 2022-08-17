@@ -24,7 +24,9 @@ import com.kbcs.soptionssix.R
 
 @Composable
 fun DonationBoxes() {
-    Row {
+    Row(
+        Modifier.padding(horizontal = 16.dp)
+    ) {
         CommonDonationBox(
             modifier = Modifier
                 .weight(1.0f)

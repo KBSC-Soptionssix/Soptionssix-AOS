@@ -41,6 +41,7 @@ fun ReviewItem(review: Review) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 16.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(Color.White)
     ) {

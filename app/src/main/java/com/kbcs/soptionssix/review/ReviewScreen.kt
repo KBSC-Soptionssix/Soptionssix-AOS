@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.review.component.DonationBoxes
-import com.kbcs.soptionssix.review.component.DonationDescriptionBox
+import com.kbcs.soptionssix.review.component.HorizontalDescriptionBanner
 import com.kbcs.soptionssix.review.component.ReviewItem
 import com.kbcs.soptionssix.review.component.WriteReviewBox
 
@@ -58,11 +58,18 @@ fun ReviewScreen() {
     )
     val focusManager = LocalFocusManager.current
     val isFocus = remember { mutableStateOf(false) }
+    val dummyDescriptionList = mutableListOf(
+        "플라스틱 포장 용기의 90%는\n" +
+            "재활용이 아닌 ㅇㅇㅇㅇㅇ이다",
+        "기부 후기를\n" +
+            "널리 알리면 왜 좋을까요?",
+        "지구를 지키고\n" +
+            "나눔을 실천하는 쉬운 방법"
+    )
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Gray)
-            .padding(horizontal = 16.dp)
             .pointerInput(Unit) {
                 detectTapGestures(onTap = {
                     focusManager.clearFocus()
@@ -71,7 +78,7 @@ fun ReviewScreen() {
             }
     ) {
         item {
-            DonationDescriptionBox()
+            HorizontalDescriptionBanner(dummyDescriptionList)
             Spacer(modifier = Modifier.size(16.dp))
             DonationBoxes()
             Spacer(modifier = Modifier.size(26.dp))
