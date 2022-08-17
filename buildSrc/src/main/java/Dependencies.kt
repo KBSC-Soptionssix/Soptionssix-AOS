@@ -42,6 +42,7 @@ object Dependencies {
 
     // Third Party
     const val coil = "io.coil-kt:coil:${Versions.coilVersion}"
+    const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilVersion}"
     const val interceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.interceptorVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"

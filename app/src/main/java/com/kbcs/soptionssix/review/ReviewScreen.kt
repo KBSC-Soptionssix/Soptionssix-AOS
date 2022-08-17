@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -96,7 +95,8 @@ data class Review(
     val time: String,
     val address: String,
     val content: String,
-    val storeName: String
+    val storeName: String,
+    val reviewImages: List<String> = emptyList()
 )
 
 @Preview(showBackground = true)

@@ -60,6 +60,7 @@ dependencies {
         implementation(appCompat)
         implementation(constraintLayout)
         implementation(coil)
+        implementation(coilCompose)
         implementation(pager)
 
         testImplementation(jUnit)

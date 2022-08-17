@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.review.Review
 
@@ -56,7 +58,7 @@ fun ReviewItem(review: Review) {
             Spacer(Modifier.size(4.dp))
             ReviewContent(content = review.content)
             Spacer(Modifier.size(16.dp))
-            StoreInformation(storeName = review.storeName)
+            StoreInformation(storeName = review.storeName, reviewImages = review.reviewImages)
         }
     }
 }
@@ -84,7 +86,6 @@ private fun ReviewInformation(
 
 @Composable
 private fun ReviewContent(content: String) {
-    val isClick = remember { mutableStateOf(true) }
     ExpandableText(
         text = content
     )
@@ -151,13 +152,25 @@ fun ExpandableText(
 }
 
 @Composable
-private fun StoreInformation(storeName: String) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(text = storeName)
-        Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
+private fun StoreInformation(storeName: String, reviewImages: List<String>) {
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(text = storeName)
+            Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
+        }
+        Spacer(Modifier.size(4.dp))
+        AsyncImage(
+            model = R.drawable.ic_launcher_foreground,
+            contentDescription = "",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(98.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .background(Color.Gray)
+        )
     }
 }
 
