@@ -38,7 +38,7 @@ fun HorizontalDescriptionBanner(
             yield()
             delay(3000)
             state.animateScrollToPage(
-                page = (state.currentPage + 1) % (state.pageCount),
+                page = (state.currentPage + 1) % (state.pageCount)
             )
         }
     }
