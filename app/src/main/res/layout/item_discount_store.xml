@@ -18,7 +18,9 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:src="@drawable/shape_gray_fill_8_rectangle"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:layout_width="0dp"
