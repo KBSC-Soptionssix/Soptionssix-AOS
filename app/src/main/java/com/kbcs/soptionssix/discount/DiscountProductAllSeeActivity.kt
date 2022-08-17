@@ -1,7 +1,8 @@
 package com.kbcs.soptionssix.discount
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.kbcs.soptionssix.R
 
 class DiscountProductAllSeeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
