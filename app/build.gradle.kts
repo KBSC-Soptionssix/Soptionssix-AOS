@@ -39,6 +39,9 @@ android {
         dataBinding = true
         viewBinding = true
     }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
 }
 
 dependencies {
@@ -54,8 +57,10 @@ dependencies {
         implementation(fragmentKTX)
         implementation(lifecycleKTX)
         implementation(appCompat)
+        implementation(material)
         implementation(constraintLayout)
         implementation(coil)
+        implementation(recyclerView)
 
         testImplementation(jUnit)
         androidTestImplementation(androidTest)

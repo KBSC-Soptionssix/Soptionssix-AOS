@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EAEAEA"
+        tools:context=".discount.DiscountFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_discount_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry">
+
+                    <TextView
+                        android:id="@+id/tv_title_store"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:includeFontPadding="false"
+                        android:text="@string/discountStoreTop"
+                        android:textColor="#A1A1A1"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvStore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="42dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title_store"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_discount_store" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_discount_store"
+                    tools:ignore="RtlSymmetry">
+
+                    <TextView
+                        android:id="@+id/tv_product"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="@string/discountProduct"
+                        android:textColor="#A1A1A1"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_product"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_discount_product" />
+
+                    <ImageView
+                        android:id="@+id/iv_more_see"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/shape_gray_line_31_rectangle"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rv_product" />
+
+                    <TextView
+                        android:id="@+id/tv_all_see"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:includeFontPadding="false"
+                        android:text="@string/discountProductMoreSee"
+                        android:textColor="#9F9F9F"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_more_see"
+                        app:layout_constraintStart_toStartOf="@+id/iv_more_see"
+                        app:layout_constraintTop_toTopOf="@+id/iv_more_see" />
+
+                    <ImageView
+                        android:id="@+id/btn_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:backgroundTint="#9E9E9E"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_all_see"
+                        app:layout_constraintStart_toEndOf="@+id/tv_all_see"
+                        app:layout_constraintTop_toTopOf="@id/tv_all_see" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_waiting_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_product"
+                    tools:ignore="RtlSymmetry">
+
+                    <TextView
+                        android:id="@+id/tv_waiting_product"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="@string/discountWaitingProduct"
+                        android:textColor="#A1A1A1"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_waiting_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_waiting_product"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/item_discount_product" />
+
+                    <ImageView
+                        android:id="@+id/iv_more_donation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/shape_gray_line_31_rectangle"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rv_waiting_product" />
+
+                    <TextView
+                        android:id="@+id/tv_more_donation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:includeFontPadding="false"
+                        android:text="@string/discountDonationWaitingMoreSee"
+                        android:textColor="#9F9F9F"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_more_donation"
+                        app:layout_constraintStart_toStartOf="@+id/iv_more_donation"
+                        app:layout_constraintTop_toTopOf="@+id/iv_more_donation" />
+
+                    <ImageView
+                        android:id="@+id/btn_right_donation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:backgroundTint="#9E9E9E"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_more_donation"
+                        app:layout_constraintStart_toEndOf="@+id/tv_more_donation"
+                        app:layout_constraintTop_toTopOf="@id/tv_more_donation" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
