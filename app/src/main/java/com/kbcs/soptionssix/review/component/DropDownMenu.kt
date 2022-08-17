@@ -72,7 +72,9 @@ fun DonationChip() {
             .background(Color.LightGray),
         contentAlignment = Alignment.CenterEnd
     ) {
-        Row() {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(text = "기부")
             Image(
                 painter = painterResource(id = R.drawable.ic_temp_storefront),

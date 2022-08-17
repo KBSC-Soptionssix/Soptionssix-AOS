@@ -1,6 +1,5 @@
 package com.kbcs.soptionssix.review.component
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -39,11 +37,9 @@ fun HorizontalDescriptionBanner(
         while (true) {
             yield()
             delay(3000)
-            Log.d("dshfkhsaf","state before ${state.currentPageOffset}")
             state.animateScrollToPage(
                 page = (state.currentPage + 1) % (state.pageCount),
             )
-            Log.d("dshfkhsaf","state after ${state.currentPageOffset}")
         }
     }
     HorizontalPager(
