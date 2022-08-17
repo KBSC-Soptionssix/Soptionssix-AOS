@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kbcs.soptionssix.R
@@ -152,7 +153,11 @@ fun ExpandableText(
 }
 
 @Composable
-private fun StoreInformation(storeName: String, reviewImages: List<String>) {
+private fun StoreInformation(
+    storeName: String,
+    reviewImages: List<String>,
+    imageHeight: Dp = 98.dp
+) {
     Column {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -162,15 +167,40 @@ private fun StoreInformation(storeName: String, reviewImages: List<String>) {
             Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
         }
         Spacer(Modifier.size(4.dp))
-        AsyncImage(
-            model = R.drawable.ic_launcher_foreground,
-            contentDescription = "",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(98.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(Color.Gray)
-        )
+        if (reviewImages.size == 1) {
+            AsyncImage(
+                model = R.drawable.ic_launcher_foreground,
+                contentDescription = "",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(imageHeight)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(Color.Gray)
+            )
+        } else if (reviewImages.size == 2) {
+            Row(Modifier.fillMaxWidth()) {
+                AsyncImage(
+                    model = R.drawable.ic_launcher_foreground,
+                    contentDescription = "",
+                    modifier =
+                    Modifier
+                        .height(imageHeight)
+                        .weight(1f)
+                        .clip(RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp))
+                        .background(Color.Gray)
+                )
+                Spacer(Modifier.size(2.dp))
+                AsyncImage(
+                    model = R.drawable.ic_launcher_foreground,
+                    contentDescription = "",
+                    modifier = Modifier
+                        .height(imageHeight)
+                        .weight(1f)
+                        .clip(RoundedCornerShape(topEnd = 8.dp, bottomEnd = 8.dp))
+                        .background(Color.Gray)
+                )
+            }
+        }
     }
 }
 
