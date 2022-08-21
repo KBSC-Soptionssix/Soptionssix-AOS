@@ -35,6 +35,7 @@ object Dependencies {
         "com.google.android.material:compose-theme-adapter:${Versions.composeAdapterVersion}"
     const val composeMaterial = "androidx.compose.material:material:${Versions.composeVersion}"
 
+    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
     // test
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val androidTest = "androidx.test.ext:junit:${Versions.androidTestVersion}"

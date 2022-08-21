@@ -43,6 +43,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeVersion
     }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
 }
 
 dependencies {
@@ -58,10 +61,12 @@ dependencies {
         implementation(fragmentKTX)
         implementation(lifecycleKTX)
         implementation(appCompat)
+        implementation(material)
         implementation(constraintLayout)
         implementation(coil)
         implementation(coilCompose)
         implementation(pager)
+        implementation(recyclerView)
 
         testImplementation(jUnit)
         androidTestImplementation(androidTest)
