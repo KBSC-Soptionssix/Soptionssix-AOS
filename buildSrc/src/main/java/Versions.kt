@@ -12,16 +12,17 @@ object Versions {
     const val coroutineVersion = "1.6.3"
     const val hiltVersion = "2.38.1"
     const val retrofit2Version = "2.9.0"
+    const val pager = "0.25.1"
     const val recyclerViewVersion = "1.2.1"
 
     const val activityKTXVersion = "1.5.1"
     const val lifecycleKTXVersion = "2.6.0-alpha01"
     const val fragmentKTXVersion = "1.5.0"
 
-    const val kotlinVersion = "1.6.20"
+    const val kotlinVersion = "1.6.10"
 
     const val composeActivityVersion = "1.5.1"
-    const val composeVersion = "1.1.1"
+    const val composeVersion = "1.2.0"
     const val composeViewModelVersion = "2.5.0"
     const val composeAdapterVersion = "1.1.14"
     const val composeThemeVersion = "0.16.0"

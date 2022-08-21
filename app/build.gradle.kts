@@ -38,6 +38,10 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeVersion
     }
     lint {
         baseline = file("lint-baseline.xml")
@@ -60,6 +64,8 @@ dependencies {
         implementation(material)
         implementation(constraintLayout)
         implementation(coil)
+        implementation(coilCompose)
+        implementation(pager)
         implementation(recyclerView)
 
         testImplementation(jUnit)

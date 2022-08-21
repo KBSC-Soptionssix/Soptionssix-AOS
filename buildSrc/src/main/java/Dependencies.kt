@@ -21,6 +21,7 @@ object Dependencies {
     const val lifecycleKTX =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleKTXVersion}"
     const val fragmentKTX = "androidx.fragment:fragment-ktx:${Versions.fragmentKTXVersion}"
+    const val pager = "com.google.accompanist:accompanist-pager:${Versions.pager}"
 
     const val composeActivity =
         "androidx.activity:activity-compose:${Versions.composeActivityVersion}"
@@ -42,6 +43,7 @@ object Dependencies {
 
     // Third Party
     const val coil = "io.coil-kt:coil:${Versions.coilVersion}"
+    const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilVersion}"
     const val interceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.interceptorVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
