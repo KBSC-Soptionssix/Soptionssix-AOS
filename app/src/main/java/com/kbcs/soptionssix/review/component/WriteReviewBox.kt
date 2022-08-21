@@ -142,7 +142,7 @@ private fun ExpandingElements(reviewText: String) {
             modifier = Modifier
                 .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
                 .padding(vertical = 6.dp, horizontal = 14.dp),
-            text = stringResource(id = R.string.registration)
+            text = stringResource(id = R.string.review_registration)
         )
     }
 }
@@ -173,7 +173,7 @@ private fun StoreInformation(menuItem: List<String>) {
         ) {
             CommonBox(
                 boxIcon = R.drawable.ic_temp_storefront,
-                boxText = stringResource(id = R.string.store),
+                boxText = stringResource(id = R.string.review_store),
                 isDropDownMenu = true,
                 menuItem = menuItem
             )

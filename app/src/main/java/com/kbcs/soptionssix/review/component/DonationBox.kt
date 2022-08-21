@@ -31,14 +31,14 @@ fun DonationBoxes() {
             modifier = Modifier
                 .weight(1.0f)
                 .padding(end = 4.dp),
-            contentText = R.string.make_donation,
+            contentText = R.string.review_make_donation,
             contentImage = R.drawable.ic_temp_fire
         )
         CommonDonationBox(
             modifier = Modifier
                 .weight(1.0f)
                 .padding(start = 4.dp),
-            contentText = R.string.get_donation,
+            contentText = R.string.review_get_donation,
             contentImage = R.drawable.ic_temp_fire
         )
     }

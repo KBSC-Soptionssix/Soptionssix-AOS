@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Soptionssix</string>
-    <string name="donation_description">지구를 지키고,\n나눔을 실천하는 법</string>
-    <string name="make_donation">내가\n기부하기</string>
-    <string name="get_donation">인증하고\n기부 받기</string>
+    <string name="review_donation_description">지구를 지키고,\n나눔을 실천하는 법</string>
+    <string name="review_make_donation">내가\n기부하기</string>
+    <string name="review_get_donation">인증하고\n기부 받기</string>
     <string name="review_empty">따뜻한 후기 캠페인에 참여하세요</string>
-    <string name="registration">등록</string>
-    <string name="store">가게</string>
+    <string name="review_registration">등록</string>
+    <string name="review_store">가게</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="discountStoreTop">반짝할인 가게</string>

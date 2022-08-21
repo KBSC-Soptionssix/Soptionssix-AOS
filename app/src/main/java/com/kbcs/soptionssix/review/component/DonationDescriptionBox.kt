@@ -78,5 +78,5 @@ private fun DonationDescriptionItem(
 @Preview
 @Composable
 fun DonationDescriptionBoxPreview() {
-    DonationDescriptionItem(stringResource(id = R.string.donation_description))
+    DonationDescriptionItem(stringResource(id = R.string.review_donation_description))
 }
