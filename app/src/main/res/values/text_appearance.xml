@@ -1,124 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="pretendard_bold_15">
+    <style name="BuyB16">
+        <item name="android:fontFamily">@font/pretendard</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ShopTitleB15">
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">15sp</item>
     </style>
 
-    <style name="pretendard_semibold_normal_152">
+    <style name="ShopB15">
+        <item name="android:fontFamily">@font/pretendard</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="ShopSb152">
         <item name="android:fontFamily">@font/pretendard_semibold</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">15sp</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
-    <style name="pretendard_normal_15">
+    <style name="ExchangeR15">
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">15sp</item>
     </style>
 
-    <style name="pretendard_bold_13">
+    <style name="BuyB13">
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">13sp</item>
     </style>
 
-    <style name="pretendard_medium_normal_1319">
+    <style name="ShopM13">
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="ReviewM13Lh19">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">13sp</item>
         <item name="android:lineSpacingExtra">6sp</item>
     </style>
 
-    <style name="pretendard_medium_normal_13_minus_2">
+    <style name="ExchangeM132">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">13sp</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
-    <style name="pretendard_medium_normal_13_plus_2">
+    <style name="BuyM132">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">13sp</item>
         <item name="android:letterSpacing">0.02</item>
     </style>
 
-    <style name="pretendard_medium_normal_13">
-        <item name="android:fontFamily">@font/pretendard_medium</item>
+    <style name="BuyR13">
+        <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">13sp</item>
     </style>
 
-    <style name="pretendard_semibold_normal_122">
+    <style name="ProductSb122">
         <item name="android:fontFamily">@font/pretendard_semibold</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.02</item>
     </style>
 
-    <style name="pretendard_medium_normal_info_11">
+    <style name="ShopM11Decoline">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">11sp</item>
     </style>
 
-    <style name="pretendard_medium_normal_11_decoline">
+    <style name="ShopInfoM11">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">11sp</item>
     </style>
 
-    <style name="pretendard_normal_11">
+    <style name="ReviewR11">
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">11sp</item>
         <item name="android:lineSpacingExtra">3sp</item>
     </style>
 
-    <style name="pretendard_semibold_noraml_10">
+    <style name="ShopSb10">
         <item name="android:fontFamily">@font/pretendard_semibold</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">10sp</item>
     </style>
 
-    <style name="pretendard_medium_narmal_9">
+    <style name="BuyM10">
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="ShopTagSb9">
+        <item name="android:fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="ShopM92">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">9sp</item>
     </style>
 
-    <style name="pretendard_medium_narmal_8">
+    <style name="ShopM9">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">8sp</item>
+        <item name="android:textSize">9sp</item>
     </style>
 
-    <style name="pretendard_semibold_normal_tag82">
+    <style name="ShopTagR82">
         <item name="android:fontFamily">@font/pretendard_semibold</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">8sp</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
-    <style name="pretendard_medium_normal_82">
+    <style name="ProductSbM83">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">8sp</item>
         <item name="android:letterSpacing">-0.03</item>
     </style>
 
-    <style name="pretendard_normal_82">
+    <style name="ShopR82">
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">8sp</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
-    <style name="pretendard_medium_normal_7">
+    <style name="BannerM7">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">7sp</item>
