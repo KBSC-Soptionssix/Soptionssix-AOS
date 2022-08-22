@@ -1,7 +1,6 @@
 package com.kbcs.soptionssix.review
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,18 +12,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.review.component.DonationBoxes
 import com.kbcs.soptionssix.review.component.HorizontalDescriptionBanner
 import com.kbcs.soptionssix.review.component.ReviewItem
-import com.kbcs.soptionssix.review.component.WriteReviewBox
 
 @Composable
 fun ReviewScreen() {
@@ -60,8 +56,6 @@ fun ReviewScreen() {
             storeName = "몽실 베이커리"
         )
     )
-    val focusManager = LocalFocusManager.current
-    val isFocus = remember { mutableStateOf(false) }
     val dummyDescriptionList = mutableListOf(
         "플라스틱 포장 용기의 90%는\n" +
             "재활용이 아닌 ㅇㅇㅇㅇㅇ이다",
@@ -74,19 +68,11 @@ fun ReviewScreen() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Gray)
-            .pointerInput(Unit) {
-                detectTapGestures(onTap = {
-                    focusManager.clearFocus()
-                    isFocus.value = false
-                })
-            }
     ) {
         item {
             HorizontalDescriptionBanner(dummyDescriptionList)
             Spacer(modifier = Modifier.size(16.dp))
             DonationBoxes()
-            Spacer(modifier = Modifier.size(24.dp))
-            WriteReviewBox(isFocus = isFocus)
             Spacer(modifier = Modifier.size(24.dp))
             Divider(
                 Modifier
@@ -95,7 +81,10 @@ fun ReviewScreen() {
                     .background(Color.Blue)
             )
             Spacer(modifier = Modifier.size(24.dp))
-            Text(modifier = Modifier.padding(start = 16.dp), text = "반짝후기")
+            Text(
+                modifier = Modifier.padding(start = 16.dp),
+                text = stringResource(id = R.string.review_review_list_title)
+            )
         }
         items(dummyReviewList) { review ->
             Spacer(modifier = Modifier.size(24.dp))

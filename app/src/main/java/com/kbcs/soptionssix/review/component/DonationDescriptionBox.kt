@@ -76,9 +76,9 @@ private fun DonationDescriptionItem(
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
+                    modifier = Modifier.padding(top = 6.dp),
                     painter = painterResource(id = R.drawable.ic_together),
-                    contentDescription = "",
-                    alignment = Alignment.BottomStart
+                    contentDescription = ""
                 )
                 Spacer(Modifier.size(24.dp))
                 Image(

@@ -1,9 +1,11 @@
 package com.kbcs.soptionssix.review.component
 
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,9 +19,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
@@ -33,14 +37,24 @@ fun DonationBoxes() {
                 .weight(1.0f)
                 .padding(end = 4.dp),
             contentText = R.string.review_make_donation,
-            contentImage = R.drawable.ic_tinder
+            descriptionText = R.string.review_donation_box_description,
+            contentImage = R.drawable.ic_tinder,
+            stroke = 0.dp,
+            textColor = R.color.black,
+            backgroundColor = R.color.purple_200,
+            strokeColor = R.color.purple_200
         )
         CommonDonationBox(
             modifier = Modifier
                 .weight(1.0f)
                 .padding(start = 4.dp),
             contentText = R.string.review_get_donation,
-            contentImage = R.drawable.ic_reward
+            descriptionText = R.string.review_donation_box_description,
+            contentImage = R.drawable.ic_reward,
+            stroke = 1.dp,
+            textColor = R.color.black,
+            backgroundColor = R.color.white,
+            strokeColor = R.color.teal_200
         )
     }
 }
@@ -48,23 +62,35 @@ fun DonationBoxes() {
 @Composable
 private fun CommonDonationBox(
     modifier: Modifier,
+    stroke: Dp,
     @StringRes contentText: Int,
-    @DrawableRes contentImage: Int
+    @StringRes descriptionText: Int,
+    @DrawableRes contentImage: Int,
+    @ColorRes textColor: Int,
+    @ColorRes backgroundColor: Int,
+    @ColorRes strokeColor: Int
 ) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(Color.White),
+            .background(colorResource(id = backgroundColor))
+            .border(
+                width = stroke,
+                color = colorResource(id = strokeColor),
+                shape = RoundedCornerShape(12.dp)
+            ),
         contentAlignment = Alignment.Center
     ) {
         Row {
             Column(modifier = Modifier.padding(top = 22.dp)) {
                 Text(
-                    text = stringResource(id = contentText)
+                    text = stringResource(id = contentText),
+                    color = colorResource(id = textColor)
                 )
                 Text(
                     modifier = Modifier.padding(top = 8.dp),
-                    text = stringResource(id = contentText)
+                    text = stringResource(id = descriptionText),
+                    color = colorResource(id = textColor)
                 )
             }
             Spacer(modifier = Modifier.size(14.dp))
