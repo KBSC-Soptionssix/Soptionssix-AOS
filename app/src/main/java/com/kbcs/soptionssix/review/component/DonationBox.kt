@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -32,14 +33,14 @@ fun DonationBoxes() {
                 .weight(1.0f)
                 .padding(end = 4.dp),
             contentText = R.string.review_make_donation,
-            contentImage = R.drawable.ic_temp_fire
+            contentImage = R.drawable.ic_tinder
         )
         CommonDonationBox(
             modifier = Modifier
                 .weight(1.0f)
                 .padding(start = 4.dp),
             contentText = R.string.review_get_donation,
-            contentImage = R.drawable.ic_temp_fire
+            contentImage = R.drawable.ic_reward
         )
     }
 }
@@ -57,13 +58,18 @@ private fun CommonDonationBox(
         contentAlignment = Alignment.Center
     ) {
         Row {
-            Text(
-                modifier = Modifier.padding(top = 16.dp, start = 12.dp),
-                text = stringResource(id = contentText)
-            )
+            Column(modifier = Modifier.padding(top = 22.dp)) {
+                Text(
+                    text = stringResource(id = contentText)
+                )
+                Text(
+                    modifier = Modifier.padding(top = 8.dp),
+                    text = stringResource(id = contentText)
+                )
+            }
             Spacer(modifier = Modifier.size(14.dp))
             Image(
-                modifier = Modifier.padding(vertical = 12.dp),
+                modifier = Modifier.padding(vertical = 16.dp),
                 painter = painterResource(id = contentImage),
                 contentDescription = ""
             )

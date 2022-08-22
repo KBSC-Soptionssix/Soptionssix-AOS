@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
@@ -21,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -75,10 +77,15 @@ private fun ReviewInformation(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(text = title)
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Text(text = time)
             Spacer(Modifier.size(4.dp))
-            Text(text = "|")
+            Box(
+                Modifier
+                    .size(2.dp)
+                    .clip(CircleShape)
+                    .background(Color.Gray)
+            )
             Spacer(Modifier.size(4.dp))
             Text(text = address)
         }
@@ -189,7 +196,7 @@ private fun StoreInformation(
                         .clip(RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp))
                         .background(Color.Gray)
                 )
-                Spacer(Modifier.size(2.dp))
+                Spacer(Modifier.size(4.dp))
                 AsyncImage(
                     model = R.drawable.ic_launcher_foreground,
                     contentDescription = "",

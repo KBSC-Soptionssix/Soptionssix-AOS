@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -61,7 +63,6 @@ private fun DonationDescriptionItem(
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .background(Color.White)
-            .padding(start = 14.dp, top = 15.dp, bottom = 15.dp, end = 16.dp)
     ) {
         Row(
             modifier = Modifier
@@ -69,8 +70,22 @@ private fun DonationDescriptionItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = description)
-            Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
+            Text(
+                modifier = Modifier.padding(start = 14.dp, top = 15.dp, bottom = 15.dp),
+                text = description
+            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_together),
+                    contentDescription = "",
+                    alignment = Alignment.BottomStart
+                )
+                Spacer(Modifier.size(24.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_temp_right),
+                    contentDescription = ""
+                )
+            }
         }
     }
 }

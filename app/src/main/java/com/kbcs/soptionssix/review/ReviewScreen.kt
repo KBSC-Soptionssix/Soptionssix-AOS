@@ -4,9 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Divider
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -80,11 +85,20 @@ fun ReviewScreen() {
             HorizontalDescriptionBanner(dummyDescriptionList)
             Spacer(modifier = Modifier.size(16.dp))
             DonationBoxes()
-            Spacer(modifier = Modifier.size(26.dp))
+            Spacer(modifier = Modifier.size(24.dp))
             WriteReviewBox(isFocus = isFocus)
+            Spacer(modifier = Modifier.size(24.dp))
+            Divider(
+                Modifier
+                    .fillMaxWidth()
+                    .height(8.dp)
+                    .background(Color.Blue)
+            )
+            Spacer(modifier = Modifier.size(24.dp))
+            Text(modifier = Modifier.padding(start = 16.dp), text = "반짝후기")
         }
         items(dummyReviewList) { review ->
-            Spacer(modifier = Modifier.size(16.dp))
+            Spacer(modifier = Modifier.size(24.dp))
             ReviewItem(review)
         }
     }
