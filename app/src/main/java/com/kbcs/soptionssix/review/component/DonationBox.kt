@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,9 +43,9 @@ fun DonationBoxes() {
             descriptionText = R.string.review_donation_box_description,
             contentImage = R.drawable.ic_tinder,
             stroke = 0.dp,
-            textColor = R.color.black,
-            backgroundColor = R.color.purple_200,
-            strokeColor = R.color.purple_200
+            textColor = R.color.dark_gray_2,
+            backgroundColor = R.color.light_brown,
+            strokeColor = R.color.light_brown
         )
         CommonDonationBox(
             modifier = Modifier
@@ -52,9 +55,9 @@ fun DonationBoxes() {
             descriptionText = R.string.review_donation_box_description,
             contentImage = R.drawable.ic_reward,
             stroke = 1.dp,
-            textColor = R.color.black,
+            textColor = R.color.dark_green,
             backgroundColor = R.color.white,
-            strokeColor = R.color.teal_200
+            strokeColor = R.color.dark_green
         )
     }
 }
@@ -70,35 +73,42 @@ private fun CommonDonationBox(
     @ColorRes backgroundColor: Int,
     @ColorRes strokeColor: Int
 ) {
-    Box(
-        modifier = modifier
-            .clip(RoundedCornerShape(12.dp))
-            .background(colorResource(id = backgroundColor))
-            .border(
-                width = stroke,
-                color = colorResource(id = strokeColor),
-                shape = RoundedCornerShape(12.dp)
-            ),
-        contentAlignment = Alignment.Center
+    Surface(
+        modifier = modifier.border(
+            width = stroke,
+            color = colorResource(id = strokeColor),
+            shape = RoundedCornerShape(8.dp)
+        ),
+        elevation = 8.dp,
+        shape = RoundedCornerShape(8.dp)
     ) {
-        Row {
-            Column(modifier = Modifier.padding(top = 22.dp)) {
-                Text(
-                    text = stringResource(id = contentText),
-                    color = colorResource(id = textColor)
-                )
-                Text(
-                    modifier = Modifier.padding(top = 8.dp),
-                    text = stringResource(id = descriptionText),
-                    color = colorResource(id = textColor)
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(8.dp))
+                .background(colorResource(id = backgroundColor)),
+            contentAlignment = Alignment.Center
+        ) {
+            Row {
+                Column(modifier = Modifier.padding(top = 22.dp, bottom = 26.dp)) {
+                    Text(
+                        text = stringResource(id = contentText),
+                        color = colorResource(id = textColor),
+                        style = MaterialTheme.typography.h2
+                    )
+                    Text(
+                        modifier = Modifier.padding(top = 8.dp),
+                        text = stringResource(id = descriptionText),
+                        color = colorResource(id = R.color.gray),
+                        style = MaterialTheme.typography.caption
+                    )
+                }
+                Spacer(modifier = Modifier.size(14.dp))
+                Image(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    painter = painterResource(id = contentImage),
+                    contentDescription = ""
                 )
             }
-            Spacer(modifier = Modifier.size(14.dp))
-            Image(
-                modifier = Modifier.padding(vertical = 16.dp),
-                painter = painterResource(id = contentImage),
-                contentDescription = ""
-            )
         }
     }
 }
@@ -106,7 +116,7 @@ private fun CommonDonationBox(
 @Preview(showBackground = true)
 @Composable
 fun DonationBoxPreview() {
-    Box(Modifier.background(Color.Gray)) {
+    Box(Modifier.fillMaxWidth().background(Color.Gray)) {
         DonationBoxes()
     }
 }

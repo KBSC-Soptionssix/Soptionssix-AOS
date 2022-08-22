@@ -11,13 +11,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,19 +52,36 @@ fun HorizontalDescriptionBanner(
         count = descriptionList.size,
         contentPadding = PaddingValues(horizontal = 16.dp)
     ) { page ->
-        Box(Modifier.padding(horizontal = 6.dp)) { DonationDescriptionItem(descriptionList[page]) }
+        Surface(
+            modifier = Modifier.padding(horizontal = 6.dp),
+            elevation = 4.dp,
+            shape = RoundedCornerShape(8.dp)
+        ) {
+            Box {
+                DonationDescriptionItem(
+                    descriptionList[page],
+                    page
+                )
+            }
+        }
     }
 }
 
 @Composable
 private fun DonationDescriptionItem(
-    description: String
+    description: String,
+    page: Int
 ) {
+    val backgroundColor = when (page) {
+        0 -> R.color.dark_green
+        1 -> R.color.orange
+        else -> R.color.blue_banner
+    }
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color.White)
+            .clip(RoundedCornerShape(8.dp))
+            .background(colorResource(id = backgroundColor))
     ) {
         Row(
             modifier = Modifier
@@ -72,7 +91,9 @@ private fun DonationDescriptionItem(
         ) {
             Text(
                 modifier = Modifier.padding(start = 14.dp, top = 15.dp, bottom = 15.dp),
-                text = description
+                text = description,
+                style = MaterialTheme.typography.h2,
+                color = colorResource(id = R.color.white)
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
@@ -93,5 +114,5 @@ private fun DonationDescriptionItem(
 @Preview
 @Composable
 fun DonationDescriptionBoxPreview() {
-    DonationDescriptionItem(stringResource(id = R.string.review_donation_description))
+    DonationDescriptionItem(stringResource(id = R.string.review_donation_description), 1)
 }

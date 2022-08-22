@@ -10,10 +10,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.review.component.DonationBoxes
 import com.kbcs.soptionssix.review.component.HorizontalDescriptionBanner
 import com.kbcs.soptionssix.review.component.ReviewItem
+import com.kbcs.soptionssix.review.theme.PretendardTypography
 
 @Composable
 fun ReviewScreen() {
@@ -64,31 +66,33 @@ fun ReviewScreen() {
         "지구를 지키고\n" +
             "나눔을 실천하는 쉬운 방법"
     )
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Gray)
-    ) {
-        item {
-            HorizontalDescriptionBanner(dummyDescriptionList)
-            Spacer(modifier = Modifier.size(16.dp))
-            DonationBoxes()
-            Spacer(modifier = Modifier.size(24.dp))
-            Divider(
-                Modifier
-                    .fillMaxWidth()
-                    .height(8.dp)
-                    .background(Color.Blue)
-            )
-            Spacer(modifier = Modifier.size(24.dp))
-            Text(
-                modifier = Modifier.padding(start = 16.dp),
-                text = stringResource(id = R.string.review_review_list_title)
-            )
-        }
-        items(dummyReviewList) { review ->
-            Spacer(modifier = Modifier.size(24.dp))
-            ReviewItem(review)
+    MaterialTheme(typography = PretendardTypography) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            item {
+                HorizontalDescriptionBanner(dummyDescriptionList)
+                Spacer(modifier = Modifier.size(16.dp))
+                DonationBoxes()
+                Spacer(modifier = Modifier.size(24.dp))
+                Divider(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(8.dp)
+                        .background(colorResource(id = R.color.view_background))
+                )
+                Spacer(modifier = Modifier.size(24.dp))
+                Text(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = stringResource(id = R.string.review_review_list_title),
+                    style = MaterialTheme.typography.h1
+                )
+            }
+            items(dummyReviewList) { review ->
+                Spacer(modifier = Modifier.size(24.dp))
+                ReviewItem(review)
+            }
         }
     }
 }

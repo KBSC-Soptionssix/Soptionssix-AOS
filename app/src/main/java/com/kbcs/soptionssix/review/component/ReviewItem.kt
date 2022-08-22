@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -43,25 +46,30 @@ import com.kbcs.soptionssix.review.Review
 
 @Composable
 fun ReviewItem(review: Review) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(Color.White)
+    Surface(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        elevation = 20.dp,
+        shape = RoundedCornerShape(8.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(8.dp))
+                .background(Color.White)
         ) {
-            ReviewInformation(
-                title = review.title,
-                time = review.time,
-                address = review.address
-            )
-            Spacer(Modifier.size(4.dp))
-            ReviewContent(content = review.content)
-            Spacer(Modifier.size(16.dp))
-            StoreInformation(storeName = review.storeName, reviewImages = review.reviewImages)
+            Column(
+                Modifier.fillMaxWidth().padding(16.dp)
+            ) {
+                ReviewInformation(
+                    title = review.title,
+                    time = review.time,
+                    address = review.address
+                )
+                Spacer(Modifier.size(4.dp))
+                ReviewContent(content = review.content)
+                Spacer(Modifier.size(16.dp))
+                StoreInformation(storeName = review.storeName, reviewImages = review.reviewImages)
+            }
         }
     }
 }
@@ -76,9 +84,17 @@ private fun ReviewInformation(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = title)
+        Text(
+            text = title,
+            style = MaterialTheme.typography.body1,
+            color = colorResource(id = R.color.dark_gray_2)
+        )
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = time)
+            Text(
+                text = time,
+                style = MaterialTheme.typography.body1,
+                color = colorResource(id = R.color.dark_gray)
+            )
             Spacer(Modifier.size(4.dp))
             Box(
                 Modifier
@@ -87,7 +103,11 @@ private fun ReviewInformation(
                     .background(Color.Gray)
             )
             Spacer(Modifier.size(4.dp))
-            Text(text = address)
+            Text(
+                text = address,
+                style = MaterialTheme.typography.body1,
+                color = colorResource(id = R.color.dark_gray)
+            )
         }
     }
 }
@@ -154,7 +174,8 @@ fun ExpandableText(
                 }
             },
             style = style,
-            textAlign = textAlign
+            textAlign = textAlign,
+            color = colorResource(id = R.color.dark_gray_2)
         )
     }
 }
@@ -170,7 +191,11 @@ private fun StoreInformation(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = storeName)
+            Text(
+                text = storeName,
+                style = MaterialTheme.typography.body2,
+                color = colorResource(id = R.color.dark_green)
+            )
             Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
         }
         Spacer(Modifier.size(4.dp))
