@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Soptionssix</string>
     <string name="review_donation_description">지구를 지키고,\n나눔을 실천하는 법</string>
-    <string name="review_make_donation">내가\n기부하기</string>
-    <string name="review_get_donation">인증하고\n기부 받기</string>
+    <string name="review_make_donation">기부하기</string>
+    <string name="review_get_donation">후기 남기기</string>
     <string name="review_empty">따뜻한 후기 캠페인에 참여하세요</string>
     <string name="review_registration">등록</string>
     <string name="review_store">가게</string>
