@@ -58,13 +58,10 @@ fun ReviewScreen() {
             storeName = "몽실 베이커리"
         )
     )
-    val dummyDescriptionList = mutableListOf(
-        "플라스틱 포장 용기의 90%는\n" +
-            "재활용이 아닌 ㅇㅇㅇㅇㅇ이다",
-        "기부 후기를\n" +
-            "널리 알리면 왜 좋을까요?",
-        "지구를 지키고\n" +
-            "나눔을 실천하는 쉬운 방법"
+    val dummyDescriptionList = listOf(
+        "지구를 지키고,\n나눔을 실천하는 쉬운 방법",
+        "기부 후기를 널리 알리는 게\n유행하는 이유",
+        "일회용 포장 용기 종류별\n재활용 방법"
     )
     MaterialTheme(typography = PretendardTypography) {
         LazyColumn(
