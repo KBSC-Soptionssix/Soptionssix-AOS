@@ -82,7 +82,7 @@ fun ReviewScreen() {
                 Spacer(modifier = Modifier.size(24.dp))
                 Text(
                     modifier = Modifier.padding(start = 16.dp),
-                    text = stringResource(id = R.string.review_review_list_title),
+                    text = stringResource(id = R.string.reviewReviewListTitle),
                     style = MaterialTheme.typography.h1
                 )
             }

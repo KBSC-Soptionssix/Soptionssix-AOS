@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Soptionssix</string>
-    <string name="review_donation_description">지구를 지키고,\n나눔을 실천하는 법</string>
-    <string name="review_make_donation">기부하기</string>
-    <string name="review_get_donation">후기 남기기</string>
-    <string name="review_empty">따뜻한 후기 캠페인에 참여하세요</string>
-    <string name="review_registration">등록</string>
-    <string name="review_store">가게</string>
-    <string name="review_donation_box_description">작은 도움을 기다리는\n상품이 있어요</string>
-    <string name="review_review_box_description">반짝할인 상품을 포장해 본\n후기를 남겨보세요</string>
-    <string name="review_review_list_title">반짝후기</string>
+    <string name="reviewDonationDescription">지구를 지키고,\n나눔을 실천하는 법</string>
+    <string name="reviewMakeDonation">기부하기</string>
+    <string name="reviewGetDonation">후기 남기기</string>
+    <string name="reviewEmpty">따뜻한 후기 캠페인에 참여하세요</string>
+    <string name="reviewRegistration">등록</string>
+    <string name="reviewStore">가게</string>
+    <string name="reviewDonationBoxDescription">작은 도움을 기다리는\n상품이 있어요</string>
+    <string name="reviewReviewBoxDescription">반짝할인 상품을 포장해 본\n후기를 남겨보세요</string>
+    <string name="reviewReviewListTitle">반짝후기</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="discountStoreTop">반짝할인 가게</string>

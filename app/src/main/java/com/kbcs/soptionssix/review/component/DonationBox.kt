@@ -39,8 +39,8 @@ fun DonationBoxes() {
             modifier = Modifier
                 .weight(1.0f)
                 .padding(end = 4.dp),
-            contentText = R.string.review_make_donation,
-            descriptionText = R.string.review_donation_box_description,
+            contentText = R.string.reviewMakeDonation,
+            descriptionText = R.string.reviewDonationBoxDescription,
             contentImage = R.drawable.ic_tinder,
             stroke = 0.dp,
             textColor = R.color.dark_gray_2,
@@ -51,8 +51,8 @@ fun DonationBoxes() {
             modifier = Modifier
                 .weight(1.0f)
                 .padding(start = 4.dp),
-            contentText = R.string.review_get_donation,
-            descriptionText = R.string.review_donation_box_description,
+            contentText = R.string.reviewGetDonation,
+            descriptionText = R.string.reviewDonationBoxDescription,
             contentImage = R.drawable.ic_reward,
             stroke = 1.dp,
             textColor = R.color.dark_green,
