@@ -1,25 +1,28 @@
 package com.kbcs.soptionssix.review
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.review.component.DonationBoxes
 import com.kbcs.soptionssix.review.component.HorizontalDescriptionBanner
 import com.kbcs.soptionssix.review.component.ReviewItem
-import com.kbcs.soptionssix.review.component.WriteReviewBox
+import com.kbcs.soptionssix.review.theme.PretendardTypography
 
 @Composable
 fun ReviewScreen() {
@@ -55,37 +58,38 @@ fun ReviewScreen() {
             storeName = "몽실 베이커리"
         )
     )
-    val focusManager = LocalFocusManager.current
-    val isFocus = remember { mutableStateOf(false) }
-    val dummyDescriptionList = mutableListOf(
-        "플라스틱 포장 용기의 90%는\n" +
-            "재활용이 아닌 ㅇㅇㅇㅇㅇ이다",
-        "기부 후기를\n" +
-            "널리 알리면 왜 좋을까요?",
-        "지구를 지키고\n" +
-            "나눔을 실천하는 쉬운 방법"
+    val dummyDescriptionList = listOf(
+        "지구를 지키고,\n나눔을 실천하는 쉬운 방법",
+        "기부 후기를 널리 알리는 게\n유행하는 이유",
+        "일회용 포장 용기 종류별\n재활용 방법"
     )
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Gray)
-            .pointerInput(Unit) {
-                detectTapGestures(onTap = {
-                    focusManager.clearFocus()
-                    isFocus.value = false
-                })
+    MaterialTheme(typography = PretendardTypography) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            item {
+                HorizontalDescriptionBanner(dummyDescriptionList)
+                Spacer(modifier = Modifier.size(16.dp))
+                DonationBoxes()
+                Spacer(modifier = Modifier.size(24.dp))
+                Divider(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(8.dp)
+                        .background(colorResource(id = R.color.view_background))
+                )
+                Spacer(modifier = Modifier.size(24.dp))
+                Text(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = stringResource(id = R.string.reviewReviewListTitle),
+                    style = MaterialTheme.typography.h1
+                )
             }
-    ) {
-        item {
-            HorizontalDescriptionBanner(dummyDescriptionList)
-            Spacer(modifier = Modifier.size(16.dp))
-            DonationBoxes()
-            Spacer(modifier = Modifier.size(26.dp))
-            WriteReviewBox(isFocus = isFocus)
-        }
-        items(dummyReviewList) { review ->
-            Spacer(modifier = Modifier.size(16.dp))
-            ReviewItem(review)
+            items(dummyReviewList) { review ->
+                Spacer(modifier = Modifier.size(24.dp))
+                ReviewItem(review)
+            }
         }
     }
 }

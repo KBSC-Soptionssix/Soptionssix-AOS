@@ -113,7 +113,7 @@ private fun WriteReviewTextField(isFocus: MutableState<Boolean>) {
             if (reviewText.isEmpty()) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.review_empty),
+                    text = stringResource(id = R.string.reviewEmpty),
                     color = Color.Gray
                 )
             }
@@ -142,7 +142,7 @@ private fun ExpandingElements(reviewText: String) {
             modifier = Modifier
                 .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
                 .padding(vertical = 6.dp, horizontal = 14.dp),
-            text = stringResource(id = R.string.review_registration)
+            text = stringResource(id = R.string.reviewRegistration)
         )
     }
 }
@@ -173,7 +173,7 @@ private fun StoreInformation(menuItem: List<String>) {
         ) {
             CommonBox(
                 boxIcon = R.drawable.ic_temp_storefront,
-                boxText = stringResource(id = R.string.review_store),
+                boxText = stringResource(id = R.string.reviewStore),
                 isDropDownMenu = true,
                 menuItem = menuItem
             )
