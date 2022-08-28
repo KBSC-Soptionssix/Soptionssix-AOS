@@ -36,19 +36,3 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build
-      
-    - name: Discord Success Notification
-      if: ${{ success() }}
-      uses: Ilshidur/action-discord@master
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      with:
-        args: 'PR이 완료되었습니다!!! 🎉🎉🎉'
-        
-    - name: Discord Fail Notification
-      if: ${{ failure() }}
-      uses: Ilshidur/action-discord@master
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      with:
-        args: '에러를 확인해주세요'
