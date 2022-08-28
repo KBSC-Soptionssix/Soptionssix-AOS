@@ -1,4 +1,4 @@
-package com.kbcs.soptionssix.review.component
+package com.kbcs.soptionssix.util.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

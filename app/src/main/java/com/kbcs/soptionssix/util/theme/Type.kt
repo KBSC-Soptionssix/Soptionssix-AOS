@@ -1,4 +1,4 @@
-package com.kbcs.soptionssix.review.theme
+package com.kbcs.soptionssix.util.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
