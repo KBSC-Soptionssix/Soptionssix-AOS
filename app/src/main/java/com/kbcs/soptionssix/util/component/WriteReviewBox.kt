@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,19 +40,29 @@ fun WriteReviewBox(
     storeName: String,
     menuName: String
 ) {
-    Column(Modifier.background(Color.White)) {
-        Spacer(modifier = Modifier.height(16.dp))
-        CommonInformationBox(
-            boxIcon = R.drawable.ic_shop,
-            boxText = storeName
-        )
-        Spacer(modifier = Modifier.height(18.dp))
-        CommonInformationBox(
-            boxIcon = R.drawable.ic_soup,
-            boxText = menuName
-        )
-        Spacer(modifier = Modifier.height(14.dp))
-        WriteReviewTextField()
+    Surface(
+        elevation = 10.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .background(Color.White)
+        ) {
+            Spacer(modifier = Modifier.height(16.dp))
+            CommonInformationBox(
+                boxIcon = R.drawable.ic_shop,
+                boxText = storeName
+            )
+            Spacer(modifier = Modifier.height(18.dp))
+            CommonInformationBox(
+                boxIcon = R.drawable.ic_soup,
+                boxText = menuName
+            )
+            Spacer(modifier = Modifier.height(14.dp))
+            WriteReviewTextField()
+        }
     }
 }
 
