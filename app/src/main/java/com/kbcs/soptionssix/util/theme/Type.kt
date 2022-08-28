@@ -33,6 +33,11 @@ val PretendardTypography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 13.sp
     ),
+    h3 = TextStyle(
+        fontFamily = Pretendard,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp
+    ),
     body1 = TextStyle(
         fontFamily = PretendardMedium,
         fontWeight = FontWeight.Normal,
@@ -49,6 +54,12 @@ val PretendardTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 11.sp,
         lineHeight = 3.sp
+    ),
+    subtitle2 = TextStyle(
+        fontFamily = PretendardMedium,
+        fontWeight = FontWeight.Normal,
+        fontSize = 13.sp,
+        lineHeight = 20.sp
     ),
     caption = TextStyle(
         fontFamily = PretendardMedium,

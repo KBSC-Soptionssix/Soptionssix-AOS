@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -37,18 +36,16 @@ import com.kbcs.soptionssix.R
 
 @Composable
 fun WriteReviewBox(
+    modifier: Modifier,
     storeName: String,
     menuName: String
 ) {
     Surface(
         elevation = 10.dp,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+        modifier = modifier
     ) {
         Column(
-            modifier = Modifier
-                .background(Color.White)
+            modifier = Modifier.height(270.dp)
         ) {
             Spacer(modifier = Modifier.height(16.dp))
             CommonInformationBox(
@@ -75,7 +72,6 @@ private fun WriteReviewTextField() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 22.dp)
-            .height(270.dp)
     ) {
         BasicTextField(
             value = reviewText,
@@ -85,7 +81,7 @@ private fun WriteReviewTextField() {
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight(),
+                .height(270.dp),
             cursorBrush = SolidColor(colorResource(id = R.color.black))
         ) { innerTextField ->
             if (reviewText.isEmpty()) {
@@ -93,7 +89,7 @@ private fun WriteReviewTextField() {
                     modifier = Modifier.fillMaxWidth(),
                     text = stringResource(id = R.string.reviewEmpty),
                     color = colorResource(id = R.color.light_gray),
-                    style = MaterialTheme.typography.body2
+                    style = MaterialTheme.typography.subtitle2
                 )
             }
             innerTextField()
@@ -126,6 +122,12 @@ private fun WriteReviewBoxPreview() {
             .fillMaxSize()
             .background(Color.Gray)
     ) {
-        WriteReviewBox(storeName = "맘스터치", menuName = "부리또")
+        WriteReviewBox(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            storeName = "맘스터치",
+            menuName = "부리또"
+        )
     }
 }
