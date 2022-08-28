@@ -3,9 +3,9 @@ package com.kbcs.soptionssix.write
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.MaterialTheme
@@ -21,12 +21,12 @@ import com.kbcs.soptionssix.util.component.WriteReviewBox
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
-fun WriteReviewScreen() {
+fun WriteReviewScreen(
+    modifier: Modifier
+) {
     MaterialTheme(typography = PretendardTypography) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = colorResource(id = R.color.view_background)),
+            modifier = modifier,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             WriteReviewBox(
@@ -43,7 +43,8 @@ fun WriteReviewScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(colorResource(id = R.color.white))
-                    .padding(8.dp),
+                    .padding(8.dp)
+                    .imePadding(),
                 isClickable = false
             )
         }
@@ -53,5 +54,5 @@ fun WriteReviewScreen() {
 @Preview
 @Composable
 private fun WriteReviewScreenPreview() {
-    WriteReviewScreen()
+    WriteReviewScreen(Modifier)
 }
