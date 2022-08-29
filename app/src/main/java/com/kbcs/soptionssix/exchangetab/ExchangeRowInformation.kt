@@ -23,7 +23,7 @@ import com.kbcs.soptionssix.R
 fun ExchangeItemRowFrame(
     @DrawableRes prefixIcon: Int? = null,
     prefixContent: @Composable (modifier: Modifier) -> Unit = {},
-    posfixContent: @Composable () -> Unit = {}
+    postfixContent: @Composable () -> Unit = {}
 ) {
     val borderColor = colorResource(id = R.color.view_background)
     Row(
@@ -51,7 +51,7 @@ fun ExchangeItemRowFrame(
             )
         }
         prefixContent(Modifier.weight(1f))
-        posfixContent()
+        postfixContent()
     }
 }
 
@@ -68,7 +68,7 @@ private fun ExchangeRowInformationPreview() {
                 color = colorResource(id = R.color.dark_green)
             )
         },
-        posfixContent = {
+        postfixContent = {
             Text(
                 text = "9000원",
                 style = MaterialTheme.typography.body2,
