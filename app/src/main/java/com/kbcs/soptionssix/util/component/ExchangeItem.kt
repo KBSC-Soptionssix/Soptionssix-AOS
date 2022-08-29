@@ -1,4 +1,4 @@
-package com.kbcs.soptionssix.exchangetab
+package com.kbcs.soptionssix.util.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kbcs.soptionssix.R
-import com.kbcs.soptionssix.review.theme.PretendardTypography
+import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun ExchangeItem(state: Int) {
@@ -78,7 +78,7 @@ private fun ExchangeDate() {
         postfixContent = {
             Text(
                 text = "2022.08.11",
-                style = MaterialTheme.typography.h2,
+                style = MaterialTheme.typography.h4,
                 color = colorResource(id = R.color.black)
             )
         }
@@ -203,7 +203,7 @@ private fun ExchangeButton(
                 .padding(top = 16.dp, bottom = 13.dp),
             text = buttonText,
             color = colorResource(id = R.color.white),
-            style = MaterialTheme.typography.h2
+            style = MaterialTheme.typography.h3
         )
     }
 }

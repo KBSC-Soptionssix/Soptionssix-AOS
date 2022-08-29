@@ -1,4 +1,4 @@
-package com.kbcs.soptionssix.exchangetab
+package com.kbcs.soptionssix.util.component
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
