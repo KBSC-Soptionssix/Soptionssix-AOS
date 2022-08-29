@@ -2,6 +2,7 @@ package com.kbcs.soptionssix.util.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +10,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,21 +49,26 @@ fun ExchangeItem(state: Int) {
         2 -> fun() { println("2") }
         else -> fun() { println("3") }
     }
-    Column {
-        ExchangeDate()
-        ExchangeStore()
-        ExchangeMenu()
-        ExchangePaymentHistory()
-        ExchangeTime()
-        ExchangeButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(colorResource(id = R.color.white))
-                .padding(8.dp),
-            backgroundColor = buttonColor,
-            buttonText = buttonText,
-            clickEvent = { clickEvent() }
-        )
+    Surface(
+        modifier = Modifier.background(colorResource(id = R.color.white)),
+        elevation = 4.dp
+    ) {
+        Column() {
+            ExchangeDate()
+            ExchangeStore()
+            ExchangeMenu()
+            ExchangePaymentHistory()
+            ExchangeTime()
+            ExchangeButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(colorResource(id = R.color.white))
+                    .padding(8.dp),
+                backgroundColor = buttonColor,
+                buttonText = buttonText,
+                clickEvent = { clickEvent() }
+            )
+        }
     }
 }
 
