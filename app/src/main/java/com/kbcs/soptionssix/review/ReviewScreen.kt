@@ -19,10 +19,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
-import com.kbcs.soptionssix.review.component.DonationBoxes
-import com.kbcs.soptionssix.review.component.HorizontalDescriptionBanner
-import com.kbcs.soptionssix.review.component.ReviewItem
-import com.kbcs.soptionssix.review.theme.PretendardTypography
+import com.kbcs.soptionssix.util.component.DonationBoxes
+import com.kbcs.soptionssix.util.component.HorizontalDescriptionBanner
+import com.kbcs.soptionssix.util.component.ReviewItem
+import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun ReviewScreen() {

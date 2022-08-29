@@ -3,12 +3,13 @@
     <string name="reviewDonationDescription">지구를 지키고,\n나눔을 실천하는 법</string>
     <string name="reviewMakeDonation">기부하기</string>
     <string name="reviewGetDonation">후기 남기기</string>
-    <string name="reviewEmpty">따뜻한 후기 캠페인에 참여하세요</string>
+    <string name="reviewEmpty">맛있는 반짝할인 상품을 구매해서 환경과 통장도 지키고, 이웃에게 따뜻한 마음을 전해봤어요!</string>
     <string name="reviewRegistration">등록</string>
     <string name="reviewStore">가게</string>
     <string name="reviewDonationBoxDescription">작은 도움을 기다리는\n상품이 있어요</string>
     <string name="reviewReviewBoxDescription">반짝할인 상품을 포장해 본\n후기를 남겨보세요</string>
     <string name="reviewReviewListTitle">반짝후기</string>
+    <string name="writeReviewRegister">후기 등록하기</string>
     <string name="exchangeTabShowExchange">교환증 보기</string>
     <string name="exchangeTabWriteReview">후기 작성하기</string>
     <string name="exchangeTabShowReview">후기 보기</string>
