@@ -28,4 +28,8 @@
     <string name="storeDetailRoad">도로명 주소</string>
     <string name="storeDetailCopy">복사</string>
     <string name="productMoreSee">상품 더보기</string>
+    <string name="discountItemWon">원</string>
+    <string name="itemDiscountBuy">구입하기</string>
+    <string name="itemDiscountGive">기부하기</string>
+    <string name="itemDiscountWait">기부 대기하기</string>
 </resources>
