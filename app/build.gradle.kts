@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -5,6 +7,9 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
 }
+
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
 
 android {
     compileSdk = Constants.compileSdk
@@ -15,6 +20,8 @@ android {
         targetSdk = Constants.targetSdk
         versionCode = Constants.versionCode
         versionName = Constants.versionName
+
+        buildConfigField("String", "NAVER_KEY", properties.getProperty("NAVER_KEY"))
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,8 +62,12 @@ dependencies {
     hilt()
     compose()
     network()
-
     Dependencies.run {
+        implementation(naverAppCompat)
+        implementation(naverMap) {
+            exclude(group = "com.android.support")
+        }
+        implementation(naverLocation)
         implementation(kotlin)
         implementation(coroutine)
         implementation(coreKTX)

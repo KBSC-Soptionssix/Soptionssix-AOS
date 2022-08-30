@@ -50,6 +50,11 @@ object Dependencies {
     const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2Version}"
     const val retrofit2Converter =
         "com.squareup.retrofit2:converter-gson:${Versions.retrofit2Version}"
+
+    // NAVER MAP
+    const val naverMap = "com.naver.maps:map-sdk:3.15.0"
+    const val naverLocation = "com.google.android.gms:play-services-location:20.0.0"
+    const val naverAppCompat = "com.android.support:appcompat-v7:28.0.0"
 }
 
 fun DependencyHandler.hilt() {
