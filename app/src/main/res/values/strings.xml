@@ -24,4 +24,16 @@
     <string name="discountAllSeeActivity">상품 전체보기</string>
     <string name="itemDiscountProductAuthAfterUse">인증 후 이용가능</string>
     <string name="discountDonationWaitingMoreSee">기부 대기 상품 더 보기</string>
+    <string name="StoreDetailInformation">가게 정보</string>
+    <string name="storeDetailName">멕시칸인더보울 명동점</string>
+    <string name="shopDetailTele">전화번호</string>
+    <string name="storeDetailBreakTime">브레이크 타임</string>
+    <string name="storeDetailTime">영업시간</string>
+    <string name="storeDetailRoad">도로명 주소</string>
+    <string name="storeDetailCopy">복사</string>
+    <string name="productMoreSee">상품 더보기</string>
+    <string name="discountItemWon">원</string>
+    <string name="itemDiscountBuy">구입하기</string>
+    <string name="itemDiscountGive">기부하기</string>
+    <string name="itemDiscountWait">기부 대기하기</string>
 </resources>
