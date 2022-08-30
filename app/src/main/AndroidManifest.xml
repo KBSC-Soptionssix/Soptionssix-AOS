@@ -36,6 +36,9 @@
             android:name=".write.WriteReviewActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="57y2t9wtpt" />
     </application>
 
 </manifest>
