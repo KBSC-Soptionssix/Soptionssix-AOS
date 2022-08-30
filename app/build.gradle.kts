@@ -60,6 +60,7 @@ dependencies {
     compose()
     network()
     Dependencies.run {
+        implementation(naverMap)
         implementation(naverAppCompat)
         implementation(naverMap) {
             exclude(group = "com.android.support")

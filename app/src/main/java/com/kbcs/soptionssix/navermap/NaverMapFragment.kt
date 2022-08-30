@@ -1,60 +1,105 @@
 package com.kbcs.soptionssix.navermap
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.kbcs.soptionssix.R
+import com.kbcs.soptionssix.databinding.FragmentNaverMapBinding
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraAnimation
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapView
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class NaverMapFragment : Fragment(), OnMapReadyCallback {
+    private var _mapView: MapView? = null
+    private var _binding: FragmentNaverMapBinding? = null
+    private var _naverMap: NaverMap? = null
 
-/**
- * A simple [Fragment] subclass.
- * Use the [NaverMapFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class NaverMapFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val mapView: MapView get() = _mapView!!
+    private val naverMap: NaverMap get() = _naverMap!!
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_naver_map, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _mapView = binding.naverMapView
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync(this)
+    }
+
+    override fun onMapReady(p0: NaverMap) {
+        _naverMap = p0.apply {
+            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.5005, 127.0281))
+                .animate(CameraAnimation.Easing)
+            minZoom = 17.0
+            maxZoom = 19.0
+            uiSettings.apply {
+                isCompassEnabled = false
+                isScaleBarEnabled = false
+                isLocationButtonEnabled = false
+                isLogoClickEnabled = false
+                mapType = NaverMap.MapType.Basic
+            }
+            moveCamera(cameraUpdate)
+        }
+        Marker().apply {
+            position = LatLng(37.5005, 127.0281)
+            map = naverMap
+            icon = OverlayImage.fromResource(R.drawable.ic_temp_location_on)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_naver_map, container, false)
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NaverMapFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NaverMapFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mapView.onDestroy()
+        _binding = null
+        _mapView = null
+        _naverMap = null
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
     }
 }
