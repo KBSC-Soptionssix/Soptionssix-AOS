@@ -38,6 +38,11 @@ val PretendardTypography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp
     ),
+    h4 = TextStyle(
+        fontFamily = Pretendard,
+        fontWeight = FontWeight.Normal,
+        fontSize = 13.sp
+    ),
     body1 = TextStyle(
         fontFamily = PretendardMedium,
         fontWeight = FontWeight.Normal,
