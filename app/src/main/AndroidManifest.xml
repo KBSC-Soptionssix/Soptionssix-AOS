@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Soptionssix"
         tools:targetApi="31">
         <activity
-            android:name=".ExchangeDetailActivity"
+            android:name=".exchange.ExchangeDetailActivity"
             android:exported="false" />
         <activity
             android:name=".store.StoreDetailActivity"
