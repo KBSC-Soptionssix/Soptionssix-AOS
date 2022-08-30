@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/view_background"
+        tools:context=".exchange.ExchangeDetailActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_product_all_see"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/exchangeDetailTop"
+                android:textAppearance="@style/ShopB15"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/iv_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_back" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_shop_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/cl_top">
+
+            <TextView
+                android:id="@+id/tv_title_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:includeFontPadding="false"
+                android:text="@string/StoreDetailInformation"
+                android:textAppearance="@style/ShopB15"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/vLine1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/view_background"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_store" />
+
+            <ImageView
+                android:id="@+id/iv_shop_emo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_shop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vLine1" />
+
+            <TextView
+                android:id="@+id/tv_store_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:includeFontPadding="false"
+                android:textAppearance="@style/ShopM13"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/iv_shop_emo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_shop_emo"
+                app:layout_constraintTop_toTopOf="@id/iv_shop_emo"
+                tools:text="@string/storeDetailName" />
+
+            <View
+                android:id="@+id/vLine2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/view_background"
+                app:layout_constraintTop_toBottomOf="@+id/iv_shop_emo" />
+
+            <TextView
+                android:id="@+id/tv_road"
+                android:layout_width="54dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="18dp"
+                android:text="@string/storeDetailRoad"
+                android:textAppearance="@style/ShopSb10"
+                android:textColor="@color/dark_green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vLine2" />
+
+            <TextView
+                android:id="@+id/tv_road_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:textAppearance="@style/ShopInfoM11"
+                android:textColor="@color/dark_gray_2"
+                app:layout_constraintStart_toEndOf="@+id/tv_road"
+                app:layout_constraintTop_toTopOf="@+id/tv_road"
+                tools:text="서울특별시 중구 남대문로 84" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="54dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/exchangeDetailAddress"
+                android:textAppearance="@style/ShopSb10"
+                android:textColor="@color/dark_green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_road" />
+
+            <TextView
+                android:id="@+id/tv_address_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:textAppearance="@style/ShopInfoM11"
+                android:textColor="@color/dark_gray_2"
+                app:layout_constraintStart_toEndOf="@+id/tv_address"
+                app:layout_constraintTop_toTopOf="@+id/tv_address"
+                tools:text="명동 445" />
+
+            <ImageView
+                android:id="@+id/iv_copy_road"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
+                app:layout_constraintBottom_toBottomOf="@id/tv_road_detail"
+                app:layout_constraintStart_toEndOf="@+id/tv_road_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_road_detail" />
+
+            <TextView
+                android:id="@+id/tv_copy_road"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/storeDetailCopy"
+                android:textAppearance="@style/ShopInfoM11"
+                app:layout_constraintBottom_toBottomOf="@id/iv_copy_road"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_copy_road"
+                app:layout_constraintTop_toTopOf="@id/iv_copy_road" />
+
+            <ImageView
+                android:id="@+id/iv_copy_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
+                app:layout_constraintBottom_toBottomOf="@id/tv_address_detail"
+                app:layout_constraintStart_toEndOf="@+id/tv_address_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_address_detail" />
+
+            <TextView
+                android:id="@+id/tv_copy_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/storeDetailCopy"
+                android:textAppearance="@style/ShopInfoM11"
+                app:layout_constraintBottom_toBottomOf="@id/iv_copy_address"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_copy_address"
+                app:layout_constraintTop_toTopOf="@id/iv_copy_address" />
+
+            <ImageView
+                android:id="@+id/iv_time_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/shape_light_brown_fill_4_rectangle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+            <ImageView
+                android:id="@+id/iv_time_emo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/ic_soup"
+                app:layout_constraintBottom_toBottomOf="@id/iv_time_box"
+                app:layout_constraintStart_toStartOf="@id/iv_time_box"
+                app:layout_constraintTop_toTopOf="@id/iv_time_box" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="2022년 8월 11일 (목) 오후 2시 17분 까지 갈게요!"
+                android:textAppearance="@style/ExchangeM132"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_time_emo"
+                app:layout_constraintEnd_toEndOf="@+id/iv_time_box"
+                app:layout_constraintStart_toEndOf="@+id/iv_time_emo"
+                app:layout_constraintTop_toTopOf="@id/iv_time_emo" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_order_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/cl_shop_info">
+
+            <TextView
+                android:id="@+id/tv_order_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:includeFontPadding="false"
+                android:text="@string/exchangeDetailOrderInfo"
+                android:textAppearance="@style/ShopB15"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/vLine3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/view_background"
+                app:layout_constraintTop_toBottomOf="@+id/tv_order_info" />
+
+            <ImageView
+                android:id="@+id/iv_order_emo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_soup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vLine3" />
+
+            <TextView
+                android:id="@+id/tv_order_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:includeFontPadding="false"
+                android:text="멕시칸 치킨 부리또"
+                android:textAppearance="@style/ShopSb152"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/iv_order_emo"
+                app:layout_constraintStart_toEndOf="@+id/iv_order_emo"
+                app:layout_constraintTop_toTopOf="@id/iv_order_emo" />
+
+            <TextView
+                android:id="@+id/tv_order_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/ExchangeR15"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_order_name"
+                app:layout_constraintEnd_toStartOf="@+id/tv_order_num_ko"
+                app:layout_constraintStart_toEndOf="@+id/tv_order_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_order_name" />
+
+            <TextView
+                android:id="@+id/tv_order_num_ko"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="개"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/ExchangeR15"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_order_num"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_order_num" />
+
+            <View
+                android:id="@+id/vLine4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/view_background"
+                app:layout_constraintTop_toBottomOf="@+id/iv_order_emo" />
+
+            <TextView
+                android:id="@+id/tv_discount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/exchangeDetailDiscountPrice"
+                android:textAppearance="@style/ExchangeR15"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vLine4" />
+
+            <TextView
+                android:id="@+id/tv_minus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:text="@string/excahngeMinus"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/ExchangeR15"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_discount"
+                app:layout_constraintEnd_toStartOf="@+id/tv_discount_price"
+                app:layout_constraintStart_toEndOf="@+id/tv_discount"
+                app:layout_constraintTop_toTopOf="@+id/tv_discount" />
+
+            <TextView
+                android:id="@+id/tv_discount_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="9,000"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/ExchangeR15"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_discount"
+                app:layout_constraintEnd_toStartOf="@+id/tv_discount_price_ko"
+                app:layout_constraintTop_toTopOf="@+id/tv_discount" />
+
+            <TextView
+                android:id="@+id/tv_discount_price_ko"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="원"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/ExchangeR15"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_discount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_discount" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/exchangeTotalPrice"
+                android:textAppearance="@style/ShopSb152"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_discount" />
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="9,000"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/ShopSb152"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total"
+                app:layout_constraintEnd_toStartOf="@+id/tv_total_price_ko"
+                app:layout_constraintStart_toEndOf="@+id/tv_total"
+                app:layout_constraintTop_toTopOf="@+id/tv_total" />
+
+            <TextView
+                android:id="@+id/tv_total_price_ko"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="원"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/ShopSb152"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_total" />
+
+            <ImageView
+                android:id="@+id/iv_complete_exchange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_dark_gray_fill_4_rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total" />
+
+            <TextView
+                android:id="@+id/tv_exchange_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="교환 완료 "
+                android:textAppearance="@style/BuyB16"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
+                app:layout_constraintEnd_toStartOf="@+id/tv_remained_time"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/iv_complete_exchange"
+                app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
+
+            <TextView
+                android:id="@+id/tv_remained_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="36"
+                android:textAppearance="@style/BuyB16"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
+                app:layout_constraintEnd_toStartOf="@+id/tv_remained"
+                app:layout_constraintStart_toEndOf="@+id/tv_exchange_complete"
+                app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
+
+            <TextView
+                android:id="@+id/tv_remained"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="분 남음"
+                android:textAppearance="@style/BuyB16"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
+                app:layout_constraintEnd_toEndOf="@+id/iv_complete_exchange"
+                app:layout_constraintStart_toEndOf="@+id/tv_remained_time"
+                app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/exchangeDetailToHave"
+                android:textAppearance="@style/ShopM92"
+                android:textColor="#5a5a5a"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_complete_exchange" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
