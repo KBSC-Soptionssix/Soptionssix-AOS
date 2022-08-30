@@ -1,4 +1,4 @@
-package com.kbcs.soptionssix.review.component
+package com.kbcs.soptionssix.util.component
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
