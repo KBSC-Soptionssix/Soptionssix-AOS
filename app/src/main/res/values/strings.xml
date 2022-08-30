@@ -36,4 +36,11 @@
     <string name="itemDiscountBuy">구입하기</string>
     <string name="itemDiscountGive">기부하기</string>
     <string name="itemDiscountWait">기부 대기하기</string>
+    <string name="exchangeDetailTop">교환증 상세</string>
+    <string name="exchangeDetailAddress">지번 주소</string>
+    <string name="exchangeDetailOrderInfo">주문 정보</string>
+    <string name="exchangeDetailDiscountPrice">할인 금액</string>
+    <string name="exchangeTotalPrice">총 결제 금액</string>
+    <string name="excahngeMinus">-</string>
+    <string name="exchangeDetailToHave">음식을 받고 나서 꼭 사장님이 교환 완료 버튼을 누르게 해주세요!</string>
 </resources>
