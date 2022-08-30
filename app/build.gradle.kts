@@ -49,14 +49,16 @@ android {
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.5.0")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     hilt()
     compose()
     network()
-
     Dependencies.run {
+        implementation(naverMap)
+        implementation(naverAppCompat)
+        implementation(naverMap) {
+            exclude(group = "com.android.support")
+        }
+        implementation(naverLocation)
         implementation(kotlin)
         implementation(coroutine)
         implementation(coreKTX)
