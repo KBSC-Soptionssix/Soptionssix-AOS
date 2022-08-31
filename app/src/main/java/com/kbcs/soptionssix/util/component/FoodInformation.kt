@@ -1,6 +1,7 @@
 package com.kbcs.soptionssix.util.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,7 +33,7 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun FoodInformation() {
-    Column {
+    Column(Modifier.background(colorResource(id = R.color.white))) {
         ExchangeItemRowFrame(
             prefixIcon = R.drawable.ic_temp_storefront,
             prefixContent = { modifier ->
