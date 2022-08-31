@@ -82,6 +82,11 @@ val PretendardTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 7.sp
     ),
+    button = TextStyle(
+        fontFamily = PretendardMedium,
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp
+    ),
     overline = TextStyle(
         fontFamily = PretendardSemiBold,
         fontWeight = FontWeight.Normal,
