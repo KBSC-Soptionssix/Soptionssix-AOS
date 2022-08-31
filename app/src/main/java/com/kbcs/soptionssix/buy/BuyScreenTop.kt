@@ -18,16 +18,18 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun BuyScreenTop() {
-    Column(
-        modifier = Modifier.background(colorResource(id = R.color.view_background))
-    ) {
-        Spacer(Modifier.height(8.dp))
-        FoodInformation()
-        Spacer(Modifier.height(8.dp))
-        FoodPriceBox()
-        Spacer(Modifier.height(8.dp))
-        PhoneNumberInfo()
-        Spacer(Modifier.height(8.dp))
+    MaterialTheme(typography = PretendardTypography) {
+        Column(
+            modifier = Modifier.background(colorResource(id = R.color.view_background))
+        ) {
+            Spacer(Modifier.height(8.dp))
+            FoodInformation()
+            Spacer(Modifier.height(8.dp))
+            FoodPriceBox()
+            Spacer(Modifier.height(8.dp))
+            PhoneNumberInfo()
+            Spacer(Modifier.height(8.dp))
+        }
     }
 }
 

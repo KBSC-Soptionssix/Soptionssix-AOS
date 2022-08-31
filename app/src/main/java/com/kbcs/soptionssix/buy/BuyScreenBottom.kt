@@ -21,21 +21,22 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun BuyScreenBottom() {
-    Column(modifier = Modifier.background(colorResource(id = R.color.view_background))) {
-        Spacer(Modifier.height(8.dp))
-        ArrivalTimeInfo()
-        Spacer(Modifier.height(8.dp))
-        IsChallengeInfo()
-        Spacer(Modifier.height(8.dp))
-        BuyMethodInfo()
-        Spacer(Modifier.height(88.dp))
-        ReviewRegisterButton(
-            modifier = Modifier.fillMaxWidth()
-                .background(colorResource(id = R.color.white))
-                .padding(8.dp),
-            isClickable = false,
-            buttonText = "9,000원 결제하기"
-        )
+    MaterialTheme(typography = PretendardTypography) {
+        Column(modifier = Modifier.background(colorResource(id = R.color.view_background))) {
+            Spacer(Modifier.height(8.dp))
+            ArrivalTimeInfo()
+            Spacer(Modifier.height(8.dp))
+            IsChallengeInfo()
+            Spacer(Modifier.height(8.dp))
+            BuyMethodInfo()
+            ReviewRegisterButton(
+                modifier = Modifier.fillMaxWidth()
+                    .background(colorResource(id = R.color.white))
+                    .padding(8.dp),
+                isClickable = false,
+                buttonText = "9,000원 결제하기"
+            )
+        }
     }
 }
 

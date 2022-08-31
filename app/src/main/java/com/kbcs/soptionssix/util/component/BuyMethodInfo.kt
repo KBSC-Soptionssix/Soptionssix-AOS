@@ -36,6 +36,7 @@ fun BuyMethodInfo() {
         )
         Spacer(Modifier.height(8.dp))
         LazyVerticalGrid(
+            modifier = Modifier.height(206.dp),
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(4.dp),
             horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -63,7 +64,7 @@ private fun PaymentBox(
                 shape = RoundedCornerShape(2.dp),
                 color = if (isChecked) colorResource(id = R.color.dark_green) else colorResource(id = R.color.pale_gray)
             )
-            .padding(vertical = 14.dp, horizontal = 44.dp),
+            .padding(vertical = 14.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
