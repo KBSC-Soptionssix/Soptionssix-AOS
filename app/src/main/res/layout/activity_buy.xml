@@ -14,7 +14,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:context=".buy.BuyActivity">
+            tools:context=".buy.BuyFoodActivity">
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/buy_top_screen_cv"

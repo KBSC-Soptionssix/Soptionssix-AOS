@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.ActivityBuyBinding
 
-class BuyActivity : AppCompatActivity() {
+class BuyFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBuyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

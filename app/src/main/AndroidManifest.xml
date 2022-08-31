@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Soptionssix"
         tools:targetApi="31">
         <activity
-            android:name=".buy.BuyActivity"
+            android:name=".buy.BuyFoodActivity"
             android:exported="false" />
         <activity
             android:name=".exchange.ExchangeDetailActivity"
