@@ -13,10 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
-import com.kbcs.soptionssix.util.component.ReviewRegisterButton
+import com.kbcs.soptionssix.util.component.InvisibleGuestButton
 import com.kbcs.soptionssix.util.component.WriteReviewBox
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
@@ -39,13 +40,14 @@ fun WriteReviewScreen(
                 storeName = "떡도리탕",
                 menuName = "부리또"
             )
-            ReviewRegisterButton(
+            InvisibleGuestButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(colorResource(id = R.color.white))
                     .padding(8.dp)
                     .imePadding(),
-                isClickable = false
+                isClickable = false,
+                buttonText = stringResource(id = R.string.writeReviewRegister)
             )
         }
     }

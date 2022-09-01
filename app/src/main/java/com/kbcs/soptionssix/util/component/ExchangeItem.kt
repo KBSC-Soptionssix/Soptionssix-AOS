@@ -56,7 +56,7 @@ fun ExchangeItem(state: Int) {
         Column {
             ExchangeDate()
             ExchangeStore()
-            ExchangeMenu()
+            ExchangeFood()
             ExchangePaymentHistory()
             ExchangeTime()
             ExchangeButton(
@@ -115,7 +115,7 @@ private fun ExchangeStore() {
 }
 
 @Composable
-private fun ExchangeMenu() {
+private fun ExchangeFood() {
     ExchangeItemRowFrame(
         prefixIcon = R.drawable.ic_temp_location_on,
         prefixContent = { modifier ->

@@ -35,7 +35,7 @@ fun DonationBoxes() {
     Row(
         Modifier.padding(horizontal = 16.dp)
     ) {
-        CommonDonationBox(
+        CommonDonationFrame(
             modifier = Modifier
                 .weight(1.0f)
                 .padding(end = 4.dp),
@@ -47,7 +47,7 @@ fun DonationBoxes() {
             backgroundColor = R.color.light_brown,
             strokeColor = R.color.light_brown
         )
-        CommonDonationBox(
+        CommonDonationFrame(
             modifier = Modifier
                 .weight(1.0f)
                 .padding(start = 4.dp),
@@ -63,7 +63,7 @@ fun DonationBoxes() {
 }
 
 @Composable
-private fun CommonDonationBox(
+private fun CommonDonationFrame(
     modifier: Modifier,
     stroke: Dp,
     @StringRes contentText: Int,

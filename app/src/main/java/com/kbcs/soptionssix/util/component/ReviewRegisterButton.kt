@@ -10,14 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun ReviewRegisterButton(
+fun InvisibleGuestButton(
     modifier: Modifier,
-    isClickable: Boolean
+    isClickable: Boolean,
+    buttonText: String
 ) {
     Box(
         modifier = modifier
@@ -34,7 +34,7 @@ fun ReviewRegisterButton(
             modifier = Modifier
                 .align(Alignment.Center)
                 .padding(top = 16.dp, bottom = 13.dp),
-            text = stringResource(id = R.string.writeReviewRegister),
+            text = buttonText,
             color = if (isClickable) colorResource(id = R.color.dark_gray_2) else colorResource(id = R.color.white),
             style = MaterialTheme.typography.h3
         )

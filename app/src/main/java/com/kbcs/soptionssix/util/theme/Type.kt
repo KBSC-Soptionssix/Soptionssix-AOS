@@ -43,6 +43,17 @@ val PretendardTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp
     ),
+    h5 = TextStyle(
+        fontFamily = PretendardSemiBold,
+        fontWeight = FontWeight.Normal,
+        fontSize = 15.sp,
+        letterSpacing = (-0.02).sp
+    ),
+    h6 = TextStyle(
+        fontFamily = PretendardMedium,
+        fontWeight = FontWeight.Normal,
+        fontSize = 11.sp
+    ),
     body1 = TextStyle(
         fontFamily = PretendardMedium,
         fontWeight = FontWeight.Normal,
@@ -70,6 +81,11 @@ val PretendardTypography = Typography(
         fontFamily = PretendardMedium,
         fontWeight = FontWeight.Normal,
         fontSize = 7.sp
+    ),
+    button = TextStyle(
+        fontFamily = PretendardMedium,
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp
     ),
     overline = TextStyle(
         fontFamily = PretendardSemiBold,
