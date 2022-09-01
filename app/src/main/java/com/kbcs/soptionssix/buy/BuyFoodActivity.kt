@@ -12,9 +12,9 @@ class BuyFoodActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_buy)
 
-//        with(binding) {
-//            buyTopScreenCv.setContent { BuyScreenTop() }
-//            buyBottomScreenCv.setContent { BuyScreenBottom() }
-//        }
+        with(binding) {
+            buyTopScreenCv.setContent { BuyScreenTop() }
+            buyBottomScreenCv.setContent { BuyScreenBottom() }
+        }
     }
 }

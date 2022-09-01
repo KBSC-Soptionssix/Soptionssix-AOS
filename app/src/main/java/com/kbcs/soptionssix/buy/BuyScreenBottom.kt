@@ -13,10 +13,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
-import com.kbcs.soptionssix.util.component.ArrivalTimeInfo
-import com.kbcs.soptionssix.util.component.BuyMethodInfo
-import com.kbcs.soptionssix.util.component.IsChallengeInfo
-import com.kbcs.soptionssix.util.component.ReviewRegisterButton
+import com.kbcs.soptionssix.util.component.SelectArrivalTime
+import com.kbcs.soptionssix.util.component.SelectBuyMethod
+import com.kbcs.soptionssix.util.component.IsChallengeCheck
+import com.kbcs.soptionssix.util.component.InvisibleGuestButton
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
@@ -24,12 +24,12 @@ fun BuyScreenBottom() {
     MaterialTheme(typography = PretendardTypography) {
         Column(modifier = Modifier.background(colorResource(id = R.color.view_background))) {
             Spacer(Modifier.height(8.dp))
-            ArrivalTimeInfo()
+            SelectArrivalTime()
             Spacer(Modifier.height(8.dp))
-            IsChallengeInfo()
+            IsChallengeCheck()
             Spacer(Modifier.height(8.dp))
-            BuyMethodInfo()
-            ReviewRegisterButton(
+            SelectBuyMethod()
+            InvisibleGuestButton(
                 modifier = Modifier.fillMaxWidth()
                     .background(colorResource(id = R.color.white))
                     .padding(8.dp),

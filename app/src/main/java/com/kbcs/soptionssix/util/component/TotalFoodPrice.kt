@@ -19,7 +19,7 @@ import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
-fun FoodPriceBox() {
+fun TotalFoodPrice() {
     Column(
         Modifier
             .background(color = colorResource(id = R.color.white))
@@ -65,6 +65,6 @@ fun FoodPriceBox() {
 @Preview
 private fun FoodPriceBoxPreview() {
     MaterialTheme(typography = PretendardTypography) {
-        FoodPriceBox()
+        TotalFoodPrice()
     }
 }

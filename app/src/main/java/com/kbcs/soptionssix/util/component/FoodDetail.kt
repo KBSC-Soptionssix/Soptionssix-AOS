@@ -32,7 +32,7 @@ import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
-fun FoodInformation() {
+fun FoodDetail() {
     Column(Modifier.background(colorResource(id = R.color.white))) {
         ExchangeItemRowFrame(
             prefixIcon = R.drawable.ic_temp_storefront,
@@ -153,6 +153,6 @@ private fun FoodCountWidget() {
 @Preview(showBackground = true)
 private fun FoodInformationPreview() {
     MaterialTheme(typography = PretendardTypography) {
-        FoodInformation()
+        FoodDetail()
     }
 }

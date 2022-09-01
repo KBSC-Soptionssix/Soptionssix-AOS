@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun ArrivalTimeInfo() {
+fun SelectArrivalTime() {
     val timeList = listOf("10분", "20분", "30분", "40분", "50분")
     Column(
         modifier = Modifier

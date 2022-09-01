@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun IsChallengeInfo() {
+fun IsChallengeCheck() {
     Column(
         modifier = Modifier
             .fillMaxWidth()

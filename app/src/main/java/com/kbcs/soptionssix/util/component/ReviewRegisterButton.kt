@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun ReviewRegisterButton(
+fun InvisibleGuestButton(
     modifier: Modifier,
     isClickable: Boolean,
     buttonText: String

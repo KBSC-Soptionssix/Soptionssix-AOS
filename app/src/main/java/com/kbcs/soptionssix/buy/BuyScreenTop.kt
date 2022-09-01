@@ -11,9 +11,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
-import com.kbcs.soptionssix.util.component.FoodInformation
-import com.kbcs.soptionssix.util.component.FoodPriceBox
-import com.kbcs.soptionssix.util.component.PhoneNumberInfo
+import com.kbcs.soptionssix.util.component.FoodDetail
+import com.kbcs.soptionssix.util.component.TotalFoodPrice
+import com.kbcs.soptionssix.util.component.InputPhoneNumber
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
@@ -23,11 +23,11 @@ fun BuyScreenTop() {
             modifier = Modifier.background(colorResource(id = R.color.view_background))
         ) {
             Spacer(Modifier.height(8.dp))
-            FoodInformation()
+            FoodDetail()
             Spacer(Modifier.height(8.dp))
-            FoodPriceBox()
+            TotalFoodPrice()
             Spacer(Modifier.height(8.dp))
-            PhoneNumberInfo()
+            InputPhoneNumber()
             Spacer(Modifier.height(8.dp))
         }
     }

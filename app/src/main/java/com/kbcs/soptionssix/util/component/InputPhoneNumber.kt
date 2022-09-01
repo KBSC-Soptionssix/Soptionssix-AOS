@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun PhoneNumberInfo() {
+fun InputPhoneNumber() {
     var reviewText by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
@@ -69,5 +69,5 @@ fun PhoneNumberInfo() {
 @Preview
 @Composable
 fun PhoneNumberInfoPreview() {
-    PhoneNumberInfo()
+    InputPhoneNumber()
 }

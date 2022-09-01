@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun BuyMethodInfo() {
+fun SelectBuyMethod() {
     val paymentList = listOf("신용/체크카드", "휴대폰결제", "네이버페이", "카카오페이", "토스", "페이코")
     Column(
         modifier = Modifier
