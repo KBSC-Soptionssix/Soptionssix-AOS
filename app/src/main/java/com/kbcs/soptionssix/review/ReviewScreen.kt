@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.DonationBoxes
 import com.kbcs.soptionssix.util.component.HorizontalDescriptionBanner
+import com.kbcs.soptionssix.util.component.InvisibleGuestToolBar
 import com.kbcs.soptionssix.util.component.ReviewItem
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
@@ -69,6 +70,7 @@ fun ReviewScreen() {
                 .fillMaxSize()
         ) {
             item {
+                ReviewToolBar()
                 HorizontalDescriptionBanner(dummyDescriptionList)
                 Spacer(modifier = Modifier.size(16.dp))
                 DonationBoxes()
@@ -92,6 +94,19 @@ fun ReviewScreen() {
             }
         }
     }
+}
+
+@Composable
+fun ReviewToolBar() {
+    InvisibleGuestToolBar(
+        prefixContent = {
+            Text(
+                modifier = Modifier.padding(start = 16.dp, top = 24.dp, bottom = 24.dp),
+                text = "서울특별시 중구 명동",
+                style = MaterialTheme.typography.h1
+            )
+        }
+    )
 }
 
 data class Review(
