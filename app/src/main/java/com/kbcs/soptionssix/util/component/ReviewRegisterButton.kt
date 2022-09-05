@@ -17,7 +17,8 @@ import com.kbcs.soptionssix.R
 fun InvisibleGuestButton(
     modifier: Modifier,
     isClickable: Boolean,
-    buttonText: String
+    buttonText: String,
+    onClickEvent: () -> Unit
 ) {
     Box(
         modifier = modifier
@@ -27,7 +28,7 @@ fun InvisibleGuestButton(
             )
             .clickable(
                 enabled = isClickable,
-                onClick = { /* to do*/ }
+                onClick = { onClickEvent() }
             )
     ) {
         Text(

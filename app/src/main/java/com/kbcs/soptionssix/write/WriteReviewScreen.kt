@@ -2,7 +2,6 @@ package com.kbcs.soptionssix.write
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -28,33 +28,38 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun WriteReviewScreen(
-    modifier: Modifier
+    modifier: Modifier,
+    writeReviewViewModel: WriteReviewViewModel
 ) {
+    val reviewContent = writeReviewViewModel.reviewContent.collectAsState()
+    val buttonState = writeReviewViewModel.buttonState.collectAsState()
     MaterialTheme(typography = PretendardTypography) {
         Column(
-            modifier = modifier,
-            verticalArrangement = Arrangement.SpaceBetween
+            modifier = modifier
         ) {
-            WriteToolBar()
-            Spacer(Modifier.height(16.dp))
-            WriteReviewBox(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, top = 16.dp)
-                    .height(270.dp)
-                    .wrapContentHeight()
-                    .background(Color.White),
-                storeName = "떡도리탕",
-                menuName = "부리또"
-            )
+            Column(modifier = Modifier.weight(1f)) {
+                WriteToolBar()
+                Spacer(Modifier.height(16.dp))
+                WriteReviewBox(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp, top = 16.dp)
+                        .height(270.dp)
+                        .wrapContentHeight()
+                        .background(Color.White),
+                    reviewContent = reviewContent.value,
+                    writeReview = writeReviewViewModel::writeReview
+                )
+            }
             InvisibleGuestButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(colorResource(id = R.color.white))
                     .padding(8.dp)
                     .imePadding(),
-                isClickable = false,
-                buttonText = stringResource(id = R.string.writeReviewRegister)
+                isClickable = buttonState.value,
+                buttonText = stringResource(id = R.string.writeReviewRegister),
+                onClickEvent = writeReviewViewModel::postReview
             )
         }
     }
@@ -83,5 +88,5 @@ fun WriteToolBar() {
 @Preview
 @Composable
 private fun WriteReviewScreenPreview() {
-    WriteReviewScreen(Modifier)
+    WriteReviewScreen(Modifier, WriteReviewViewModel())
 }
