@@ -21,13 +21,15 @@
             android:exported="false" />
         <activity
             android:name=".exchange.ExchangeDetailActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".store.StoreDetailActivity"
             android:exported="false" />
         <activity
             android:name=".discount.DiscountProductAllSeeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".exchangetab.ExchangeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

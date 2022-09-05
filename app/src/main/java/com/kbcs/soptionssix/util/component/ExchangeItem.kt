@@ -1,13 +1,13 @@
 package com.kbcs.soptionssix.util.component
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -27,14 +27,22 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kbcs.soptionssix.R
-import com.kbcs.soptionssix.util.theme.PretendardTypography
+import com.kbcs.soptionssix.exchangetab.Receipt
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 @Composable
-fun ExchangeItem(state: Int) {
+fun ExchangeItem(receipt: Receipt) {
+    val currentTime = Calendar.getInstance().timeInMillis / 1000L
+    val state: Int =
+        if (receipt.review != null) 3
+        else if (currentTime > receipt.pickUpDate) 2
+        else 1
     val buttonText = when (state) {
         1 -> stringResource(id = R.string.exchangeTabShowExchange)
         2 -> stringResource(id = R.string.exchangeTabWriteReview)
@@ -45,20 +53,32 @@ fun ExchangeItem(state: Int) {
         else -> colorResource(id = R.color.orange)
     }
     val clickEvent: () -> Unit = when (state) {
-        1 -> fun() { println("1") }
-        2 -> fun() { println("2") }
-        else -> fun() { println("3") }
+        1 -> fun() { Log.d("slkdfjas", "$state") }
+        2 -> fun() { Log.d("slkdfjas", "$state") }
+        else -> fun() { Log.d("slkdfjas", "$state") }
     }
     Surface(
         modifier = Modifier.background(colorResource(id = R.color.white)),
         elevation = 4.dp
     ) {
         Column {
-            ExchangeDate()
-            ExchangeStore()
-            ExchangeFood()
-            ExchangePaymentHistory()
-            ExchangeTime()
+            ExchangeDate(
+                exchangeDate = receipt.exchangeDate
+            )
+            ExchangeStore(
+                storeName = receipt.storeName
+            )
+            ExchangeFood(
+                foodName = receipt.productName,
+                foodCount = receipt.productCount
+            )
+            ExchangePaymentHistory(
+                totalPrice = receipt.totalProductPrice
+            )
+            ExchangeTime(
+                state = state,
+                pickUpDate = receipt.pickUpDate
+            )
             ExchangeButton(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -72,8 +92,14 @@ fun ExchangeItem(state: Int) {
     }
 }
 
+@SuppressLint("SimpleDateFormat")
 @Composable
-private fun ExchangeDate() {
+private fun ExchangeDate(
+    exchangeDate: Long
+) {
+    val date = Date()
+    date.time = exchangeDate * 1000L
+    val formatter = SimpleDateFormat("yyyy.MM.dd")
     ExchangeItemRowFrame(
         prefixContent = { modifier ->
             Text(
@@ -85,7 +111,7 @@ private fun ExchangeDate() {
         },
         postfixContent = {
             Text(
-                text = "2022.08.11",
+                text = formatter.format(date),
                 style = MaterialTheme.typography.h4,
                 color = colorResource(id = R.color.black)
             )
@@ -94,13 +120,15 @@ private fun ExchangeDate() {
 }
 
 @Composable
-private fun ExchangeStore() {
+private fun ExchangeStore(
+    storeName: String
+) {
     ExchangeItemRowFrame(
         prefixIcon = R.drawable.ic_temp_storefront,
         prefixContent = { modifier ->
             Text(
                 modifier = modifier,
-                text = "멕시칸인더보울 명동점",
+                text = storeName,
                 style = MaterialTheme.typography.body2,
                 color = colorResource(id = R.color.dark_green)
             )
@@ -115,20 +143,23 @@ private fun ExchangeStore() {
 }
 
 @Composable
-private fun ExchangeFood() {
+private fun ExchangeFood(
+    foodName: String,
+    foodCount: Int
+) {
     ExchangeItemRowFrame(
         prefixIcon = R.drawable.ic_temp_location_on,
         prefixContent = { modifier ->
             Text(
                 modifier = modifier,
-                text = "멕시칸 치킨 부리또",
+                text = foodName,
                 style = MaterialTheme.typography.body2,
                 color = colorResource(id = R.color.black)
             )
         },
         postfixContent = {
             Text(
-                text = "2개",
+                text = "${foodCount}개",
                 style = MaterialTheme.typography.body2,
                 color = colorResource(id = R.color.black)
             )
@@ -137,7 +168,10 @@ private fun ExchangeFood() {
 }
 
 @Composable
-private fun ExchangePaymentHistory() {
+private fun ExchangePaymentHistory(
+    totalPrice: Int
+) {
+    val decFormatter = DecimalFormat("#,###")
     ExchangeItemRowFrame(
         prefixIcon = R.drawable.ic_temp_location_on,
         prefixContent = { modifier ->
@@ -150,7 +184,7 @@ private fun ExchangePaymentHistory() {
         },
         postfixContent = {
             Text(
-                text = "9,000원",
+                text = decFormatter.format(totalPrice) + '원',
                 style = MaterialTheme.typography.body2,
                 color = colorResource(id = R.color.black)
             )
@@ -158,10 +192,26 @@ private fun ExchangePaymentHistory() {
     )
 }
 
+@SuppressLint("SimpleDateFormat")
 @Composable
-private fun ExchangeTime() {
+private fun ExchangeTime(
+    state: Int,
+    pickUpDate: Long
+) {
     val darkGreenColor = colorResource(id = R.color.dark_green)
     val blackColor = colorResource(id = R.color.black)
+    val date = Date()
+    date.time = pickUpDate * 1000L
+    val dayFormatter = SimpleDateFormat("EE")
+    val dayDividerFormatter = SimpleDateFormat("aa")
+    val formatter =
+        SimpleDateFormat(
+            "yyyy년 MM월 dd일 (${DayFormatter(dayFormatter.format(date))}) ${
+            DayDividerFormatter(
+                dayDividerFormatter.format(date)
+            )
+            } hh시 mm분 "
+        )
     ExchangeItemRowFrame(
         prefixIcon = R.drawable.ic_temp_location_on,
         prefixContent = {
@@ -175,7 +225,7 @@ private fun ExchangeTime() {
                             fontWeight = FontWeight.Normal
                         )
                     ) {
-                        append("2022년 8월 11일 (목) 오후 2시 17분 ")
+                        if (state == 1) append(formatter.format(date)) else append("교환 완료")
                     }
                     withStyle(
                         style = SpanStyle(
@@ -185,12 +235,31 @@ private fun ExchangeTime() {
                             fontWeight = FontWeight.Normal
                         )
                     ) {
-                        append("까지 갈게요!")
+                        if (state == 1) append("까지 갈게요!")
                     }
                 }
             )
         }
     )
+}
+
+private fun DayFormatter(day: String): String {
+    return when (day) {
+        "Mon" -> "월"
+        "Tue" -> "화"
+        "Wed" -> "수"
+        "Thu" -> "목"
+        "Fri" -> "금"
+        "Sat" -> "토"
+        else -> "일"
+    }
+}
+
+private fun DayDividerFormatter(divider: String): String {
+    return when (divider) {
+        "AM" -> "오전"
+        else -> "오후"
+    }
 }
 
 @Composable
@@ -214,19 +283,5 @@ private fun ExchangeButton(
             color = colorResource(id = R.color.white),
             style = MaterialTheme.typography.h3
         )
-    }
-}
-
-@Composable
-@Preview(showBackground = true)
-private fun ExchangeItemPreview() {
-    MaterialTheme(typography = PretendardTypography) {
-        Column {
-            ExchangeItem(1)
-            Spacer(modifier = Modifier.height(24.dp))
-            ExchangeItem(2)
-            Spacer(modifier = Modifier.height(24.dp))
-            ExchangeItem(3)
-        }
     }
 }
