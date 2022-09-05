@@ -13,6 +13,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -26,39 +27,10 @@ import com.kbcs.soptionssix.util.component.ReviewItem
 import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
-fun ReviewScreen() {
-    val dummyReviewList = mutableListOf(
-        Review(
-            title = "맑은비",
-            time = "5분 전",
-            address = "백현동",
-            content = "첫번째 방문에 너무 득템했는데\n" +
-                "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-                "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-                "이거까지 보이나요???",
-            storeName = "몽실 베이커리"
-        ),
-        Review(
-            title = "맑은비",
-            time = "5분 전",
-            address = "백현동",
-            content = "첫번째 방문에 너무 득템했는데\n" +
-                "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-                "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-                "이거까지 보이나요???",
-            storeName = "몽실 베이커리"
-        ),
-        Review(
-            title = "맑은비",
-            time = "5분 전",
-            address = "백현동",
-            content = "첫번째 방문에 너무 득템했는데\n" +
-                "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-                "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-                "이거까지 보이나요???",
-            storeName = "몽실 베이커리"
-        )
-    )
+fun ReviewScreen(
+    reviewViewModel: ReviewViewModel
+) {
+    val dummyReviewList = reviewViewModel.reviewList.collectAsState()
     val dummyDescriptionList = listOf(
         "지구를 지키고,\n나눔을 실천하는 쉬운 방법",
         "기부 후기를 널리 알리는 게\n유행하는 이유",
@@ -88,10 +60,11 @@ fun ReviewScreen() {
                     style = MaterialTheme.typography.h1
                 )
             }
-            items(dummyReviewList) { review ->
+            items(dummyReviewList.value) { review ->
                 Spacer(modifier = Modifier.size(24.dp))
                 ReviewItem(review)
             }
+            item { Spacer(modifier = Modifier.size(24.dp)) }
         }
     }
 }
@@ -109,17 +82,8 @@ fun ReviewToolBar() {
     )
 }
 
-data class Review(
-    val title: String,
-    val time: String,
-    val address: String,
-    val content: String,
-    val storeName: String,
-    val reviewImages: List<String> = emptyList()
-)
-
 @Preview(showBackground = true)
 @Composable
 fun ReviewScreenPreview() {
-    ReviewScreen()
+    ReviewScreen(ReviewViewModel())
 }

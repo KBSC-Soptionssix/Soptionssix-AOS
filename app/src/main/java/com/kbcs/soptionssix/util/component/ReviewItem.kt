@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -47,7 +48,9 @@ import com.kbcs.soptionssix.review.Review
 @Composable
 fun ReviewItem(review: Review) {
     Surface(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         elevation = 20.dp,
         shape = RoundedCornerShape(8.dp)
     ) {
@@ -58,17 +61,19 @@ fun ReviewItem(review: Review) {
                 .background(Color.White)
         ) {
             Column(
-                Modifier.fillMaxWidth().padding(16.dp)
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
             ) {
                 ReviewInformation(
-                    title = review.title,
-                    time = review.time,
-                    address = review.address
+                    title = review.userName,
+                    time = review.createReviewTime,
+                    address = review.userRegion
                 )
                 Spacer(Modifier.size(4.dp))
-                ReviewContent(content = review.content)
+                ReviewContent(content = review.reviewContent)
                 Spacer(Modifier.size(16.dp))
-                StoreInformation(storeName = review.storeName, reviewImages = review.reviewImages)
+                StoreInformation(storeName = review.storeName, reviewImages = review.photos)
             }
         }
     }
@@ -183,8 +188,8 @@ fun ExpandableText(
 @Composable
 private fun StoreInformation(
     storeName: String,
-    reviewImages: List<String>,
-    imageHeight: Dp = 98.dp
+    reviewImages: List<String>?,
+    imgHeight: Dp = 100.dp
 ) {
     Column {
         Row(
@@ -199,37 +204,39 @@ private fun StoreInformation(
             Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
         }
         Spacer(Modifier.size(4.dp))
-        if (reviewImages.size == 1) {
+        if (reviewImages?.size == 1) {
             AsyncImage(
-                model = R.drawable.ic_launcher_foreground,
+                model = reviewImages[0],
                 contentDescription = "",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(imageHeight)
                     .clip(RoundedCornerShape(8.dp))
-                    .background(Color.Gray)
+                    .background(Color.Gray),
+                contentScale = ContentScale.FillWidth
             )
-        } else if (reviewImages.size == 2) {
+        } else if (reviewImages?.size == 2) {
             Row(Modifier.fillMaxWidth()) {
                 AsyncImage(
-                    model = R.drawable.ic_launcher_foreground,
+                    model = reviewImages[0],
                     contentDescription = "",
                     modifier =
                     Modifier
-                        .height(imageHeight)
                         .weight(1f)
+                        .height(imgHeight)
                         .clip(RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp))
-                        .background(Color.Gray)
+                        .background(Color.Gray),
+                    contentScale = ContentScale.FillWidth
                 )
                 Spacer(Modifier.size(4.dp))
                 AsyncImage(
-                    model = R.drawable.ic_launcher_foreground,
+                    model = reviewImages[1],
                     contentDescription = "",
                     modifier = Modifier
-                        .height(imageHeight)
                         .weight(1f)
+                        .height(imgHeight)
                         .clip(RoundedCornerShape(topEnd = 8.dp, bottomEnd = 8.dp))
-                        .background(Color.Gray)
+                        .background(Color.Gray),
+                    contentScale = ContentScale.FillWidth
                 )
             }
         }
@@ -241,14 +248,15 @@ private fun StoreInformation(
 fun ReviewPreview() {
     ReviewItem(
         Review(
-            title = "맑은비",
-            time = "5분 전",
-            address = "백현동",
-            content = "첫번째 방문에 너무 득템했는데\n" +
+            userName = "맑은비",
+            createReviewTime = "5분 전",
+            userRegion = "백현동",
+            reviewContent = "첫번째 방문에 너무 득템했는데\n" +
                 "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
                 "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
                 "이거까지 보이나요???",
-            storeName = "몽실 베이커리"
+            storeName = "몽실 베이커리",
+            photos = emptyList()
         )
     )
 }
