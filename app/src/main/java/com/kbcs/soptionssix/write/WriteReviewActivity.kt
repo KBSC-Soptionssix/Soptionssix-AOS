@@ -2,6 +2,7 @@ package com.kbcs.soptionssix.write
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.WindowInsets
@@ -16,6 +17,7 @@ import androidx.core.view.WindowCompat
 import com.kbcs.soptionssix.R
 
 class WriteReviewActivity : AppCompatActivity() {
+    private val writeReviewViewModel: WriteReviewViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -28,7 +30,8 @@ class WriteReviewActivity : AppCompatActivity() {
                         WindowInsets.systemBars.only(
                             WindowInsetsSides.Vertical
                         )
-                    )
+                    ),
+                writeReviewViewModel = writeReviewViewModel
             )
         }
     }

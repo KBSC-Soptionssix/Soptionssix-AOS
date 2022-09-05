@@ -3,12 +3,9 @@ package com.kbcs.soptionssix.util.component
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,27 +15,22 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
+import com.kbcs.soptionssix.write.WriteReviewUiState
 
 @Composable
 fun WriteReviewBox(
     modifier: Modifier,
-    storeName: String,
-    menuName: String
+    reviewContent: WriteReviewUiState,
+    writeReview: (String) -> Unit
 ) {
     Surface(
         elevation = 10.dp,
@@ -50,23 +42,28 @@ fun WriteReviewBox(
             Spacer(modifier = Modifier.height(16.dp))
             CommonInformationBox(
                 boxIcon = R.drawable.ic_shop,
-                boxText = storeName
+                boxText = reviewContent.storeName
             )
             Spacer(modifier = Modifier.height(18.dp))
             CommonInformationBox(
                 boxIcon = R.drawable.ic_soup,
-                boxText = menuName
+                boxText = reviewContent.foodName
             )
             Spacer(modifier = Modifier.height(14.dp))
-            WriteReviewTextField()
+            WriteReviewTextField(
+                reviewText = reviewContent.reviewText,
+                writeReview = writeReview
+            )
         }
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun WriteReviewTextField() {
-    var reviewText by remember { mutableStateOf("") }
+private fun WriteReviewTextField(
+    reviewText: String,
+    writeReview: (String) -> Unit
+) {
     val maxChar = 301
     Column(
         modifier = Modifier
@@ -75,7 +72,7 @@ private fun WriteReviewTextField() {
     ) {
         BasicTextField(
             value = reviewText,
-            onValueChange = { if (it.length < maxChar) reviewText = it },
+            onValueChange = { if (it.length < maxChar) writeReview(it) },
             textStyle = TextStyle(
                 color = colorResource(id = R.color.black)
             ),
@@ -110,24 +107,6 @@ private fun CommonInformationBox(
             text = boxText,
             style = MaterialTheme.typography.body2,
             color = colorResource(id = R.color.black)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun WriteReviewBoxPreview() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Gray)
-    ) {
-        WriteReviewBox(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            storeName = "맘스터치",
-            menuName = "부리또"
         )
     }
 }
