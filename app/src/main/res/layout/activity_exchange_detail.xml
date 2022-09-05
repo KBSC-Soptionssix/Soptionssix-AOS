@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="exchangeViewModel"
+            type="com.kbcs.soptionssix.exchange.ExchangeDetailViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,9 +97,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:includeFontPadding="false"
+                android:text="@string/storeDetailName"
                 android:textAppearance="@style/ShopM13"
                 android:textColor="@color/black"
-                android:text="@string/storeDetailName"
                 app:layout_constraintBottom_toBottomOf="@id/iv_shop_emo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_shop_emo"
@@ -127,11 +131,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
+                android:text="서울특별시 중구 남대문로 84"
                 android:textAppearance="@style/ShopInfoM11"
                 android:textColor="@color/dark_gray_2"
                 app:layout_constraintStart_toEndOf="@+id/tv_road"
                 app:layout_constraintTop_toTopOf="@+id/tv_road"
-                android:text="서울특별시 중구 남대문로 84"
                 tools:text="서울특별시 중구 남대문로 84" />
 
             <TextView
@@ -151,11 +155,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
+                android:text="명동 445"
                 android:textAppearance="@style/ShopInfoM11"
                 android:textColor="@color/dark_gray_2"
                 app:layout_constraintStart_toEndOf="@+id/tv_address"
                 app:layout_constraintTop_toTopOf="@+id/tv_address"
-                android:text="명동 445"
                 tools:text="명동 445" />
 
             <ImageView
@@ -200,13 +204,21 @@
                 app:layout_constraintStart_toEndOf="@+id/iv_copy_address"
                 app:layout_constraintTop_toTopOf="@id/iv_copy_address" />
 
+            <EditText
+                android:id="@+id/edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="입력해주세요"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_copy_address" />
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fcv_naver_map"
                 android:layout_width="match_parent"
                 android:layout_height="156dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_address"
+                android:layout_marginHorizontal="31dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginHorizontal="31dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/edit" />
 
             <ImageView
                 android:id="@+id/iv_time_box"
