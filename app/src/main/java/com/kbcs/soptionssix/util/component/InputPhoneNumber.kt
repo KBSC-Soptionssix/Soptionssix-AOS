@@ -8,25 +8,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun InputPhoneNumber() {
-    var reviewText by remember { mutableStateOf("") }
+fun InputPhoneNumber(
+    phoneNumber: String,
+    writePhoneNumber: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .background(color = colorResource(id = R.color.white))
@@ -38,8 +37,8 @@ fun InputPhoneNumber() {
         )
         Spacer(Modifier.height(8.dp))
         BasicTextField(
-            value = reviewText,
-            onValueChange = { if (it.length < 11) reviewText = it },
+            value = phoneNumber,
+            onValueChange = { if (it.length < 12) writePhoneNumber(it) },
             textStyle = TextStyle(
                 color = colorResource(id = R.color.black)
             ),
@@ -51,9 +50,10 @@ fun InputPhoneNumber() {
                     color = colorResource(id = R.color.pale_gray)
                 )
                 .padding(vertical = 10.dp, horizontal = 8.dp),
-            cursorBrush = SolidColor(colorResource(id = R.color.black))
+            cursorBrush = SolidColor(colorResource(id = R.color.black)),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         ) { innerTextField ->
-            if (reviewText.isEmpty()) {
+            if (phoneNumber.isEmpty()) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = "010-1234-5678",
@@ -64,10 +64,4 @@ fun InputPhoneNumber() {
             innerTextField()
         }
     }
-}
-
-@Preview
-@Composable
-fun PhoneNumberInfoPreview() {
-    InputPhoneNumber()
 }
