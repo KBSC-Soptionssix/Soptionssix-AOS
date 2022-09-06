@@ -32,6 +32,9 @@ class BuyFoodActivity : AppCompatActivity() {
                     .beginTransaction()
                     .replace(R.id.fcv_buy_naver_map, naverMapFragment)
                     .commit()
+                binding.tvStoreName.text = buyUiState.storeName
+                binding.tvAddressDetail.text = buyUiState.address
+                binding.tvRoadDetail.text = buyUiState.loadAddress
             }
             .launchIn(lifecycleScope)
 

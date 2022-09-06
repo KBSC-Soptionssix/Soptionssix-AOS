@@ -18,5 +18,5 @@ data class StoreDetailDto(
     val mapX: String = "",
     val mapY: String = "",
     val hasChallenge: Boolean = true,
-    val product: List<ProductDto>? = null
+    val product: ProductDto = ProductDto()
 )

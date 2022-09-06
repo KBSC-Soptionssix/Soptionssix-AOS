@@ -2,6 +2,9 @@ package com.kbcs.soptionssix.buy
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kbsc.data.dto.ProductDto
+import com.kbsc.data.dto.StoreDetailDto
+import java.util.Calendar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -9,7 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.util.Calendar
 
 class BuyViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(BuyUiState())
@@ -51,19 +53,43 @@ class BuyViewModel : ViewModel() {
     )
 
     init {
-        viewModelScope.launch { fetchNaverMap() }
+        viewModelScope.launch { fetchBuyContent() }
     }
 
-    suspend fun fetchNaverMap() {
+    suspend fun fetchBuyContent() {
+        val tempStoreDetailDto = StoreDetailDto(
+            name = "멕시칸인더보울 명동점",
+            mapX = "37.5005",
+            mapY = "127.0281",
+            product = ProductDto(
+                photo = "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
+                name = "상큼 라임 비프 타코 2p",
+                discount = 50,
+                price = 9000,
+                stockCount = 4
+            ),
+            loadAddress = "서울특별시 중구 남대문로 84",
+            address = "명동 445"
+        )
         delay(300)
         _uiState.value = _uiState.value.copy(
-            mapX = 36.8198,
-            mapY = 127.1544
+            storeId = tempStoreDetailDto.id,
+            productId = tempStoreDetailDto.product.id,
+            storeName = tempStoreDetailDto.name,
+            foodImg = tempStoreDetailDto.product.photo,
+            foodName = tempStoreDetailDto.product.name,
+            foodDiscount = tempStoreDetailDto.product.discount,
+            foodPrice = tempStoreDetailDto.product.price,
+            foodStockCount = tempStoreDetailDto.product.stockCount,
+            loadAddress = tempStoreDetailDto.loadAddress,
+            address = tempStoreDetailDto.address,
+            mapX = tempStoreDetailDto.mapX.toDouble(),
+            mapY = tempStoreDetailDto.mapY.toDouble()
         )
     }
 
     fun setFoodCount(degree: Int) {
-        if (_uiState.value.foodCount + degree > -1) {
+        if (_uiState.value.foodCount + degree > 0 && _uiState.value.foodCount + degree <= _uiState.value.foodStockCount) {
             _uiState.value = _uiState.value.copy(foodCount = _uiState.value.foodCount + degree)
         }
     }
@@ -86,20 +112,24 @@ class BuyViewModel : ViewModel() {
 }
 
 data class BuyUiState(
-    val storeName: String = "멕시칸인더보울 명동점",
-    val foodImg: String = "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
-    val foodName: String = "상큼 라임 비프 타코 2p",
+    val storeId: String = "",
+    val productId: String = "",
+    val storeName: String = "",
+    val foodImg: String? = null,
+    val foodName: String = "",
     val foodCount: Int = 1,
-    val foodPrice: Int = 9000,
-    val foodDiscount: Int = 50,
+    val foodStockCount: Int = 1,
+    val foodPrice: Int = 0,
+    val foodDiscount: Int = 0,
     val userPhoneNumber: String = "",
     val loadAddress: String = "",
     val address: String = "",
     val isChallenge: Boolean = true,
+    val isDonate: Boolean = true,
     val pickUpTimeList: List<String> = listOf("10분", "20분", "30분", "40분", "50분", "1시간"),
     val pickUpTimeIndex: Int = -1,
     val paymentList: List<String> = listOf("신용/체크카드", "휴대폰결제", "네이버페이", "카카오페이", "토스", "페이코"),
     val selectPaymentIndex: Int = -1,
-    val mapX: Double = 37.5005,
-    val mapY: Double = 127.0281
+    val mapX: Double = 0.0,
+    val mapY: Double = 0.0
 )

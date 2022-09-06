@@ -37,7 +37,7 @@ import java.text.DecimalFormat
 @Composable
 fun FoodDetail(
     storeName: String,
-    foodImg: String,
+    foodImg: String?,
     foodName: String,
     foodPrice: Int,
     foodDiscount: Int,
