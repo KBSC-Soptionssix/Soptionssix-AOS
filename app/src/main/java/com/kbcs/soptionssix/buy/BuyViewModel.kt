@@ -2,11 +2,13 @@ package com.kbcs.soptionssix.buy
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class BuyViewModel : ViewModel() {
@@ -48,6 +50,18 @@ class BuyViewModel : ViewModel() {
         0L
     )
 
+    init {
+        viewModelScope.launch { fetchNaverMap() }
+    }
+
+    suspend fun fetchNaverMap() {
+        delay(300)
+        _uiState.value = _uiState.value.copy(
+            mapX = 36.8198,
+            mapY = 127.1544
+        )
+    }
+
     fun setFoodCount(degree: Int) {
         if (_uiState.value.foodCount + degree > -1) {
             _uiState.value = _uiState.value.copy(foodCount = _uiState.value.foodCount + degree)
@@ -85,5 +99,7 @@ data class BuyUiState(
     val pickUpTimeList: List<String> = listOf("10분", "20분", "30분", "40분", "50분", "1시간"),
     val pickUpTimeIndex: Int = -1,
     val paymentList: List<String> = listOf("신용/체크카드", "휴대폰결제", "네이버페이", "카카오페이", "토스", "페이코"),
-    val selectPaymentIndex: Int = -1
+    val selectPaymentIndex: Int = -1,
+    val mapX: Double = 37.5005,
+    val mapY: Double = 127.0281
 )
