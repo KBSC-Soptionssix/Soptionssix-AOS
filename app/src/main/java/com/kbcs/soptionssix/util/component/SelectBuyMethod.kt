@@ -2,6 +2,7 @@ package com.kbcs.soptionssix.util.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,21 +11,25 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun SelectBuyMethod() {
-    val paymentList = listOf("신용/체크카드", "휴대폰결제", "네이버페이", "카카오페이", "토스", "페이코")
+fun SelectBuyMethod(
+    selectPaymentIndex: Int,
+    paymentList: List<String>,
+    setPaymentState: (Int) -> Unit
+) {
     Column(
         modifier = Modifier
             .background(color = colorResource(id = R.color.white))
@@ -41,8 +46,13 @@ fun SelectBuyMethod() {
             verticalArrangement = Arrangement.spacedBy(4.dp),
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            items(paymentList) {
-                PaymentBox(paymentText = it, isChecked = false)
+            itemsIndexed(paymentList) { index, payment ->
+                PaymentBox(
+                    index = index,
+                    paymentText = payment,
+                    isChecked = index == selectPaymentIndex,
+                    setPaymentState = setPaymentState
+                )
             }
         }
     }
@@ -50,11 +60,14 @@ fun SelectBuyMethod() {
 
 @Composable
 private fun PaymentBox(
+    index: Int,
     paymentText: String,
-    isChecked: Boolean
+    isChecked: Boolean,
+    setPaymentState: (Int) -> Unit
 ) {
     Box(
         modifier = Modifier
+            .clip(RoundedCornerShape(2.dp))
             .background(
                 if (isChecked) colorResource(id = R.color.dark_green)
                 else colorResource(id = R.color.white)
@@ -64,7 +77,8 @@ private fun PaymentBox(
                 shape = RoundedCornerShape(2.dp),
                 color = if (isChecked) colorResource(id = R.color.dark_green) else colorResource(id = R.color.pale_gray)
             )
-            .padding(vertical = 14.dp),
+            .padding(vertical = 14.dp)
+            .clickable { setPaymentState(index) },
         contentAlignment = Alignment.Center
     ) {
         Text(

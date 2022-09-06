@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,26 +16,47 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.InvisibleGuestButton
 import com.kbcs.soptionssix.util.component.IsChallengeCheck
-import com.kbcs.soptionssix.util.component.SelectArrivalTime
+import com.kbcs.soptionssix.util.component.SelectPickUpTime
 import com.kbcs.soptionssix.util.component.SelectBuyMethod
 import com.kbcs.soptionssix.util.theme.PretendardTypography
+import java.text.DecimalFormat
 
 @Composable
-fun BuyScreenBottom() {
+fun BuyScreenBottom(
+    buyViewModel: BuyViewModel
+) {
+    val buyUiState = buyViewModel.uiState.collectAsState()
+    val totalFoodPrice = buyViewModel.totalPrice.collectAsState()
+    val buyButtonState = buyViewModel.buttonState.collectAsState()
+    val pickUpTime = buyViewModel.pickUpTime.collectAsState()
+    val decFormatter = DecimalFormat("#,###")
     MaterialTheme(typography = PretendardTypography) {
         Column(modifier = Modifier.background(colorResource(id = R.color.view_background))) {
             Spacer(Modifier.height(8.dp))
-            SelectArrivalTime()
+            SelectPickUpTime(
+                selectPickUpTimeIndex = buyUiState.value.pickUpTimeIndex,
+                pickUpTimeList = buyUiState.value.pickUpTimeList,
+                pickUpTime = pickUpTime.value,
+                setPickUpTime = buyViewModel::setPickUpTime
+            )
             Spacer(Modifier.height(8.dp))
-            IsChallengeCheck()
+            IsChallengeCheck(
+                isChecked = buyUiState.value.isChallenge,
+                setIsChecked = buyViewModel::setIsChallenge
+            )
             Spacer(Modifier.height(8.dp))
-            SelectBuyMethod()
+            SelectBuyMethod(
+                selectPaymentIndex = buyUiState.value.selectPaymentIndex,
+                paymentList = buyUiState.value.paymentList,
+                setPaymentState = buyViewModel::setPayment
+            )
             InvisibleGuestButton(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .background(colorResource(id = R.color.white))
                     .padding(8.dp),
-                isClickable = false,
-                buttonText = "9,000원 결제하기",
+                isClickable = buyButtonState.value,
+                buttonText = "${decFormatter.format(totalFoodPrice.value)}원 결제하기",
                 onClickEvent = { }
             )
         }
@@ -45,6 +67,6 @@ fun BuyScreenBottom() {
 @Preview(showBackground = true)
 fun BuyScreenBottomPreview() {
     MaterialTheme(typography = PretendardTypography) {
-        BuyScreenBottom()
+        BuyScreenBottom(BuyViewModel())
     }
 }

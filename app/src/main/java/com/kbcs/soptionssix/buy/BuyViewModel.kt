@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import java.util.Calendar
 
 class BuyViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(BuyUiState())
@@ -18,6 +19,34 @@ class BuyViewModel : ViewModel() {
             SharingStarted.Eagerly,
             0
         )
+    val buttonState = _uiState.map {
+        _uiState.value.userPhoneNumber.isNotEmpty() &&
+            (_uiState.value.userPhoneNumber.length == 11) &&
+            (_uiState.value.selectPaymentIndex != -1) &&
+            (_uiState.value.pickUpTimeIndex != -1) &&
+            _uiState.value.foodCount > 0
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        false
+    )
+    val pickUpTime = _uiState.map { uiState ->
+        val addArrivalTime = when (uiState.pickUpTimeIndex) {
+            0 -> 10 * 60
+            1 -> 20 * 60
+            2 -> 30 * 60
+            3 -> 40 * 60
+            4 -> 50 * 60
+            5 -> 60 * 60
+            else -> 0
+        }
+        val currentTime = Calendar.getInstance().timeInMillis / 1000L
+        currentTime + addArrivalTime
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        0L
+    )
 
     fun setFoodCount(degree: Int) {
         if (_uiState.value.foodCount + degree > -1) {
@@ -27,6 +56,18 @@ class BuyViewModel : ViewModel() {
 
     fun writePhoneNumber(text: String) {
         _uiState.value = _uiState.value.copy(userPhoneNumber = text)
+    }
+
+    fun setPickUpTime(index: Int) {
+        _uiState.value = _uiState.value.copy(pickUpTimeIndex = index)
+    }
+
+    fun setPayment(index: Int) {
+        _uiState.value = _uiState.value.copy(selectPaymentIndex = index)
+    }
+
+    fun setIsChallenge() {
+        _uiState.value = _uiState.value.copy(isChallenge = !_uiState.value.isChallenge)
     }
 }
 
@@ -40,7 +81,9 @@ data class BuyUiState(
     val userPhoneNumber: String = "",
     val loadAddress: String = "",
     val address: String = "",
-    val storeArrivalTime: Int = -1,
     val isChallenge: Boolean = true,
-    val payment: Int = -1
+    val pickUpTimeList: List<String> = listOf("10분", "20분", "30분", "40분", "50분", "1시간"),
+    val pickUpTimeIndex: Int = -1,
+    val paymentList: List<String> = listOf("신용/체크카드", "휴대폰결제", "네이버페이", "카카오페이", "토스", "페이코"),
+    val selectPaymentIndex: Int = -1
 )
