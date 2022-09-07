@@ -48,7 +48,7 @@ fun SelectPickUpTime(
         )
         Spacer(Modifier.height(16.dp))
         Text(
-            text = "가게 방문까지 걸리는 시간",
+            text = "도착 예정 시간",
             style = MaterialTheme.typography.button,
             color = colorResource(id = R.color.dark_gray)
         )
