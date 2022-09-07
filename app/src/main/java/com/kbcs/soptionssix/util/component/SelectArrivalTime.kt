@@ -72,7 +72,7 @@ fun SelectPickUpTime(
             color = colorResource(id = R.color.dark_gray)
         )
         Spacer(Modifier.height(8.dp))
-        ExpectedTimeBox(pickUpTime = pickUpTime)
+        ExpectedTimeBox(pickUpTime = pickUpTime, pickUpTimeIndex = selectPickUpTimeIndex)
     }
 }
 
@@ -86,14 +86,14 @@ private fun TimeChip(
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(18.dp))
+            .clickable { setPickUpTime(index) }
             .background(if (isChecked) colorResource(id = R.color.dark_green) else colorResource(id = R.color.white))
             .border(
                 width = 1.dp,
                 shape = RoundedCornerShape(18.dp),
                 color = colorResource(id = R.color.pale_gray)
             )
-            .padding(horizontal = 11.dp, vertical = 10.dp)
-            .clickable { setPickUpTime(index) },
+            .padding(horizontal = 11.dp, vertical = 10.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -107,7 +107,8 @@ private fun TimeChip(
 @SuppressLint("SimpleDateFormat")
 @Composable
 private fun ExpectedTimeBox(
-    pickUpTime: Long
+    pickUpTime: Long,
+    pickUpTimeIndex: Int
 ) {
     val date = Date()
     date.time = pickUpTime * 1000L
@@ -116,11 +117,11 @@ private fun ExpectedTimeBox(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(4.dp))
-            .background(colorResource(id = R.color.pale_yellow))
+            .background(colorResource(id = if (pickUpTimeIndex != -1) R.color.pale_yellow else R.color.white))
             .border(
                 width = 1.dp,
                 shape = RoundedCornerShape(4.dp),
-                color = colorResource(id = R.color.light_yellow)
+                color = colorResource(id = if (pickUpTimeIndex != -1) R.color.light_yellow else R.color.pale_gray)
             )
             .padding(vertical = 10.dp, horizontal = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween
@@ -129,6 +130,9 @@ private fun ExpectedTimeBox(
             text = pickUpDateFormatter.format(date),
             style = MaterialTheme.typography.h4
         )
-        Image(painter = painterResource(id = R.drawable.icn_check), contentDescription = "")
+        if (pickUpTimeIndex != -1) Image(
+            painter = painterResource(id = R.drawable.icn_check),
+            contentDescription = ""
+        )
     }
 }

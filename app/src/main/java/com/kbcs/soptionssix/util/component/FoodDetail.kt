@@ -138,7 +138,8 @@ private fun FoodCountWidget(
             Image(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .clickable { setFoodCount(-1) },
+                    .clickable { setFoodCount(-1) }
+                    .padding(horizontal = 6.dp),
                 painter = painterResource(id = R.drawable.ic_minus),
                 contentDescription = ""
             )
@@ -164,7 +165,8 @@ private fun FoodCountWidget(
             Image(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .clickable { setFoodCount(1) },
+                    .clickable { setFoodCount(1) }
+                    .padding(horizontal = 6.dp),
                 painter = painterResource(id = R.drawable.ic_plus),
                 contentDescription = ""
             )

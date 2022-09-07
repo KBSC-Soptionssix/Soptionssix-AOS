@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kbsc.data.dto.ProductDto
 import com.kbsc.data.dto.StoreDetailDto
-import java.util.Calendar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -12,12 +11,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class BuyViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(BuyUiState())
     val uiState = _uiState.asStateFlow()
     val totalPrice = _uiState
-        .map { uiState -> uiState.foodPrice * uiState.foodCount }
+        .map { uiState -> (uiState.foodPrice * uiState.foodDiscount) / 100 * uiState.foodCount }
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,

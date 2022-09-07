@@ -40,19 +40,22 @@ fun SelectBuyMethod(
             style = MaterialTheme.typography.h1
         )
         Spacer(Modifier.height(8.dp))
-        LazyVerticalGrid(
-            modifier = Modifier.height(206.dp),
-            columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
-            itemsIndexed(paymentList) { index, payment ->
-                PaymentBox(
-                    index = index,
-                    paymentText = payment,
-                    isChecked = index == selectPaymentIndex,
-                    setPaymentState = setPaymentState
-                )
+        Box {
+            LazyVerticalGrid(
+                modifier = Modifier
+                    .height(206.dp),
+                columns = GridCells.Fixed(2),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                itemsIndexed(paymentList) { index, payment ->
+                    PaymentBox(
+                        index = index,
+                        paymentText = payment,
+                        isChecked = index == selectPaymentIndex,
+                        setPaymentState = setPaymentState
+                    )
+                }
             }
         }
     }
@@ -67,6 +70,7 @@ private fun PaymentBox(
 ) {
     Box(
         modifier = Modifier
+            .clickable { setPaymentState(index) }
             .clip(RoundedCornerShape(2.dp))
             .background(
                 if (isChecked) colorResource(id = R.color.dark_green)
@@ -77,8 +81,7 @@ private fun PaymentBox(
                 shape = RoundedCornerShape(2.dp),
                 color = if (isChecked) colorResource(id = R.color.dark_green) else colorResource(id = R.color.pale_gray)
             )
-            .padding(vertical = 14.dp)
-            .clickable { setPaymentState(index) },
+            .padding(vertical = 14.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
