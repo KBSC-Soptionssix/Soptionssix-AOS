@@ -9,6 +9,6 @@ class KBCSApp : Application() {
     override fun onCreate() {
         super.onCreate()
         NaverMapSdk.getInstance(this).client =
-            NaverMapSdk.NaverCloudPlatformClient("57y2t9wtpt")
+            NaverMapSdk.NaverCloudPlatformClient(BuildConfig.NAVER_KEY)
     }
 }
