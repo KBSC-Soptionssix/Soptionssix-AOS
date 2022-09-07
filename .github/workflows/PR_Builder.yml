@@ -38,7 +38,7 @@ jobs:
       env:
           DUMMY_ACCESS_TOKEN: ${{ secrets.NAVER_ACCESS_TOKEN }}
       run: echo "DUMMY_ACCESS_TOKEN=\"$NAVER_ACCESS_TOKEN\"" >> local.properties
-      
+
     - name: Lint Check
       run: ./gradlew ktlintCheck
 
