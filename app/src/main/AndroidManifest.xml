@@ -21,6 +21,9 @@
             android:exported="false" />
         <activity
             android:name=".exchange.ExchangeDetailActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".store.StoreDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,9 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".store.StoreDetailActivity"
-            android:exported="false" />
         <activity
             android:name=".discount.DiscountProductAllSeeActivity"
             android:exported="false" />
