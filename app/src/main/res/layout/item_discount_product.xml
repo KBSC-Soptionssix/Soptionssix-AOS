@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="discountProductItem"
+            type="com.kbsc.data.dto.ProductDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
