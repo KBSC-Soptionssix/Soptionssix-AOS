@@ -34,7 +34,7 @@ jobs:
     - name: NAVER_KEY
       env:
           DUMMY_ACCESS_TOKEN: ${{ secrets.NAVER_KEY }}
-      run: echo "DUMMY_ACCESS_TOKEN=\"$NAVER_KEY\"" >> local.properties
+      run: echo "NAVER_KEY=\"$NAVER_KEY\"" >> local.properties
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
