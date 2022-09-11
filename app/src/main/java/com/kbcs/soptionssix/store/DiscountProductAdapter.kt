@@ -1,7 +1,7 @@
 package com.kbcs.soptionssix.store
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -27,7 +27,17 @@ class DiscountProductAdapter(
         fun onBind(data: ProductDto) {
             binding.discountProductItem = data
 
-            Log.d("stored", "에에에ㅔㅔ에에")
+            if (data.donationCompleteCount == 0) {
+                binding.tvCompleteNum.visibility = View.GONE
+                binding.tvCompleteDonation.visibility = View.GONE
+            }
+
+            if (data.donationWaitCount == 0) {
+                binding.tvWaitingNum.visibility = View.GONE
+                binding.tvWaiting.visibility = View.GONE
+                binding.ivWaitingPeople.visibility = View.GONE
+            }
+
             val costFormatter = DecimalFormat("###,###")
             binding.tvOriginalPrice.text = costFormatter.format(data.price)
             val discountPrice: Int = data.price * (100 - data.discount) / 100 // 할인 가격 게산
@@ -46,14 +56,12 @@ class DiscountProductAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscountViewHolder {
-        Log.d("storedd", "saa")
         val binding =
             ItemDiscountProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DiscountViewHolder(binding, clickBuy, clickGive, clickWait)
     }
 
     override fun onBindViewHolder(holder: DiscountViewHolder, position: Int) {
-        Log.d("storedddd", "yy")
         holder.onBind(getItem(position))
     }
 

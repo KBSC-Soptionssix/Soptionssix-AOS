@@ -28,6 +28,7 @@ class StoreDetailActivity : AppCompatActivity() {
         }
 
         discountDetailAdapter()
+        backButton()
         copyPhoneNumber()
         copyRoadClipData()
         copyAddressClipData()
@@ -36,9 +37,9 @@ class StoreDetailActivity : AppCompatActivity() {
     private fun discountDetailAdapter() {
         val detailList = listOf(
             ProductDto("1", StorePreviewDto(), null, "핫페퍼 아보카도 에그 후무스 3p", 3, 12000, 10, 1, 2),
-            ProductDto("2", StorePreviewDto(), null, "상큼 라임 비프 타코 3p", 3, 9000, 50, 1, 2),
-            ProductDto("3", StorePreviewDto(), null, "수제 샤워소스 3p", 3, 6000, 30, 1, 2),
-            ProductDto("4", StorePreviewDto(), null, "체다 듬뿍 핫치킨 부리또 1p", 3, 10000, 20, 2, 2)
+            ProductDto("2", StorePreviewDto(), null, "상큼 라임 비프 타코 3p", 3, 9000, 50, 0, 2),
+            ProductDto("3", StorePreviewDto(), null, "수제 샤워소스 3p", 3, 6000, 30, 1, 0),
+            ProductDto("4", StorePreviewDto(), null, "체다 듬뿍 핫치킨 부리또 1p", 3, 10000, 20, 2, 0)
         )
         val goBuy: (ProductDto) -> Unit = {
             val intent = Intent(this, BuyFoodActivity::class.java)
@@ -59,6 +60,12 @@ class StoreDetailActivity : AppCompatActivity() {
 
         binding.rvProduct.adapter = discountProductAdapter
         discountProductAdapter.submitList(detailList)
+    }
+
+    private fun backButton() {
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun copyPhoneNumber() {
