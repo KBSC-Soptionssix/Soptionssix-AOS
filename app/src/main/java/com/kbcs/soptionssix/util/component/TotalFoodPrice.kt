@@ -13,13 +13,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
-import com.kbcs.soptionssix.util.theme.PretendardTypography
+import java.text.DecimalFormat
 
 @Composable
-fun TotalFoodPrice() {
+fun TotalFoodPrice(
+    totalFoodPrice: Int,
+    foodDiscount: Int,
+    foodPrice: Int,
+    foodCount: Int
+) {
+    val decFormatter = DecimalFormat("#,###")
     Column(
         Modifier
             .background(color = colorResource(id = R.color.white))
@@ -39,7 +44,7 @@ fun TotalFoodPrice() {
                 style = MaterialTheme.typography.body2
             )
             Text(
-                text = "- 9,000원",
+                text = "- ${decFormatter.format((foodPrice * foodDiscount / 100) * foodCount)}원",
                 style = MaterialTheme.typography.body2
             )
         }
@@ -53,18 +58,10 @@ fun TotalFoodPrice() {
                 style = MaterialTheme.typography.body2
             )
             Text(
-                text = "9,000원",
+                text = "${decFormatter.format(totalFoodPrice)}원",
                 style = MaterialTheme.typography.h2,
                 color = colorResource(id = R.color.dark_green)
             )
         }
-    }
-}
-
-@Composable
-@Preview
-private fun FoodPriceBoxPreview() {
-    MaterialTheme(typography = PretendardTypography) {
-        TotalFoodPrice()
     }
 }

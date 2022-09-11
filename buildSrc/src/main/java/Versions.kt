@@ -10,7 +10,7 @@ object Versions {
     const val interceptorVersion = "4.10.0"
     const val gsonVersion = "2.9.0"
     const val coroutineVersion = "1.6.3"
-    const val hiltVersion = "2.38.1"
+    const val hiltVersion = "2.42"
     const val retrofit2Version = "2.9.0"
     const val pager = "0.25.1"
     const val recyclerViewVersion = "1.2.1"
@@ -19,7 +19,7 @@ object Versions {
     const val lifecycleKTXVersion = "2.6.0-alpha01"
     const val fragmentKTXVersion = "1.5.0"
 
-    const val kotlinVersion = "1.6.10"
+    const val kotlinVersion = "1.7.0"
 
     const val composeActivityVersion = "1.5.1"
     const val composeVersion = "1.2.0"
