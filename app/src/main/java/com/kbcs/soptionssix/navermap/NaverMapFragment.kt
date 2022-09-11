@@ -15,7 +15,6 @@ import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.OverlayImage
 
 class NaverMapFragment : Fragment(), OnMapReadyCallback {
     private var _mapView: MapView? = null
@@ -44,10 +43,14 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(p0: NaverMap) {
+        val latitude = arguments?.getDouble("latitude", 0.0)!!
+        val longitude = arguments?.getDouble("longitude", 0.0)!!
+
         _naverMap = p0.apply {
-            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.5005, 127.0281))
+            val cameraUpdate = CameraUpdate
+                .scrollTo(LatLng(latitude, longitude))
                 .animate(CameraAnimation.Easing)
-            minZoom = 17.0
+            minZoom = 16.0
             maxZoom = 19.0
             uiSettings.apply {
                 isCompassEnabled = false
@@ -59,9 +62,8 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             moveCamera(cameraUpdate)
         }
         Marker().apply {
-            position = LatLng(37.5005, 127.0281)
+            position = LatLng(latitude, longitude)
             map = naverMap
-            icon = OverlayImage.fromResource(R.drawable.ic_temp_location_on)
         }
     }
 

@@ -1,8 +1,10 @@
 package com.kbcs.soptionssix.util.component
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,7 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -24,10 +26,16 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @Composable
-fun SelectArrivalTime() {
-    val timeList = listOf("10분", "20분", "30분", "40분", "50분")
+fun SelectPickUpTime(
+    pickUpTimeList: List<String>,
+    selectPickUpTimeIndex: Int,
+    pickUpTime: Long,
+    setPickUpTime: (Int) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,7 +48,7 @@ fun SelectArrivalTime() {
         )
         Spacer(Modifier.height(16.dp))
         Text(
-            text = "가게 방문까지 걸리는 시간",
+            text = "도착 예정 시간",
             style = MaterialTheme.typography.button,
             color = colorResource(id = R.color.dark_gray)
         )
@@ -48,8 +56,13 @@ fun SelectArrivalTime() {
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(timeList) {
-                TimeChip(timeText = it, isChecked = false)
+            itemsIndexed(pickUpTimeList) { index, time ->
+                TimeChip(
+                    index = index,
+                    timeText = time,
+                    isChecked = index == selectPickUpTimeIndex,
+                    setPickUpTime = setPickUpTime
+                )
             }
         }
         Spacer(Modifier.height(16.dp))
@@ -59,18 +72,21 @@ fun SelectArrivalTime() {
             color = colorResource(id = R.color.dark_gray)
         )
         Spacer(Modifier.height(8.dp))
-        ExpectedTimeBox()
+        ExpectedTimeBox(pickUpTime = pickUpTime, pickUpTimeIndex = selectPickUpTimeIndex)
     }
 }
 
 @Composable
 private fun TimeChip(
+    index: Int,
     timeText: String,
-    isChecked: Boolean
+    isChecked: Boolean,
+    setPickUpTime: (Int) -> Unit
 ) {
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(18.dp))
+            .clickable { setPickUpTime(index) }
             .background(if (isChecked) colorResource(id = R.color.dark_green) else colorResource(id = R.color.white))
             .border(
                 width = 1.dp,
@@ -88,25 +104,35 @@ private fun TimeChip(
     }
 }
 
+@SuppressLint("SimpleDateFormat")
 @Composable
-private fun ExpectedTimeBox() {
+private fun ExpectedTimeBox(
+    pickUpTime: Long,
+    pickUpTimeIndex: Int
+) {
+    val date = Date()
+    date.time = pickUpTime * 1000L
+    val pickUpDateFormatter = SimpleDateFormat("약 aa hh시 mm분")
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(4.dp))
-            .background(colorResource(id = R.color.pale_yellow))
+            .background(colorResource(id = if (pickUpTimeIndex != -1) R.color.pale_yellow else R.color.white))
             .border(
                 width = 1.dp,
                 shape = RoundedCornerShape(4.dp),
-                color = colorResource(id = R.color.light_yellow)
+                color = colorResource(id = if (pickUpTimeIndex != -1) R.color.light_yellow else R.color.pale_gray)
             )
             .padding(vertical = 10.dp, horizontal = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "약 3시 33분",
+            text = pickUpDateFormatter.format(date),
             style = MaterialTheme.typography.h4
         )
-        Image(painter = painterResource(id = R.drawable.ic_shop), contentDescription = "")
+        if (pickUpTimeIndex != -1) Image(
+            painter = painterResource(id = R.drawable.icn_check),
+            contentDescription = ""
+        )
     }
 }

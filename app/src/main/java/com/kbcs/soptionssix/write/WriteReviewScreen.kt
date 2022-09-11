@@ -71,13 +71,13 @@ fun WriteToolBar() {
         prefixContent = {
             Image(
                 modifier = Modifier.padding(start = 12.dp, top = 12.dp, bottom = 12.dp),
-                painter = painterResource(id = R.drawable.ic_shop),
+                painter = painterResource(id = R.drawable.ic_back),
                 contentDescription = ""
             )
         },
         middleContent = {
             Text(
-                modifier = Modifier.padding(vertical = 13.dp),
+                modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 32.dp),
                 text = "후기 보기",
                 style = MaterialTheme.typography.h1
             )

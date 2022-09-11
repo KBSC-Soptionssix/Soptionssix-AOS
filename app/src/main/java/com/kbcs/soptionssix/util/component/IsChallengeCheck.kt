@@ -2,6 +2,8 @@ package com.kbcs.soptionssix.util.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,7 +27,10 @@ import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 
 @Composable
-fun IsChallengeCheck() {
+fun IsChallengeCheck(
+    isChecked: Boolean,
+    setIsChecked: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -49,31 +54,47 @@ fun IsChallengeCheck() {
             )
         }
         Spacer(modifier = Modifier.height(12.dp))
-        CheckText(true, "일회용품 포장 대신 직접 포장용기를 가져갈게요!")
+        CheckText(
+            isChecked = isChecked,
+            contentText = "일회용품 포장 대신 직접 포장용기를 가져갈게요!",
+            setIsChecked = setIsChecked
+        )
         Spacer(modifier = Modifier.height(16.dp))
-        CheckText(false, "다음에 참여할게요.")
+        CheckText(
+            isChecked = !isChecked,
+            contentText = "다음에 참여할게요.",
+            setIsChecked = setIsChecked
+        )
     }
 }
 
 @Composable
 private fun CheckText(
     isChecked: Boolean,
-    contentText: String
+    contentText: String,
+    setIsChecked: () -> Unit
 ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Box(
             modifier = Modifier
-                .size(21.dp)
                 .clip(CircleShape)
+                .size(21.dp)
+                .border(
+                    width = 1.dp,
+                    shape = CircleShape,
+                    color = if (isChecked) colorResource(id = R.color.dark_green)
+                    else colorResource(id = R.color.pale_gray)
+                )
                 .background(
                     if (isChecked) colorResource(id = R.color.dark_green)
                     else colorResource(id = R.color.white)
-                ),
+                )
+                .clickable { setIsChecked() },
             contentAlignment = Alignment.Center
         ) {
             Image(
                 painter = painterResource(
-                    id = if (isChecked) R.drawable.ic_soup else R.drawable.ic_shop
+                    id = if (isChecked) R.drawable.group_130 else R.drawable.group_131
                 ),
                 contentDescription = ""
             )
