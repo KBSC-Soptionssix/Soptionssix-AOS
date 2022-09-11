@@ -20,10 +20,11 @@ android {
         targetSdk = Constants.targetSdk
         versionCode = Constants.versionCode
         versionName = Constants.versionName
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
         buildConfigField("String", "NAVER_KEY", properties.getProperty("NAVER_KEY"))
         manifestPlaceholders["NAVER_KEY"] = properties.getProperty("NAVER_KEY")
+        buildConfigField("String", "INVISIBLE_GUEST_TOKEN", properties.getProperty("INVISIBLE_GUEST_TOKEN"))
     }
 
     buildTypes {
