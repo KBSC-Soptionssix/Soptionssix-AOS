@@ -12,6 +12,7 @@ import com.kbcs.soptionssix.buy.BuyFoodActivity
 import com.kbcs.soptionssix.databinding.ActivityStoreDetailBinding
 import com.kbcs.soptionssix.navermap.NaverMapFragment
 import com.kbsc.data.dto.ProductDto
+import com.kbsc.data.dto.StorePreviewDto
 
 class StoreDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStoreDetailBinding
@@ -34,11 +35,10 @@ class StoreDetailActivity : AppCompatActivity() {
 
     private fun discountDetailAdapter() {
         val detailList = listOf(
-            ProductDto("1"),
-            ProductDto("2"),
-            ProductDto("3"),
-            ProductDto("4"),
-            ProductDto("5")
+            ProductDto("1", StorePreviewDto(), null, "핫페퍼 아보카도 에그 후무스 3p", 3, 12000, 10, 1, 2),
+            ProductDto("2", StorePreviewDto(), null, "상큼 라임 비프 타코 3p", 3, 9000, 50, 1, 2),
+            ProductDto("3", StorePreviewDto(), null, "수제 샤워소스 3p", 3, 6000, 30, 1, 2),
+            ProductDto("4", StorePreviewDto(), null, "체다 듬뿍 핫치킨 부리또 1p", 3, 10000, 20, 2, 2)
         )
         val goBuy: (ProductDto) -> Unit = {
             val intent = Intent(this, BuyFoodActivity::class.java)

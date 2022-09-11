@@ -15,7 +15,7 @@ class DiscountProductAdapter(
     private val clickGive: (ProductDto) -> (Unit),
     private val clickWait: (ProductDto) -> (Unit)
 ) :
-    ListAdapter<ProductDto, DiscountProductAdapter.DiscountViewHolder>(DiscountProductDiffUtil()) {
+    ListAdapter<ProductDto, DiscountProductAdapter.DiscountViewHolder>(DiscountProductDiffUtil) {
 
     class DiscountViewHolder(
         private val binding: ItemDiscountProductBinding,
@@ -46,25 +46,27 @@ class DiscountProductAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscountViewHolder {
+        Log.d("storedd", "saa")
         val binding =
             ItemDiscountProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DiscountViewHolder(binding, clickBuy, clickGive, clickWait)
     }
 
     override fun onBindViewHolder(holder: DiscountViewHolder, position: Int) {
+        Log.d("storedddd", "yy")
         holder.onBind(getItem(position))
     }
 
-    class DiscountProductDiffUtil : DiffUtil.ItemCallback<ProductDto>() {
-        override fun areItemsTheSame(
-            oldItem: ProductDto,
-            newItem: ProductDto
-        ): Boolean =
-            oldItem.name == newItem.name
+    companion object {
+        private val DiscountProductDiffUtil = object : DiffUtil.ItemCallback<ProductDto>() {
+            override fun areItemsTheSame(oldItem: ProductDto, newItem: ProductDto): Boolean =
+                oldItem == newItem
 
-        override fun areContentsTheSame(
-            oldItem: ProductDto,
-            newItem: ProductDto
-        ): Boolean = oldItem == newItem
+            override fun areContentsTheSame(
+                oldItem: ProductDto,
+                newItem: ProductDto
+            ): Boolean =
+                oldItem.equals(newItem)
+        }
     }
 }
