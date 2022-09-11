@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -5,6 +7,9 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
 }
+
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
 
 android {
     compileSdk = Constants.compileSdk
@@ -15,8 +20,9 @@ android {
         targetSdk = Constants.targetSdk
         versionCode = Constants.versionCode
         versionName = Constants.versionName
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "INVISIBLE_GUEST_TOKEN", properties.getProperty("INVISIBLE_GUEST_TOKEN"))
     }
 
     buildTypes {
