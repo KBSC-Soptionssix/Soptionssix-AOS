@@ -19,9 +19,15 @@ class MainActivity : AppCompatActivity() {
         initBottomNavi()
     }
 
+    fun changeScreen(menuId: Int) {
+        binding.bottomNavigation.selectedItemId = menuId
+    }
+
     private fun initBottomNavi() {
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, ReviewFragment())
             .commit()
+
+        binding.bottomNavigation.selectedItemId = R.id.menu_comment
 
         binding.bottomNavigation.setOnItemSelectedListener {
             val transaction = supportFragmentManager.beginTransaction()

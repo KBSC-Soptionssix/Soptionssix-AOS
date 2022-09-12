@@ -20,7 +20,8 @@ fun InvisibleGuestButton(
     modifier: Modifier,
     isClickable: Boolean,
     buttonText: String,
-    onClickEvent: () -> Unit
+    onClickEvent: () -> Unit,
+    finish: () -> Unit
 ) {
     Box(
         modifier = modifier
@@ -31,7 +32,10 @@ fun InvisibleGuestButton(
             )
             .clickable(
                 enabled = isClickable,
-                onClick = { onClickEvent() }
+                onClick = {
+                    onClickEvent()
+                    finish()
+                }
             )
     ) {
         Text(
