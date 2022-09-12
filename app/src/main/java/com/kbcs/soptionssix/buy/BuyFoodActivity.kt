@@ -40,7 +40,12 @@ class BuyFoodActivity : AppCompatActivity() {
 
         with(binding) {
             buyTopScreenCv.setContent { BuyScreenTop(buyViewModel) }
-            buyBottomScreenCv.setContent { BuyScreenBottom(buyViewModel) }
+            buyBottomScreenCv.setContent {
+                BuyScreenBottom(
+                    buyViewModel = buyViewModel,
+                    finish = ::finish
+                )
+            }
         }
     }
 }

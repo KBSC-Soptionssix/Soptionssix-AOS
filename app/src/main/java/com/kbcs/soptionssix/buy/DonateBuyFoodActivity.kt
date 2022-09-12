@@ -43,7 +43,12 @@ class DonateBuyFoodActivity : AppCompatActivity() {
 
         with(binding) {
             donateBuyTopScreenCv.setContent { BuyScreenTop(buyViewModel = viewModel) }
-            donateBuyBottomScreenCv.setContent { DonateBuyScreenBottom(buyViewModel = viewModel) }
+            donateBuyBottomScreenCv.setContent {
+                DonateBuyScreenBottom(
+                    buyViewModel = viewModel,
+                    finish = ::finish
+                )
+            }
         }
     }
 }
