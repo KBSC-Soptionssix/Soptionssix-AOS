@@ -30,9 +30,6 @@
             android:name=".discount.DiscountProductAllSeeActivity"
             android:exported="false" />
         <activity
-            android:name=".exchangetab.ExchangeFragment"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">

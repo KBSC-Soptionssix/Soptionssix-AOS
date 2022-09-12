@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.kbcs.soptionssix.databinding.ActivityMainBinding
 import com.kbcs.soptionssix.discount.DiscountFragment
+import com.kbcs.soptionssix.exchangetab.ExchangeFragment
 import com.kbcs.soptionssix.review.ReviewFragment
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 R.id.menu_exchange -> transaction.replace(
                     R.id.fragmentContainerView,
-                    ReviewFragment()
+                    ExchangeFragment()
                 )
                 else -> error("item id :${it.itemId}) is cannot be selected")
             }
