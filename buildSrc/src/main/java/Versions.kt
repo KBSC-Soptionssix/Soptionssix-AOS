@@ -26,4 +26,6 @@ object Versions {
     const val composeViewModelVersion = "2.5.0"
     const val composeAdapterVersion = "1.1.14"
     const val composeThemeVersion = "0.16.0"
+
+    const val navVersion = "2.5.2"
 }
