@@ -20,7 +20,8 @@ import java.text.DecimalFormat
 
 @Composable
 fun DonateBuyScreenBottom(
-    buyViewModel: BuyViewModel
+    buyViewModel: BuyViewModel,
+    finish: () -> Unit
 ) {
     val buyUiState = buyViewModel.uiState.collectAsState()
     val buyButtonState = buyViewModel.buttonState.collectAsState()
@@ -41,7 +42,8 @@ fun DonateBuyScreenBottom(
                     .padding(8.dp),
                 isClickable = buyButtonState.value,
                 buttonText = "${decFormatter.format(totalFoodPrice.value)}원 결제하기",
-                onClickEvent = { }
+                onClickEvent = { },
+                finish = finish
             )
         }
     }

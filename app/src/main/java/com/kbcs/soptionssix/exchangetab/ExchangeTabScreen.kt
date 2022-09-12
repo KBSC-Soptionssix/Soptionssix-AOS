@@ -14,7 +14,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.ExchangeItem
@@ -23,7 +22,11 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun ExchangeTabScreen(
-    exchangeTabViewModel: ExchangeTabViewModel
+    exchangeTabViewModel: ExchangeTabViewModel,
+    goExchangeDetail: (String) -> Unit,
+    goWriteReview: (String) -> Unit,
+    goReadReview: (String) -> Unit,
+    goStoreDetail: (String) -> Unit
 ) {
     val receiptList: State<List<Receipt>> = exchangeTabViewModel.receiptList.collectAsState()
     MaterialTheme(typography = PretendardTypography) {
@@ -35,7 +38,13 @@ fun ExchangeTabScreen(
             item { ExchangeTabToolBar() }
             items(receiptList.value) { receipt ->
                 Spacer(modifier = Modifier.height(24.dp))
-                ExchangeItem(receipt)
+                ExchangeItem(
+                    receipt = receipt,
+                    goExchangeDetail = goExchangeDetail,
+                    goWriteReview = goWriteReview,
+                    goReadReview = goReadReview,
+                    goStoreDetail = goStoreDetail
+                )
             }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
@@ -53,10 +62,4 @@ fun ExchangeTabToolBar() {
             )
         }
     )
-}
-
-@Composable
-@Preview(showBackground = true)
-fun ExchangeTabScreenPreview() {
-    ExchangeTabScreen(ExchangeTabViewModel())
 }

@@ -31,7 +31,8 @@ class WriteReviewActivity : AppCompatActivity() {
                             WindowInsetsSides.Vertical
                         )
                     ),
-                writeReviewViewModel = writeReviewViewModel
+                writeReviewViewModel = writeReviewViewModel,
+                finish = ::finish
             )
         }
     }

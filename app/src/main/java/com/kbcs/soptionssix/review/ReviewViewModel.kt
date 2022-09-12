@@ -183,6 +183,7 @@ class ReviewViewModel @Inject constructor() : ViewModel() {
         val currentTime = Calendar.getInstance().timeInMillis / 1000L
         _reviewList.value = tempList.map { reviewDto ->
             Review(
+                storeId = reviewDto.receiptPreview.product.storePreview.id,
                 userName = reviewDto.user.nickName.toString(),
                 createReviewTime = formatCreateReviewTime(currentTime, reviewDto.createdAt),
                 userRegion = reviewDto.region,
@@ -215,6 +216,7 @@ class ReviewViewModel @Inject constructor() : ViewModel() {
 }
 
 data class Review(
+    val storeId: String,
     val userName: String,
     val createReviewTime: String,
     val userRegion: String,
