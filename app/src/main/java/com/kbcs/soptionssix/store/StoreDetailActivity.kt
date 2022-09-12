@@ -1,12 +1,14 @@
 package com.kbcs.soptionssix.store
 
-import android.content.*
+import android.content.ClipData
+import android.content.ClipDescription
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.buy.BuyFoodActivity
 import com.kbcs.soptionssix.databinding.ActivityStoreDetailBinding
@@ -22,10 +24,17 @@ class StoreDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace<NaverMapFragment>(R.id.fcv_naver_map)
+        val bundle = Bundle()
+        val naverMapFragment = NaverMapFragment()
+
+        naverMapFragment.arguments = bundle.apply {
+            putDouble("latitude", 37.5005)
+            putDouble("longitude", 127.0281)
         }
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fcv_naver_map, naverMapFragment)
+            .commit()
 
         discountDetailAdapter()
         backButton()
@@ -36,10 +45,10 @@ class StoreDetailActivity : AppCompatActivity() {
 
     private fun discountDetailAdapter() {
         val detailList = listOf(
-            ProductDto("1", StorePreviewDto(), null, "핫페퍼 아보카도 에그 후무스 3p", 3, 12000, 10, 1, 2),
-            ProductDto("2", StorePreviewDto(), null, "상큼 라임 비프 타코 3p", 3, 9000, 50, 0, 2),
-            ProductDto("3", StorePreviewDto(), null, "수제 샤워소스 2p", 3, 6000, 30, 1, 0),
-            ProductDto("4", StorePreviewDto(), null, "체다 듬뿍 핫치킨 부리또 1p", 3, 10000, 20, 2, 0)
+            ProductDto("1", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "핫페퍼 아보카도 에그 후무스 3p", 3, 12000, 10, 1, 2),
+            ProductDto("2", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "상큼 라임 비프 타코 3p", 3, 9000, 50, 0, 2),
+            ProductDto("3", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "수제 샤워소스 2p", 3, 6000, 30, 1, 0),
+            ProductDto("4", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "체다 듬뿍 핫치킨 부리또 1p", 3, 10000, 20, 2, 0)
         )
         val goBuy: (ProductDto) -> Unit = {
             val intent = Intent(this, BuyFoodActivity::class.java)
