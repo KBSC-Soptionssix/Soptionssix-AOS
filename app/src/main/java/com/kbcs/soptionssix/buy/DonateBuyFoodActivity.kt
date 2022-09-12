@@ -42,7 +42,12 @@ class DonateBuyFoodActivity : AppCompatActivity() {
             .launchIn(lifecycleScope)
 
         with(binding) {
-            donateBuyTopScreenCv.setContent { BuyScreenTop(buyViewModel = viewModel) }
+            donateBuyTopScreenCv.setContent {
+                BuyScreenTop(
+                    buyViewModel = viewModel,
+                    finish = ::finish
+                )
+            }
             donateBuyBottomScreenCv.setContent {
                 DonateBuyScreenBottom(
                     buyViewModel = viewModel,
