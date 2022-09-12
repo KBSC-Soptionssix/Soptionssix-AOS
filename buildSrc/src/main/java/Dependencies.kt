@@ -57,8 +57,7 @@ object Dependencies {
     const val naverLocation = "com.google.android.gms:play-services-location:20.0.0"
     const val naverAppCompat = "com.android.support:appcompat-v7:28.0.0"
 
-    // Glide
-    const val glide = "com.github.bumptech.glide:glide:4.13.0"
+    const val navigation = "androidx.navigation:navigation-compose:${Versions.navVersion}"
 }
 
 fun DependencyHandler.hilt() {
