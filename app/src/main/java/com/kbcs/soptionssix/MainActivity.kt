@@ -7,7 +7,9 @@ import com.kbcs.soptionssix.databinding.ActivityMainBinding
 import com.kbcs.soptionssix.discount.DiscountFragment
 import com.kbcs.soptionssix.exchangetab.ExchangeFragment
 import com.kbcs.soptionssix.review.ReviewFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

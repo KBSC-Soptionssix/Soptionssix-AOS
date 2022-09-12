@@ -1,15 +1,11 @@
 package com.kbcs.soptionssix.review
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kbsc.data.dto.ProductDto
-import com.kbsc.data.dto.ReceiptPreviewDto
-import com.kbsc.data.dto.ReviewDto
-import com.kbsc.data.dto.StorePreviewDto
-import com.kbsc.data.dto.UserDto
+import com.kbcs.data.repository.ReviewRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -19,7 +15,9 @@ import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
-class ReviewViewModel @Inject constructor() : ViewModel() {
+class ReviewViewModel @Inject constructor(
+    private val reviewRepository: ReviewRepository
+) : ViewModel() {
     private val _reviewList: MutableStateFlow<List<Review>> = MutableStateFlow(emptyList())
     val reviewList = _reviewList.asStateFlow()
 
@@ -30,167 +28,21 @@ class ReviewViewModel @Inject constructor() : ViewModel() {
     }
 
     suspend fun fetchReviewList() {
-        val tempList = listOf(
-            ReviewDto(
-                id = "1",
-                user = UserDto("1", "맑은비", "01012345678"),
-                receiptPreview =
-                ReceiptPreviewDto(
-                    id = "",
-                    userId = "",
-                    product = ProductDto(
-                        id = "",
-                        storePreview =
-                        StorePreviewDto(
-                            id = "1",
-                            photo = "",
-                            name = "몽실 베이커리",
-                            category = "",
-                            description = "",
-                            maxDiscount = 4500,
-                            discountStartTime = null,
-                            phone = "01012345678",
-                            breakStartTime = null,
-                            breakEndTime = null,
-                            startTime = 0,
-                            endTime = 0,
-                            hasChallenge = true
-                        ),
-                        photo = "",
-                        name = "",
-                        stockCount = 1,
-                        price = 9000,
-                        discount = 4500,
-                        donationCompleteCount = 0,
-                        donationWaitCount = 0
-                    ),
-                    productCount = 1,
-                    date = 0L,
-                    pickUpTime = 1662159018,
-                    paymentMethod = "",
-                    isChallenge = true,
-                    isDonate = true
-                ),
-                region = "백현동",
-                content = "첫번째 방문에 너무 득템했는데\n" +
-                    "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-                    "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-                    "이거까지 보이나요???",
-                photos = emptyList(),
-                createdAt = 1662193230
-            ),
-            ReviewDto(
-                id = "1",
-                user = UserDto("1", "맑은비", "01012345678"),
-                receiptPreview =
-                ReceiptPreviewDto(
-                    id = "",
-                    userId = "",
-                    product = ProductDto(
-                        id = "",
-                        storePreview =
-                        StorePreviewDto(
-                            id = "1",
-                            photo = "",
-                            name = "몽실 베이커리",
-                            category = "",
-                            description = "",
-                            maxDiscount = 4500,
-                            discountStartTime = null,
-                            phone = "01012345678",
-                            breakStartTime = null,
-                            breakEndTime = null,
-                            startTime = 0,
-                            endTime = 0,
-                            hasChallenge = true
-                        ),
-                        photo = "",
-                        name = "",
-                        stockCount = 1,
-                        price = 9000,
-                        discount = 4500,
-                        donationCompleteCount = 0,
-                        donationWaitCount = 0
-                    ),
-                    productCount = 1,
-                    date = 0L,
-                    pickUpTime = 1662159018,
-                    paymentMethod = "",
-                    isChallenge = true,
-                    isDonate = true
-                ),
-                region = "백현동",
-                content = "첫번째 방문에 너무 득템했는데\n" +
-                    "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-                    "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-                    "이거까지 보이나요???",
-                photos = listOf("https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800"),
-                createdAt = 1662159018
-            ),
-            ReviewDto(
-                id = "1",
-                user = UserDto("1", "맑은비", "01012345678"),
-                receiptPreview =
-                ReceiptPreviewDto(
-                    id = "",
-                    userId = "",
-                    product = ProductDto(
-                        id = "",
-                        storePreview =
-                        StorePreviewDto(
-                            id = "1",
-                            photo = "",
-                            name = "몽실 베이커리",
-                            category = "",
-                            description = "",
-                            maxDiscount = 4500,
-                            discountStartTime = null,
-                            phone = "01012345678",
-                            breakStartTime = null,
-                            breakEndTime = null,
-                            startTime = 0,
-                            endTime = 0,
-                            hasChallenge = true
-                        ),
-                        photo = "",
-                        name = "",
-                        stockCount = 1,
-                        price = 9000,
-                        discount = 4500,
-                        donationCompleteCount = 0,
-                        donationWaitCount = 0
-                    ),
-                    productCount = 1,
-                    date = 0L,
-                    pickUpTime = 1662159018,
-                    paymentMethod = "",
-                    isChallenge = true,
-                    isDonate = true
-                ),
-                region = "백현동",
-                content = "첫번째 방문에 너무 득템했는데\n" +
-                    "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-                    "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-                    "이거까지 보이나요???",
-                photos = listOf(
-                    "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
-                    "https://d12zq4w4guyljn.cloudfront.net/300_300_20220805020951_menu1_06d69fb0c864.jpg"
-                ),
-                createdAt = 1662036618
-            )
-        )
-        delay(300)
-        val currentTime = Calendar.getInstance().timeInMillis / 1000L
-        _reviewList.value = tempList.map { reviewDto ->
-            Review(
-                userName = reviewDto.user.nickName.toString(),
-                createReviewTime = formatCreateReviewTime(currentTime, reviewDto.createdAt),
-                userRegion = reviewDto.region,
-                reviewContent = reviewDto.content,
-                storeName = reviewDto.receiptPreview.product.storePreview.name,
-                photos = reviewDto.photos
-            )
-        }
+        reviewRepository.getReviewList()
+            .onSuccess { resultReviewList ->
+                val currentTime = Calendar.getInstance().timeInMillis / 1000L
+                _reviewList.value = resultReviewList.map { reviewDto ->
+                    Review(
+                        userName = reviewDto.user.nickName.toString(),
+                        createReviewTime = formatCreateReviewTime(currentTime, reviewDto.createdAt),
+                        userRegion = reviewDto.region,
+                        reviewContent = reviewDto.content,
+                        storeName = reviewDto.receiptPreview.product.storePreview.name,
+                        photos = reviewDto.photos
+                    )
+                }
+            }
+            .onFailure { Log.d("ReviewViewModel", "error: ${it.message}") }
     }
 
     @SuppressLint("SimpleDateFormat")

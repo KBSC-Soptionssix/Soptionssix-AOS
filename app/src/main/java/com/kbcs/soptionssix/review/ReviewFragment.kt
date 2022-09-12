@@ -8,7 +8,9 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kbcs.soptionssix.databinding.FragmentReviewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReviewFragment : Fragment() {
     private var _binding: FragmentReviewBinding? = null
     private val binding get() = requireNotNull(_binding)
