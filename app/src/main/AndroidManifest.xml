@@ -30,7 +30,7 @@
             android:name=".discount.DiscountProductAllSeeActivity"
             android:exported="false" />
         <activity
-            android:name=".exchangetab.ExchangeActivity"
+            android:name=".exchangetab.ExchangeFragment"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
