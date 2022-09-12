@@ -88,6 +88,7 @@ dependencies {
         implementation(coilCompose)
         implementation(pager)
         implementation(recyclerView)
+        implementation(glide)
 
         testImplementation(jUnit)
         androidTestImplementation(androidTest)

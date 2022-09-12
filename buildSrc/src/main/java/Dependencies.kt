@@ -36,6 +36,7 @@ object Dependencies {
     const val composeMaterial = "androidx.compose.material:material:${Versions.composeVersion}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
+
     // test
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val androidTest = "androidx.test.ext:junit:${Versions.androidTestVersion}"
@@ -55,6 +56,9 @@ object Dependencies {
     const val naverMap = "com.naver.maps:map-sdk:3.15.0"
     const val naverLocation = "com.google.android.gms:play-services-location:20.0.0"
     const val naverAppCompat = "com.android.support:appcompat-v7:28.0.0"
+
+    // Glide
+    const val glide = "com.github.bumptech.glide:glide:4.13.0"
 }
 
 fun DependencyHandler.hilt() {

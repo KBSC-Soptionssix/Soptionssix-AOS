@@ -41,8 +41,8 @@
                         android:layout_marginTop="24dp"
                         android:includeFontPadding="false"
                         android:text="@string/discountStoreTop"
-                        android:textColor="@color/black"
                         android:textAppearance="@style/ShopB15"
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,8 +81,8 @@
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
                         android:text="@string/discountProduct"
-                        android:textColor="@color/black"
                         android:textAppearance="@style/ShopB15"
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
