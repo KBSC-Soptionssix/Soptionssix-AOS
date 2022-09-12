@@ -82,7 +82,7 @@ fun WriteToolBar(finish: () -> Unit) {
         middleContent = {
             Text(
                 modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 32.dp),
-                text = "후기 보기",
+                text = "반짝후기 작성하기",
                 style = MaterialTheme.typography.h1
             )
         }
