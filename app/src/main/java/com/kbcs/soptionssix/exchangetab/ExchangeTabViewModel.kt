@@ -27,6 +27,7 @@ class ExchangeTabViewModel : ViewModel() {
                 id = "1",
                 userId = "",
                 store = StoreDto(
+                    id = "1",
                     name = "멕시칸인더보울 명동점"
                 ),
                 product = ProductDto(
@@ -45,6 +46,7 @@ class ExchangeTabViewModel : ViewModel() {
                 id = "1",
                 userId = "",
                 store = StoreDto(
+                    id = "1",
                     name = "멕시칸인더보울 명동점"
                 ),
                 product = ProductDto(
@@ -63,6 +65,7 @@ class ExchangeTabViewModel : ViewModel() {
                 id = "1",
                 userId = "",
                 store = StoreDto(
+                    id = "1",
                     name = "멕시칸인더보울 명동점"
                 ),
                 product = ProductDto(
@@ -82,6 +85,7 @@ class ExchangeTabViewModel : ViewModel() {
         val tempReceiptList = tempList.map { receiptDto ->
             Receipt(
                 id = receiptDto.id,
+                storeId = receiptDto.store.id,
                 userId = receiptDto.userId,
                 storeName = receiptDto.store.name,
                 productName = receiptDto.product.name,
@@ -98,6 +102,7 @@ class ExchangeTabViewModel : ViewModel() {
 
 data class Receipt(
     val id: String,
+    val storeId: String,
     val userId: String,
     val storeName: String,
     val productName: String,

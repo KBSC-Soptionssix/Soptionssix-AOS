@@ -9,14 +9,14 @@ import com.kbsc.data.dto.ReviewDto
 import com.kbsc.data.dto.StorePreviewDto
 import com.kbsc.data.dto.UserDto
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import javax.inject.Inject
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import javax.inject.Inject
 
 @HiltViewModel
 class ReviewViewModel @Inject constructor() : ViewModel() {
@@ -183,7 +183,7 @@ class ReviewViewModel @Inject constructor() : ViewModel() {
         val currentTime = Calendar.getInstance().timeInMillis / 1000L
         _reviewList.value = tempList.map { reviewDto ->
             Review(
-                storeId = reviewDto.id,
+                storeId = reviewDto.receiptPreview.product.storePreview.id,
                 userName = reviewDto.user.nickName.toString(),
                 createReviewTime = formatCreateReviewTime(currentTime, reviewDto.createdAt),
                 userRegion = reviewDto.region,
