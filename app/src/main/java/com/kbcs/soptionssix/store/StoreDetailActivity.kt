@@ -1,12 +1,14 @@
 package com.kbcs.soptionssix.store
 
-import android.content.*
+import android.content.ClipData
+import android.content.ClipDescription
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.buy.BuyFoodActivity
 import com.kbcs.soptionssix.databinding.ActivityStoreDetailBinding
