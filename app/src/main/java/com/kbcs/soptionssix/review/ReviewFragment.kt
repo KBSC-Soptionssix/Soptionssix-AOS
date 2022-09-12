@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import com.kbcs.soptionssix.MainActivity
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.FragmentReviewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import com.kbcs.soptionssix.store.StoreDetailActivity
 
+@AndroidEntryPoint
 class ReviewFragment : Fragment() {
     private var _binding: FragmentReviewBinding? = null
     private val binding get() = requireNotNull(_binding)
