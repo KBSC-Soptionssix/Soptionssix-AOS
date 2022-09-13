@@ -3,8 +3,10 @@ package com.kbcs.soptionssix.buy
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kbcs.data.repository.ReceiptRepository
 import com.kbcs.data.repository.StoreRepository
 import com.kbsc.data.dto.StoreDetailDto
+import com.kbsc.data.entity.request.ReceiptRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Calendar
 import javax.inject.Inject
@@ -13,10 +15,12 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class BuyViewModel @Inject constructor(
-    private val storeRepository: StoreRepository
+    private val storeRepository: StoreRepository,
+    private val receiptRepository: ReceiptRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(BuyUiState())
     val uiState = _uiState.asStateFlow()
@@ -75,6 +79,22 @@ class BuyViewModel @Inject constructor(
                 )
             }
             .onFailure { Log.d("BuyViewModel", "error: ${it.message}") }
+    }
+
+    fun postReceipt() {
+        viewModelScope.launch {
+            val receiptRequest = ReceiptRequest(
+                phone = uiState.value.userPhoneNumber,
+                storeId = uiState.value.storeId,
+                productId = uiState.value.productId,
+                productCount = uiState.value.foodCount,
+                pickUpTime = pickUpTime.value,
+                paymentMethod = uiState.value.paymentList[uiState.value.selectPaymentIndex],
+                isChallenge = uiState.value.isChallenge,
+                isDonate = uiState.value.isDonate
+            )
+            receiptRepository.postReceipt(receiptRequest)
+        }
     }
 
     fun setFoodCount(degree: Int) {
