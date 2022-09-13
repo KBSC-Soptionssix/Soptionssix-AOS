@@ -9,13 +9,15 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.lifecycle.lifecycleScope
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.ActivityExchangeDetailBinding
 import com.kbcs.soptionssix.navermap.NaverMapFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
+@AndroidEntryPoint
 class ExchangeDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExchangeDetailBinding
     private val exchangeDetailViewModel: ExchangeDetailViewModel by viewModels()
@@ -24,7 +26,6 @@ class ExchangeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_exchange_detail)
-        binding.exchangeViewModel = exchangeDetailViewModel
 
         val bundle = Bundle()
         val naverMapFragment = NaverMapFragment()
@@ -38,10 +39,26 @@ class ExchangeDetailActivity : AppCompatActivity() {
             .replace(R.id.fcv_naver_map, naverMapFragment)
             .commit()
 
+        lifecycleScope.launch {
+            val receiptId = intent.getStringExtra("receiptId") ?: ""
+            exchangeDetailViewModel.fetchExchangeDetailList(receiptId)
+        }
+
         formatCost(9000)
         completeExchange()
         copyRoadClipData()
         copyAddressClipData()
+        exchangeObserver()
+    }
+
+    private fun exchangeObserver() {
+        exchangeDetailViewModel.exchangeList.observe(this) {
+            binding.exchangeViewModel = it
+
+            val discountPrice = it.product.price * it.product.discount / 100
+            binding.tvDiscountPrice.text = discountPrice.toString()
+            binding.tvTotalPrice.text = (it.product.price - discountPrice).toString()
+        }
     }
 
     private fun formatCost(costs: Int) {

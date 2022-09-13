@@ -7,7 +7,7 @@
 
         <variable
             name="exchangeViewModel"
-            type="com.kbcs.soptionssix.exchange.ExchangeDetailViewModel" />
+            type="com.kbsc.data.dto.ReceiptDto" />
 
     </data>
 
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:includeFontPadding="false"
-                android:text="@string/storeDetailName"
+                android:text="@{exchangeViewModel.store.name}"
                 android:textAppearance="@style/ShopM13"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@id/iv_shop_emo"
@@ -131,7 +131,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
-                android:text="서울특별시 중구 남대문로 84"
+                android:text="@{exchangeViewModel.store.loadAddress"
                 android:textAppearance="@style/ShopInfoM11"
                 android:textColor="@color/dark_gray_2"
                 app:layout_constraintStart_toEndOf="@+id/tv_road"
@@ -155,7 +155,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
-                android:text="명동 445"
+                android:text="@{exchangeViewModel.store.address}"
                 android:textAppearance="@style/ShopInfoM11"
                 android:textColor="@color/dark_gray_2"
                 app:layout_constraintStart_toEndOf="@+id/tv_address"
@@ -300,7 +300,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:includeFontPadding="false"
-                android:text="멕시칸 치킨 부리또"
+                android:text="@{exchangeViewModel.product.name}"
                 android:textAppearance="@style/ShopSb152"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@id/iv_order_emo"
@@ -311,13 +311,14 @@
                 android:id="@+id/tv_order_num"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="2"
+                android:text="@{String.valueOf(exchangeViewModel.productCount)}"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/ExchangeR15"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_order_name"
                 app:layout_constraintEnd_toStartOf="@+id/tv_order_num_ko"
                 app:layout_constraintStart_toEndOf="@+id/tv_order_name"
+                tools:text="2"
                 app:layout_constraintTop_toTopOf="@+id/tv_order_name" />
 
             <TextView
