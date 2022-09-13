@@ -44,7 +44,7 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
                         val startHour = discountStartTime / 60
                         val startMin = (discountStartTime % 60)
                         var min = startMin.toString()
-                        if(startMin<10){ // 10분 이전인 경우 앞에 0 있어야함
+                        if (startMin < 10) { // 10분 이전인 경우 앞에 0 있어야함
                             min = "0$startMin"
                         }
                         when {
