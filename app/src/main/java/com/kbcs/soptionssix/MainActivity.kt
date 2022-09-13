@@ -1,12 +1,14 @@
 package com.kbcs.soptionssix
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.kbcs.soptionssix.databinding.ActivityMainBinding
 import com.kbcs.soptionssix.discount.DiscountFragment
 import com.kbcs.soptionssix.exchangetab.ExchangeFragment
 import com.kbcs.soptionssix.review.ReviewFragment
+import java.time.LocalDateTime
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -15,6 +17,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initBottomNavi()
+        timeFunc()
+    }
+
+    private fun timeFunc() {
+        val di = LocalDateTime.now()
+        Log.d("hello", di.minute.toString())
+        Log.d("hello", di.hour.toString())
     }
 
     private fun initBottomNavi() {

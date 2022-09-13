@@ -45,28 +45,35 @@ class DiscountFragment : Fragment() {
                 "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
                 "멕시칸인더보울",
                 "샐러드, 챌린지",
-                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다."
+                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다.",
+                1,
+                900
             ),
             StoreDto(
                 "2",
                 "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
                 "멕시칸인더보울",
                 "샐러드, 챌린지",
-                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다."
+                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다.",
+                1,
+                50
             ),
             StoreDto(
                 "3",
                 "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
                 "멕시칸인더보울",
                 "샐러드, 챌린지",
-                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다."
+                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다.",
+                3,
+                850
             ),
             StoreDto(
                 "4",
                 "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
                 "멕시칸인더보울",
                 "샐러드, 챌린지",
-                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다."
+                "안녕하세요 멕시칸 타코를 전물으로 하고 있습니다.",
+                40
             )
         )
         discountStoreAdapter = DiscountStoreAdapter {

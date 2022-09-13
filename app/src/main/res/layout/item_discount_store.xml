@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/BuyB16"
             android:textColor="@color/white"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/iv_store"
             app:layout_constraintTop_toTopOf="@+id/iv_store"
             app:layout_constraintBottom_toBottomOf="@id/iv_store"
