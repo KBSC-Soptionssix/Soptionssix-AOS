@@ -28,7 +28,7 @@ object NetworkModule {
                     request()
                         .newBuilder()
                         .addHeader(
-                            "Authorization",
+                            "token",
                             INVISIBLE_GUEST_TOKEN
                         )
                         .addHeader("Content-Type", "Application/json")

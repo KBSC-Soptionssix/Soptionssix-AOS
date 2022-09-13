@@ -12,7 +12,9 @@ import androidx.fragment.app.viewModels
 import com.kbcs.soptionssix.exchange.ExchangeDetailActivity
 import com.kbcs.soptionssix.store.StoreDetailActivity
 import com.kbcs.soptionssix.write.WriteReviewActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExchangeFragment : Fragment() {
     private val exchangeTabViewModel: ExchangeTabViewModel by viewModels()
     override fun onCreateView(

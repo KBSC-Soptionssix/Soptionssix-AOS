@@ -1,3 +1,7 @@
 package com.kbcs.data.repository
 
-interface ReceiptRepository
+import com.kbsc.data.dto.ReceiptDto
+
+interface ReceiptRepository {
+    suspend fun getReceiptList(): Result<List<ReceiptDto>>
+}
