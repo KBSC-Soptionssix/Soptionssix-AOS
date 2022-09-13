@@ -94,13 +94,13 @@ class DiscountFragment : Fragment() {
 
     private fun discountObserver() {
         discountViewModel.storeList.observe(viewLifecycleOwner) {
-            discountStoreAdapter.submitList(it)
+            if (it != null) discountStoreAdapter.submitList(it)
         }
         discountViewModel.productList.observe(viewLifecycleOwner) {
-            discountAdapter.submitList(it)
+            if (it != null) discountAdapter.submitList(it)
         }
         discountViewModel.waitingList.observe(viewLifecycleOwner) {
-            waitingProductAdapter.submitList(it)
+            if (it != null) waitingProductAdapter.submitList(it)
         }
     }
 }
