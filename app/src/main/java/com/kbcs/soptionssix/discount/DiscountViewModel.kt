@@ -34,9 +34,9 @@ class DiscountViewModel @Inject constructor(
     suspend fun fetchDiscountList() {
         discountRepository.getDiscountList()
             .onSuccess { DiscountDto ->
-                _storeList.value = DiscountDto.storeList!!
-                _productList.value = DiscountDto.productList!!
-                _waitingList.value = DiscountDto.waitDonationList!!
+                _storeList.value = DiscountDto.storeList
+                _productList.value = DiscountDto.productList
+                _waitingList.value = DiscountDto.waitDonationList
             }
             .onFailure {
                 Log.d("DiscountViewModel", "error: ${it.message}")
