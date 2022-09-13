@@ -42,8 +42,18 @@ class DonateBuyFoodActivity : AppCompatActivity() {
             .launchIn(lifecycleScope)
 
         with(binding) {
-            donateBuyTopScreenCv.setContent { BuyScreenTop(buyViewModel = viewModel) }
-            donateBuyBottomScreenCv.setContent { DonateBuyScreenBottom(buyViewModel = viewModel) }
+            donateBuyTopScreenCv.setContent {
+                BuyScreenTop(
+                    buyViewModel = viewModel,
+                    finish = ::finish
+                )
+            }
+            donateBuyBottomScreenCv.setContent {
+                DonateBuyScreenBottom(
+                    buyViewModel = viewModel,
+                    finish = ::finish
+                )
+            }
         }
     }
 }

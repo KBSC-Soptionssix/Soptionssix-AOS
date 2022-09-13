@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.InvisibleGuestButton
@@ -23,7 +22,8 @@ import java.text.DecimalFormat
 
 @Composable
 fun BuyScreenBottom(
-    buyViewModel: BuyViewModel
+    buyViewModel: BuyViewModel,
+    finish: () -> Unit
 ) {
     val buyUiState = buyViewModel.uiState.collectAsState()
     val totalFoodPrice = buyViewModel.totalPrice.collectAsState()
@@ -57,16 +57,9 @@ fun BuyScreenBottom(
                     .padding(8.dp),
                 isClickable = buyButtonState.value,
                 buttonText = "${decFormatter.format(totalFoodPrice.value)}원 결제하기",
-                onClickEvent = { }
+                onClickEvent = { },
+                finish = finish
             )
         }
-    }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun BuyScreenBottomPreview() {
-    MaterialTheme(typography = PretendardTypography) {
-        BuyScreenBottom(BuyViewModel())
     }
 }

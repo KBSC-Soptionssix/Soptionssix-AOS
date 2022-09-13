@@ -26,10 +26,17 @@ class ExchangeDetailActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_exchange_detail)
         binding.exchangeViewModel = exchangeDetailViewModel
 
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace<NaverMapFragment>(R.id.fcv_naver_map)
+        val bundle = Bundle()
+        val naverMapFragment = NaverMapFragment()
+
+        naverMapFragment.arguments = bundle.apply {
+            putDouble("latitude", 37.5005)
+            putDouble("longitude", 127.0281)
         }
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fcv_naver_map, naverMapFragment)
+            .commit()
 
         formatCost(9000)
         completeExchange()

@@ -1,3 +1,9 @@
 package com.kbcs.data.service
 
-interface ReviewService
+import com.kbsc.data.dto.ReviewDto
+import retrofit2.http.GET
+
+interface ReviewService {
+    @GET("/review")
+    suspend fun getReviewList(): List<ReviewDto>
+}

@@ -38,7 +38,6 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -46,7 +45,10 @@ import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.review.Review
 
 @Composable
-fun ReviewItem(review: Review) {
+fun ReviewItem(
+    review: Review,
+    goStoreDetail: (String) -> Unit
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -73,7 +75,12 @@ fun ReviewItem(review: Review) {
                 Spacer(Modifier.size(4.dp))
                 ReviewContent(content = review.reviewContent)
                 Spacer(Modifier.size(16.dp))
-                StoreInformation(storeName = review.storeName, reviewImages = review.photos)
+                StoreInformation(
+                    storeId = review.storeId,
+                    storeName = review.storeName,
+                    reviewImages = review.photos,
+                    goStoreDetail = goStoreDetail
+                )
             }
         }
     }
@@ -187,9 +194,11 @@ fun ExpandableText(
 
 @Composable
 private fun StoreInformation(
+    storeId: String,
     storeName: String,
     reviewImages: List<String>?,
-    imgHeight: Dp = 100.dp
+    imgHeight: Dp = 100.dp,
+    goStoreDetail: (String) -> Unit
 ) {
     Column {
         Row(
@@ -201,10 +210,14 @@ private fun StoreInformation(
                 style = MaterialTheme.typography.body2,
                 color = colorResource(id = R.color.dark_green)
             )
-            Image(painter = painterResource(id = R.drawable.ic_temp_right), contentDescription = "")
+            Image(
+                modifier = Modifier.clickable { goStoreDetail(storeId) },
+                painter = painterResource(id = R.drawable.ic_rightmore),
+                contentDescription = ""
+            )
         }
-        Spacer(Modifier.size(4.dp))
         if (reviewImages?.size == 1) {
+            Spacer(Modifier.size(16.dp))
             AsyncImage(
                 model = reviewImages[0],
                 contentDescription = "",
@@ -215,6 +228,7 @@ private fun StoreInformation(
                 contentScale = ContentScale.FillWidth
             )
         } else if (reviewImages?.size == 2) {
+            Spacer(Modifier.size(16.dp))
             Row(Modifier.fillMaxWidth()) {
                 AsyncImage(
                     model = reviewImages[0],
@@ -241,22 +255,4 @@ private fun StoreInformation(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun ReviewPreview() {
-    ReviewItem(
-        Review(
-            userName = "맑은비",
-            createReviewTime = "5분 전",
-            userRegion = "백현동",
-            reviewContent = "첫번째 방문에 너무 득템했는데\n" +
-                "오늘 두번쨰 방문인데 후기를 안남길 수가 없어요\n" +
-                "참깨, 무화과, 갈릭바게트 베이글 전부 다 존맛이고 크림치즈 서비스스스스스스\n" +
-                "이거까지 보이나요???",
-            storeName = "몽실 베이커리",
-            photos = emptyList()
-        )
-    )
 }

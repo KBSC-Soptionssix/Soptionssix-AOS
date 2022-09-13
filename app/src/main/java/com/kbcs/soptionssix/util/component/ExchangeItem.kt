@@ -1,7 +1,6 @@
 package com.kbcs.soptionssix.util.component
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -37,7 +36,13 @@ import java.util.Calendar
 import java.util.Date
 
 @Composable
-fun ExchangeItem(receipt: Receipt) {
+fun ExchangeItem(
+    receipt: Receipt,
+    goExchangeDetail: (String) -> Unit,
+    goWriteReview: (String) -> Unit,
+    goReadReview: (String) -> Unit,
+    goStoreDetail: (String) -> Unit
+) {
     val currentTime = Calendar.getInstance().timeInMillis / 1000L
     val state: Int =
         if (receipt.review != null) 3
@@ -53,9 +58,9 @@ fun ExchangeItem(receipt: Receipt) {
         else -> colorResource(id = R.color.orange)
     }
     val clickEvent: () -> Unit = when (state) {
-        1 -> fun() { Log.d("slkdfjas", "$state") }
-        2 -> fun() { Log.d("slkdfjas", "$state") }
-        else -> fun() { Log.d("slkdfjas", "$state") }
+        1 -> fun() { goExchangeDetail(receipt.id) }
+        2 -> fun() { goWriteReview(receipt.id) }
+        else -> fun() { goReadReview(receipt.id) }
     }
     Surface(
         modifier = Modifier.background(colorResource(id = R.color.white)),
@@ -66,7 +71,9 @@ fun ExchangeItem(receipt: Receipt) {
                 exchangeDate = receipt.exchangeDate
             )
             ExchangeStore(
-                storeName = receipt.storeName
+                storeId = receipt.storeId,
+                storeName = receipt.storeName,
+                goStoreDetail = goStoreDetail
             )
             ExchangeFood(
                 foodName = receipt.productName,
@@ -121,10 +128,12 @@ private fun ExchangeDate(
 
 @Composable
 private fun ExchangeStore(
-    storeName: String
+    storeId: String,
+    storeName: String,
+    goStoreDetail: (String) -> Unit
 ) {
     ExchangeItemRowFrame(
-        prefixIcon = R.drawable.ic_temp_storefront,
+        prefixIcon = R.drawable.ic_shop,
         prefixContent = { modifier ->
             Text(
                 modifier = modifier,
@@ -135,7 +144,8 @@ private fun ExchangeStore(
         },
         postfixContent = {
             Image(
-                painter = painterResource(id = R.drawable.ic_temp_right),
+                modifier = Modifier.clickable { goStoreDetail(storeId) },
+                painter = painterResource(id = R.drawable.ic_rightmore),
                 contentDescription = ""
             )
         }
@@ -148,7 +158,7 @@ private fun ExchangeFood(
     foodCount: Int
 ) {
     ExchangeItemRowFrame(
-        prefixIcon = R.drawable.ic_temp_location_on,
+        prefixIcon = R.drawable.ic_soup,
         prefixContent = { modifier ->
             Text(
                 modifier = modifier,
@@ -173,7 +183,7 @@ private fun ExchangePaymentHistory(
 ) {
     val decFormatter = DecimalFormat("#,###")
     ExchangeItemRowFrame(
-        prefixIcon = R.drawable.ic_temp_location_on,
+        prefixIcon = R.drawable.ic_paycard,
         prefixContent = { modifier ->
             Text(
                 modifier = modifier,
@@ -213,7 +223,7 @@ private fun ExchangeTime(
             } hh시 mm분 "
         )
     ExchangeItemRowFrame(
-        prefixIcon = R.drawable.ic_temp_location_on,
+        prefixIcon = R.drawable.ic_clock,
         prefixContent = {
             Text(
                 text = buildAnnotatedString {

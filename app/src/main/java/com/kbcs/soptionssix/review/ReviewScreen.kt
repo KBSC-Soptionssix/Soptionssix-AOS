@@ -17,7 +17,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.DonationBoxes
@@ -28,7 +27,9 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun ReviewScreen(
-    reviewViewModel: ReviewViewModel
+    reviewViewModel: ReviewViewModel,
+    changeScreen: (Int) -> Unit,
+    goStoreDetail: (String) -> Unit
 ) {
     val dummyReviewList = reviewViewModel.reviewList.collectAsState()
     val dummyDescriptionList = listOf(
@@ -45,7 +46,7 @@ fun ReviewScreen(
                 ReviewToolBar()
                 HorizontalDescriptionBanner(dummyDescriptionList)
                 Spacer(modifier = Modifier.size(16.dp))
-                DonationBoxes()
+                DonationBoxes(changeScreen = changeScreen)
                 Spacer(modifier = Modifier.size(24.dp))
                 Divider(
                     Modifier
@@ -62,7 +63,10 @@ fun ReviewScreen(
             }
             items(dummyReviewList.value) { review ->
                 Spacer(modifier = Modifier.size(24.dp))
-                ReviewItem(review)
+                ReviewItem(
+                    review = review,
+                    goStoreDetail = goStoreDetail
+                )
             }
             item { Spacer(modifier = Modifier.size(24.dp)) }
         }
@@ -80,10 +84,4 @@ fun ReviewToolBar() {
             )
         }
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ReviewScreenPreview() {
-    ReviewScreen(ReviewViewModel())
 }
