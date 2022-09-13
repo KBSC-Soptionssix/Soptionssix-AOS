@@ -4,4 +4,5 @@ import com.kbsc.data.dto.ReviewDto
 
 interface ReviewRepository {
     suspend fun getReviewList(): Result<List<ReviewDto>>
+    suspend fun getReview(id: String): Result<ReviewDto>
 }

@@ -10,4 +10,8 @@ class ReviewRepositoryImpl @Inject constructor(
     override suspend fun getReviewList(): Result<List<ReviewDto>> {
         return runCatching { reviewService.getReviewList() }
     }
+
+    override suspend fun getReview(id: String): Result<ReviewDto> {
+        return runCatching { reviewService.getReview(id) }
+    }
 }
