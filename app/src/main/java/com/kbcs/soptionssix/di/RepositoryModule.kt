@@ -1,15 +1,6 @@
 package com.kbcs.soptionssix.di
 
-import com.kbcs.data.repository.DiscountRepository
-import com.kbcs.data.repository.DiscountRepositoryImpl
-import com.kbcs.data.repository.ProductRepository
-import com.kbcs.data.repository.ProductRepositoryImpl
-import com.kbcs.data.repository.ReceiptRepository
-import com.kbcs.data.repository.ReceiptRepositoryImpl
-import com.kbcs.data.repository.ReviewRepository
-import com.kbcs.data.repository.ReviewRepositoryImpl
-import com.kbcs.data.repository.StoreRepository
-import com.kbcs.data.repository.StoreRepositoryImpl
+import com.kbcs.data.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,4 +39,10 @@ object RepositoryModule {
     fun providesStoreRepository(
         impl: StoreRepositoryImpl
     ): StoreRepository = impl
+
+    @Provides
+    @Singleton
+    fun provideExchangeRepository(
+        impl: ExchangeRepositoryImpl
+    ): ExchangeRepository = impl
 }
