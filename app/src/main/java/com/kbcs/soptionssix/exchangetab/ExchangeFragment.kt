@@ -48,15 +48,15 @@ class ExchangeFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun goWriteReview(receiptId: String) {
+    private fun goWriteReview(reviewId: String?) {
         val intent = Intent(requireActivity(), WriteReviewActivity::class.java)
-        intent.putExtra("receiptId", receiptId)
+        intent.putExtra("reviewId", reviewId)
         startActivity(intent)
     }
 
-    private fun goReadReview(receiptId: String) {
+    private fun goReadReview(reviewId: String?) {
         val intent = Intent(requireActivity(), WriteReviewActivity::class.java)
-        intent.putExtra("receiptId", receiptId)
+        intent.putExtra("reviewId", reviewId)
         startActivity(intent)
     }
 }

@@ -15,12 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.core.view.WindowCompat
 import com.kbcs.soptionssix.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteReviewActivity : AppCompatActivity() {
     private val writeReviewViewModel: WriteReviewViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val receiptId = intent.getStringExtra("receiptId") ?: ""
+        val receiptId = intent.getStringExtra("reviewId") ?: ""
         writeReviewViewModel.fetchReviewContent(receiptId)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
