@@ -24,55 +24,100 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_discount_store"
+                <HorizontalScrollView
+                    android:id="@+id/horizontal_scroll"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="match_parent"
                     android:background="@color/white"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="RtlSymmetry">
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/tv_title_store"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="24dp"
-                        android:includeFontPadding="false"
-                        android:text="@string/discountStoreTop"
-                        android:textAppearance="@style/ShopB15"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_discount_store"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlSymmetry">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvStore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="16dp"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_title_store"
-                        tools:itemCount="5"
-                        tools:listitem="@layout/item_discount_store" />
+                        <TextView
+                            android:id="@+id/tv_title_store"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="24dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/discountStoreTop"
+                            android:textAppearance="@style/ShopB15"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvStore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_title_store"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:itemCount="1"
+                            tools:listitem="@layout/item_discount_store" />
+
+                        <ImageView
+                            android:id="@+id/iv_store_more"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/ic_showallproduct"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/rvStore"
+                            app:layout_constraintTop_toTopOf="@+id/rvStore" />
+
+                        <TextView
+                            android:id="@+id/tv_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="가게 더보기"
+                            android:textAppearance="@style/ShopM13"
+                            android:textColor="@color/dark_gray_2"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_store_more"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_right"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="@+id/iv_store_more"
+                            app:layout_constraintTop_toTopOf="@+id/iv_store_more" />
+
+                        <ImageView
+                            android:id="@+id/iv_right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_rightmore"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_more"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_store_more"
+                            app:layout_constraintStart_toEndOf="@+id/tv_more"
+                            app:layout_constraintTop_toTopOf="@+id/tv_more" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </HorizontalScrollView>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_product"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/white"
                     android:paddingHorizontal="16dp"
                     android:paddingTop="24dp"
-                    android:paddingBottom="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/cl_discount_store"
+                    android:paddingBottom="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_scroll"
                     tools:ignore="RtlSymmetry">
 
                     <TextView
@@ -83,6 +128,7 @@
                         android:text="@string/discountProduct"
                         android:textAppearance="@style/ShopB15"
                         android:textColor="@color/black"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,38 +142,39 @@
                         tools:itemCount="2"
                         tools:listitem="@layout/item_discount_product" />
 
+
                     <ImageView
-                        android:id="@+id/iv_more_see"
+                        android:id="@+id/iv_product_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/shape_gray_line_31_rectangle"
+                        android:background="@drawable/ic_showallproducts"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rv_product" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_product" />
 
                     <TextView
                         android:id="@+id/tv_all_see"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:includeFontPadding="false"
-                        android:text="@string/discountProductMoreSee"
-                        android:textColor="#9F9F9F"
+                        android:text="@string/discountMoreSee"
+                        android:textAppearance="@style/ShopM13"
+                        android:textColor="@color/dark_gray_2"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_more_see"
-                        app:layout_constraintStart_toStartOf="@+id/iv_more_see"
-                        app:layout_constraintTop_toTopOf="@+id/iv_more_see" />
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_product_more"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_right"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="@+id/iv_product_more"
+                        app:layout_constraintTop_toTopOf="@+id/iv_product_more" />
 
                     <ImageView
                         android:id="@+id/btn_right"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/ic_baseline_keyboard_arrow_right_24"
-                        android:backgroundTint="#9E9E9E"
+                        android:background="@drawable/ic_rightmore"
                         app:layout_constraintBottom_toBottomOf="@id/tv_all_see"
+                        app:layout_constraintEnd_toEndOf="@id/iv_product_more"
                         app:layout_constraintStart_toEndOf="@+id/tv_all_see"
                         app:layout_constraintTop_toTopOf="@id/tv_all_see" />
 
@@ -138,7 +185,7 @@
                     android:id="@+id/cl_waiting_product"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/white"
                     android:paddingHorizontal="16dp"
                     android:paddingTop="24dp"
@@ -151,9 +198,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:text="@string/discountWaitingProduct"
-                        android:textColor="#A1A1A1"
-                        android:textSize="16sp"
+                        android:text="기부 대기 상품"
+                        android:textAppearance="@style/ShopB15"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -168,39 +216,39 @@
                         tools:listitem="@layout/item_discount_product" />
 
                     <ImageView
-                        android:id="@+id/iv_more_donation"
+                        android:id="@+id/iv_waiting_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/shape_gray_line_31_rectangle"
+                        android:background="@drawable/ic_showallproducts"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rv_waiting_product" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_waiting_product" />
 
                     <TextView
-                        android:id="@+id/tv_more_donation"
+                        android:id="@+id/tv_waiting_all_see"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:includeFontPadding="false"
-                        android:text="@string/discountDonationWaitingMoreSee"
-                        android:textColor="#9F9F9F"
+                        android:text="@string/discountMoreSee"
+                        android:textAppearance="@style/ShopM13"
+                        android:textColor="@color/dark_gray_2"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_more_donation"
-                        app:layout_constraintStart_toStartOf="@+id/iv_more_donation"
-                        app:layout_constraintTop_toTopOf="@+id/iv_more_donation" />
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_waiting_more"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_rights"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="@+id/iv_waiting_more"
+                        app:layout_constraintTop_toTopOf="@+id/iv_waiting_more" />
 
                     <ImageView
-                        android:id="@+id/btn_right_donation"
+                        android:id="@+id/btn_rights"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/ic_baseline_keyboard_arrow_right_24"
-                        android:backgroundTint="#9E9E9E"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_more_donation"
-                        app:layout_constraintStart_toEndOf="@+id/tv_more_donation"
-                        app:layout_constraintTop_toTopOf="@id/tv_more_donation" />
+                        android:background="@drawable/ic_rightmore"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_waiting_all_see"
+                        app:layout_constraintEnd_toEndOf="@id/iv_waiting_more"
+                        app:layout_constraintStart_toEndOf="@+id/tv_waiting_all_see"
+                        app:layout_constraintTop_toTopOf="@id/tv_waiting_all_see" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
