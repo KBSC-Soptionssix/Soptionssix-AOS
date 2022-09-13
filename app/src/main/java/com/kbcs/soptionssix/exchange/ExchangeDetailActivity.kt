@@ -27,18 +27,6 @@ class ExchangeDetailActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_exchange_detail)
 
-        val bundle = Bundle()
-        val naverMapFragment = NaverMapFragment()
-
-        naverMapFragment.arguments = bundle.apply {
-            putDouble("latitude", 37.5005)
-            putDouble("longitude", 127.0281)
-        }
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fcv_naver_map, naverMapFragment)
-            .commit()
-
         lifecycleScope.launch {
             val receiptId = intent.getStringExtra("receiptId") ?: ""
             exchangeDetailViewModel.fetchExchangeDetailList(receiptId)
@@ -58,6 +46,18 @@ class ExchangeDetailActivity : AppCompatActivity() {
             val discountPrice = it.product.price * it.product.discount / 100
             binding.tvDiscountPrice.text = discountPrice.toString()
             binding.tvTotalPrice.text = (it.product.price - discountPrice).toString()
+
+            val bundle = Bundle()
+            val naverMapFragment = NaverMapFragment()
+
+            naverMapFragment.arguments = bundle.apply {
+                putDouble("latitude", it.store.mapX.toDouble())
+                putDouble("longitude", it.store.mapY.toDouble())
+            }
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fcv_naver_map, naverMapFragment)
+                .commit()
         }
     }
 
