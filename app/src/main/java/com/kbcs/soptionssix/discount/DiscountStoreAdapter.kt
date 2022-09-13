@@ -1,5 +1,7 @@
 package com.kbcs.soptionssix.discount
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,20 +24,23 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
             binding.discountStoreItem = data
 
             // 시간 비교하기
-            timeCmp(data.discountStartTime)
-
-            binding.root.setOnClickListener {
-                itemClick(data)
-            }
+            timeCmp(data.discountStartTime, data)
         }
 
-        private fun timeCmp(discountStartTime: Int?) {
+        private fun timeCmp(
+            discountStartTime: Int?,
+            data: StoreDto
+        ) {
             val currentTime = LocalDateTime.now()
             val curTime = currentTime.hour * 60 + currentTime.minute
             if (discountStartTime != null) {
                 when {
                     discountStartTime > curTime -> {
                         binding.tvMaxDiscount.visibility = View.VISIBLE
+                        binding.ivStore.setColorFilter(
+                            Color.parseColor("#525252"),
+                            PorterDuff.Mode.MULTIPLY
+                        )
                         val startHour = discountStartTime / 60
                         val startMin = discountStartTime % 60
                         when {
@@ -49,6 +54,9 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
                     }
                     else -> {
                         binding.tvMaxDiscount.visibility = View.GONE
+                        binding.root.setOnClickListener { // 오픈 됐으면 클릭이벤트 활성화
+                            this.itemClick(data)
+                        }
                     }
                 }
             }
