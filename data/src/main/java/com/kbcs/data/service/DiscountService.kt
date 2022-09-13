@@ -1,3 +1,9 @@
 package com.kbcs.data.service
 
-interface DiscountService
+import com.kbsc.data.dto.DiscountDto
+import retrofit2.http.GET
+
+interface DiscountService {
+    @GET("/discount")
+    suspend fun getDiscountList(): DiscountDto
+}
