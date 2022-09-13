@@ -28,6 +28,7 @@ class DonateBuyFoodActivity : AppCompatActivity() {
             lifecycleOwner = this@DonateBuyFoodActivity
         }
         lifecycleScope.launch {
+            viewModel.setIsDonate()
             val productId = intent.getStringExtra("productId") ?: ""
             viewModel.fetchBuyContent(productId)
         }
