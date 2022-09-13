@@ -20,6 +20,8 @@ class WriteReviewActivity : AppCompatActivity() {
     private val writeReviewViewModel: WriteReviewViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val receiptId = intent.getStringExtra("receiptId") ?: ""
+        writeReviewViewModel.fetchReviewContent(receiptId)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             WriteReviewScreen(
