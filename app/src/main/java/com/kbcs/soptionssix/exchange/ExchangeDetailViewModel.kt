@@ -18,8 +18,8 @@ class ExchangeDetailViewModel @Inject constructor(
 
     suspend fun fetchExchangeDetailList(id: String) {
         exchangeRepository.getExchangeDetailList(id)
-            .onSuccess {
-                _exchangeList.value = it
+            .onSuccess { ReceiptDto ->
+                _exchangeList.value = ReceiptDto
             }
             .onFailure {
                 Log.d("ExchangeDetailViewModel", "error: ${it.message}")
