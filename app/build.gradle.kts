@@ -25,6 +25,7 @@ android {
         buildConfigField("String", "NAVER_KEY", properties.getProperty("NAVER_KEY"))
         manifestPlaceholders["NAVER_KEY"] = properties.getProperty("NAVER_KEY")
         buildConfigField("String", "INVISIBLE_GUEST_TOKEN", properties.getProperty("INVISIBLE_GUEST_TOKEN"))
+        buildConfigField("String", "INVISIBLE_GUEST_URL", properties.getProperty("INVISIBLE_GUEST_URL"))
     }
 
     buildTypes {

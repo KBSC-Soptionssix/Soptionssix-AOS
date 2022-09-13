@@ -2,6 +2,7 @@ package com.kbcs.soptionssix.di
 
 import com.google.gson.GsonBuilder
 import com.kbcs.soptionssix.BuildConfig.INVISIBLE_GUEST_TOKEN
+import com.kbcs.soptionssix.BuildConfig.INVISIBLE_GUEST_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +28,7 @@ object NetworkModule {
                     request()
                         .newBuilder()
                         .addHeader(
-                            "Authorization",
+                            "token",
                             INVISIBLE_GUEST_TOKEN
                         )
                         .addHeader("Content-Type", "Application/json")
@@ -57,7 +58,7 @@ object NetworkModule {
         okHttpClient: OkHttpClient
     ): Retrofit =
         Retrofit.Builder()
-            .baseUrl("http:SERVER_URL")
+            .baseUrl(INVISIBLE_GUEST_URL)
             .client(okHttpClient)
             .addConverterFactory(
                 GsonConverterFactory.create(
