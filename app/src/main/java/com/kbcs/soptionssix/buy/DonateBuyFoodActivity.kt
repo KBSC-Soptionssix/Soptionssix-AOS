@@ -9,9 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.ActivityDonateBuyFoodBinding
 import com.kbcs.soptionssix.navermap.NaverMapFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DonateBuyFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDonateBuyFoodBinding
     private val viewModel: BuyViewModel by viewModels()
@@ -23,6 +26,10 @@ class DonateBuyFoodActivity : AppCompatActivity() {
         ).apply {
             vm = viewModel
             lifecycleOwner = this@DonateBuyFoodActivity
+        }
+        lifecycleScope.launch {
+            val productId = intent.getStringExtra("productId") ?: ""
+            viewModel.fetchBuyContent(productId)
         }
         val bundle = Bundle()
         val naverMapFragment = NaverMapFragment()

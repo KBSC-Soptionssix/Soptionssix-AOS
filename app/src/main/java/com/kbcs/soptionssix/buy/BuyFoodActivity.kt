@@ -9,15 +9,23 @@ import androidx.lifecycle.lifecycleScope
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.ActivityBuyBinding
 import com.kbcs.soptionssix.navermap.NaverMapFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class BuyFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBuyBinding
     private val buyViewModel: BuyViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_buy)
+        lifecycleScope.launch {
+            val productId = intent.getStringExtra("productId") ?: ""
+            buyViewModel.fetchBuyContent(productId)
+        }
+
         val bundle = Bundle()
         val naverMapFragment = NaverMapFragment()
 

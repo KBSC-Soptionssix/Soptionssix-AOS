@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.buy.BuyFoodActivity
+import com.kbcs.soptionssix.buy.DonateBuyFoodActivity
 import com.kbcs.soptionssix.databinding.ActivityStoreDetailBinding
 import com.kbcs.soptionssix.navermap.NaverMapFragment
 import com.kbsc.data.dto.ProductDto
@@ -56,7 +57,7 @@ class StoreDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
         val goGive: (ProductDto) -> Unit = {
-            val intent = Intent(this, BuyFoodActivity::class.java)
+            val intent = Intent(this, DonateBuyFoodActivity::class.java)
             intent.putExtra("productId", it.id)
             startActivity(intent)
         }
