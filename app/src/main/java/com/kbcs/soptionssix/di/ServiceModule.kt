@@ -1,17 +1,13 @@
 package com.kbcs.soptionssix.di
 
-import com.kbcs.data.service.DiscountService
-import com.kbcs.data.service.ProductService
-import com.kbcs.data.service.ReceiptService
-import com.kbcs.data.service.ReviewService
-import com.kbcs.data.service.StoreService
+import com.kbcs.data.service.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import retrofit2.Retrofit
 import retrofit2.create
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -40,4 +36,9 @@ object ServiceModule {
     @Provides
     fun provideStoreService(retrofit: Retrofit): StoreService =
         retrofit.create(StoreService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideExchangeService(retrofit: Retrofit): ExchangeService =
+        retrofit.create(ExchangeService::class.java)
 }
