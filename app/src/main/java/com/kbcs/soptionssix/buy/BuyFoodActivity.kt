@@ -39,8 +39,18 @@ class BuyFoodActivity : AppCompatActivity() {
             .launchIn(lifecycleScope)
 
         with(binding) {
-            buyTopScreenCv.setContent { BuyScreenTop(buyViewModel) }
-            buyBottomScreenCv.setContent { BuyScreenBottom(buyViewModel) }
+            buyTopScreenCv.setContent {
+                BuyScreenTop(
+                    buyViewModel = buyViewModel,
+                    finish = ::finish
+                )
+            }
+            buyBottomScreenCv.setContent {
+                BuyScreenBottom(
+                    buyViewModel = buyViewModel,
+                    finish = ::finish
+                )
+            }
         }
     }
 }

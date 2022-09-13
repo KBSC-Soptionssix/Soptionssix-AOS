@@ -9,7 +9,10 @@ import com.kbcs.soptionssix.discount.DiscountFragment
 import com.kbcs.soptionssix.exchangetab.ExchangeFragment
 import com.kbcs.soptionssix.review.ReviewFragment
 import java.time.LocalDateTime
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +29,15 @@ class MainActivity : AppCompatActivity() {
         Log.d("hello", di.hour.toString())
     }
 
+    fun changeScreen(menuId: Int) {
+        binding.bottomNavigation.selectedItemId = menuId
+    }
+
     private fun initBottomNavi() {
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, ReviewFragment())
             .commit()
+
+        binding.bottomNavigation.selectedItemId = R.id.menu_comment
 
         binding.bottomNavigation.setOnItemSelectedListener {
             val transaction = supportFragmentManager.beginTransaction()

@@ -2,6 +2,7 @@ package com.kbcs.soptionssix.write
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.InvisibleGuestButton
@@ -29,7 +29,8 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 @Composable
 fun WriteReviewScreen(
     modifier: Modifier,
-    writeReviewViewModel: WriteReviewViewModel
+    writeReviewViewModel: WriteReviewViewModel,
+    finish: () -> Unit
 ) {
     val reviewContent = writeReviewViewModel.reviewContent.collectAsState()
     val buttonState = writeReviewViewModel.buttonState.collectAsState()
@@ -38,7 +39,7 @@ fun WriteReviewScreen(
             modifier = modifier
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                WriteToolBar()
+                WriteToolBar(finish = finish)
                 Spacer(Modifier.height(16.dp))
                 WriteReviewBox(
                     modifier = Modifier
@@ -59,18 +60,21 @@ fun WriteReviewScreen(
                     .imePadding(),
                 isClickable = buttonState.value,
                 buttonText = stringResource(id = R.string.writeReviewRegister),
-                onClickEvent = writeReviewViewModel::postReview
+                onClickEvent = writeReviewViewModel::postReview,
+                finish = finish
             )
         }
     }
 }
 
 @Composable
-fun WriteToolBar() {
+fun WriteToolBar(finish: () -> Unit) {
     InvisibleGuestToolBar(
         prefixContent = {
             Image(
-                modifier = Modifier.padding(start = 12.dp, top = 12.dp, bottom = 12.dp),
+                modifier = Modifier
+                    .clickable { finish() }
+                    .padding(start = 12.dp, top = 12.dp, bottom = 12.dp),
                 painter = painterResource(id = R.drawable.ic_back),
                 contentDescription = ""
             )
@@ -78,15 +82,9 @@ fun WriteToolBar() {
         middleContent = {
             Text(
                 modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 32.dp),
-                text = "후기 보기",
+                text = "반짝후기 작성하기",
                 style = MaterialTheme.typography.h1
             )
         }
     )
-}
-
-@Preview
-@Composable
-private fun WriteReviewScreenPreview() {
-    WriteReviewScreen(Modifier, WriteReviewViewModel())
 }
