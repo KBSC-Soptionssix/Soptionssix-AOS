@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kbcs.data.repository.ReviewRepository
+import com.kbsc.data.request.WriteRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -30,7 +31,9 @@ class WriteReviewViewModel @Inject constructor(
                 .onSuccess { result ->
                     _reviewContent.value = _reviewContent.value.copy(
                         foodName = result.receiptPreview.product.name,
-                        storeName = result.receiptPreview.product.storePreview.name
+                        storeName = result.receiptPreview.product.storePreview.name,
+                        region = result.region,
+                        receiptId = id
                     )
                 }
                 .onFailure { Log.d("WriteReview", "error: ${it.message}") }
@@ -42,12 +45,23 @@ class WriteReviewViewModel @Inject constructor(
     }
 
     fun postReview() {
-        /* 통신 작업 */
+        viewModelScope.launch {
+            reviewRepository.postReview(
+                WriteRequest(
+                    region = reviewContent.value.region,
+                    receiptId = reviewContent.value.receiptId,
+                    content = reviewContent.value.reviewText,
+                    photo = null
+                )
+            )
+        }
     }
 }
 
 data class WriteReviewUiState(
     val reviewText: String = "",
     val foodName: String = "",
-    val storeName: String = ""
+    val storeName: String = "",
+    val region: String = "",
+    val receiptId: String = ""
 )
