@@ -68,7 +68,8 @@ fun FoodDetail(
                 modifier = Modifier
                     .size(84.dp)
                     .clip(RoundedCornerShape(3.dp)),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.FillBounds,
+                error = painterResource(id = R.drawable.ic_x)
             )
             Spacer(Modifier.width(5.dp))
             Column {

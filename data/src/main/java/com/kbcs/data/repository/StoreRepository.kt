@@ -1,3 +1,7 @@
 package com.kbcs.data.repository
 
-interface StoreRepository
+import com.kbsc.data.dto.StoreDetailDto
+
+interface StoreRepository {
+    suspend fun getStoreContent(id: String): Result<StoreDetailDto>
+}
