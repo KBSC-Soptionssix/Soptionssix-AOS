@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.kbcs.soptionssix.databinding.ItemDiscountProductBinding
 import com.kbsc.data.dto.ProductDto
 import java.text.DecimalFormat
@@ -26,6 +28,9 @@ class DiscountProductAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ProductDto) {
             binding.discountProductItem = data
+            binding.ivProduct.load(data.photo) {
+                transformations(RoundedCornersTransformation(3f))
+            }
 
             if (data.donationCompleteCount == 0) {
                 binding.tvCompleteNum.visibility = View.GONE

@@ -152,9 +152,10 @@
                         android:paddingVertical="4dp"
                         android:textAppearance="@style/ShopTagSb9"
                         android:textColor="@color/text_light_green"
+                        android:visibility="visible"
                         app:layout_constraintStart_toEndOf="@+id/tv_tag1"
                         app:layout_constraintTop_toTopOf="@id/tv_tag1"
-                        tools:text="용기내챌린지 환영" />
+                        tools:text="@string/storeDetailChallenge" />
 
                     <TextView
                         android:id="@+id/tv_description"
