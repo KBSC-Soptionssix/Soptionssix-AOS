@@ -428,36 +428,13 @@
                 android:textAppearance="@style/BuyB16"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
-                app:layout_constraintEnd_toStartOf="@+id/tv_remained_time"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@+id/iv_complete_exchange"
                 app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
 
             <TextView
-                android:id="@+id/tv_remained_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="36"
-                android:textAppearance="@style/BuyB16"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
-                app:layout_constraintEnd_toStartOf="@+id/tv_remained"
-                app:layout_constraintStart_toEndOf="@+id/tv_exchange_complete"
-                app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
-
-            <TextView
-                android:id="@+id/tv_remained"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="분 남음"
-                android:textAppearance="@style/BuyB16"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
-                app:layout_constraintEnd_toEndOf="@+id/iv_complete_exchange"
-                app:layout_constraintStart_toEndOf="@+id/tv_remained_time"
-                app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
-
-            <TextView
+                android:id="@+id/tv_explan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

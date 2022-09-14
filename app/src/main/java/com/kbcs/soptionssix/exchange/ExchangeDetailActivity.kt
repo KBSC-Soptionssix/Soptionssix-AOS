@@ -5,6 +5,7 @@ import android.content.ClipDescription.MIMETYPE_TEXT_PLAIN
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -78,6 +79,17 @@ class ExchangeDetailActivity : AppCompatActivity() {
                 )
             binding.tvTime.append(formatter.format(date))
         }
+
+        exchangeDetailViewModel.remainedList.observe(this) {
+            val date = Date()
+            val currentTime = Calendar.getInstance().timeInMillis / 1000L
+            date.time = (it.pickUpTime - currentTime) * 1000L
+            Log.d("dkslfj", it.pickUpTime.toString())
+            Log.d("dkslfj2", currentTime.toString())
+            val pickUpDateFormatter = SimpleDateFormat("교환 완료 mm분 남음")
+
+            binding.tvExchangeComplete.append(pickUpDateFormatter.format(date))
+        }
     }
 
     private fun completeExchange() {
@@ -85,9 +97,7 @@ class ExchangeDetailActivity : AppCompatActivity() {
             binding.ivCompleteExchange.background =
                 getDrawable(R.drawable.shape_gray_fills_4_rectangle)
 
-            binding.tvExchangeComplete.text = "교환"
-            binding.tvRemainedTime.text = " "
-            binding.tvRemained.text = "완료"
+            binding.tvExchangeComplete.text = "교환 완료"
         }
     }
 
