@@ -1,5 +1,6 @@
 package com.kbcs.soptionssix.buy
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.ActivityBuyBinding
+import com.kbcs.soptionssix.loading.LoadingActivity
 import com.kbcs.soptionssix.navermap.NaverMapFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -56,7 +58,7 @@ class BuyFoodActivity : AppCompatActivity() {
             buyBottomScreenCv.setContent {
                 BuyScreenBottom(
                     buyViewModel = buyViewModel,
-                    finish = ::finish
+                    finish = ::goLoading
                 )
             }
             ivTimeEmo.setOnClickListener {
@@ -64,6 +66,13 @@ class BuyFoodActivity : AppCompatActivity() {
                 ivTimeBox.isSelected = !ivTimeBox.isSelected
                 buyViewModel.setIsVisitedStore()
             }
+        }
+    }
+
+    private fun goLoading() {
+        Intent(this, LoadingActivity::class.java).also { intent ->
+            startActivity(intent)
+            finish()
         }
     }
 }

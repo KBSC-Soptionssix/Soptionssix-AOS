@@ -52,6 +52,12 @@
             android:name=".write.ReadReviewActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".loading.LoadingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".buy.BuyFinishActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

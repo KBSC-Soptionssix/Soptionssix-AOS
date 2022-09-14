@@ -1,5 +1,6 @@
 package com.kbcs.soptionssix.buy
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.ActivityDonateBuyFoodBinding
+import com.kbcs.soptionssix.loading.LoadingActivity
 import com.kbcs.soptionssix.navermap.NaverMapFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -57,9 +59,16 @@ class DonateBuyFoodActivity : AppCompatActivity() {
             donateBuyBottomScreenCv.setContent {
                 DonateBuyScreenBottom(
                     buyViewModel = viewModel,
-                    finish = ::finish
+                    finish = ::goLoading
                 )
             }
+        }
+    }
+
+    private fun goLoading() {
+        Intent(this, LoadingActivity::class.java).also { intent ->
+            startActivity(intent)
+            finish()
         }
     }
 }
