@@ -26,9 +26,9 @@ class ExchangeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_exchange_detail)
+        val receiptId = intent.getStringExtra("receiptId") ?: ""
 
         lifecycleScope.launch {
-            val receiptId = intent.getStringExtra("receiptId") ?: ""
             exchangeDetailViewModel.fetchExchangeDetailList(receiptId)
         }
 
