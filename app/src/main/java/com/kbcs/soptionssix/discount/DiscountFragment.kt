@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kbcs.soptionssix.buy.BuyFoodActivity
+import com.kbcs.soptionssix.buy.DonateBuyFoodActivity
 import com.kbcs.soptionssix.databinding.FragmentDiscountBinding
 import com.kbcs.soptionssix.store.DiscountProductAdapter
 import com.kbcs.soptionssix.store.StoreDetailActivity
@@ -57,7 +58,7 @@ class DiscountFragment : Fragment() {
             startActivity(intent)
         }
         val goGive: (ProductDto) -> Unit = {
-            val intent = Intent(requireContext(), BuyFoodActivity::class.java)
+            val intent = Intent(requireContext(), DonateBuyFoodActivity::class.java)
             intent.putExtra("productId", it.id)
             startActivity(intent)
         }

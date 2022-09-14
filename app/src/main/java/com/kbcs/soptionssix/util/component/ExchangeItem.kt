@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.exchangetab.Receipt
+import com.kbsc.data.dto.ReviewDto
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -38,9 +39,10 @@ import java.util.Date
 @Composable
 fun ExchangeItem(
     receipt: Receipt,
+    review: ReviewDto?,
     goExchangeDetail: (String) -> Unit,
-    goWriteReview: (String) -> Unit,
-    goReadReview: (String) -> Unit,
+    goWriteReview: (String, String, String, String) -> Unit,
+    goReadReview: (String?) -> Unit,
     goStoreDetail: (String) -> Unit
 ) {
     val currentTime = Calendar.getInstance().timeInMillis / 1000L
@@ -59,8 +61,15 @@ fun ExchangeItem(
     }
     val clickEvent: () -> Unit = when (state) {
         1 -> fun() { goExchangeDetail(receipt.id) }
-        2 -> fun() { goWriteReview(receipt.id) }
-        else -> fun() { goReadReview(receipt.id) }
+        2 -> fun() {
+            goWriteReview(
+                receipt.id,
+                receipt.storeName,
+                receipt.productName,
+                receipt.address
+            )
+        }
+        else -> fun() { goReadReview(review?.id) }
     }
     Surface(
         modifier = Modifier.background(colorResource(id = R.color.white)),

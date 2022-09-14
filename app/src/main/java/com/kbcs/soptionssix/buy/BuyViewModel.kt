@@ -8,14 +8,14 @@ import com.kbcs.data.repository.StoreRepository
 import com.kbsc.data.dto.StoreDetailDto
 import com.kbsc.data.entity.request.ReceiptRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.Calendar
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.util.Calendar
+import javax.inject.Inject
 
 @HiltViewModel
 class BuyViewModel @Inject constructor(
@@ -25,7 +25,7 @@ class BuyViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(BuyUiState())
     val uiState = _uiState.asStateFlow()
     val totalPrice = _uiState
-        .map { uiState -> (uiState.foodPrice * uiState.foodDiscount) / 100 * uiState.foodCount }
+        .map { uiState -> (uiState.foodPrice - (uiState.foodPrice * uiState.foodDiscount) / 100) * uiState.foodCount }
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
@@ -117,6 +117,14 @@ class BuyViewModel @Inject constructor(
 
     fun setIsChallenge() {
         _uiState.value = _uiState.value.copy(isChallenge = !_uiState.value.isChallenge)
+    }
+
+    fun setIsDonate() {
+        _uiState.value = _uiState.value.copy(
+            isDonate = !_uiState.value.isDonate,
+            pickUpTimeIndex = -2
+        )
+        setIsChallenge()
     }
 }
 
