@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:includeFontPadding="false"
-                    android:text = "@{vm.uiState.storeName}"
+                    android:text="@{vm.uiState.storeName}"
                     android:textAppearance="@style/ShopM13"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/iv_shop_emo"
@@ -187,49 +187,11 @@
                     android:layout_height="156dp"
                     android:layout_marginHorizontal="31dp"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_address" />
-
-                <ImageView
-                    android:id="@+id/iv_time_box"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/shape_light_brown_fill_4_rectangle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fcv_buy_naver_map" />
-
-                <ImageView
-                    android:id="@+id/iv_time_emo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/ic_soup"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_time_box"
-                    app:layout_constraintStart_toStartOf="@id/iv_time_box"
-                    app:layout_constraintTop_toTopOf="@id/iv_time_box" />
-
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="결제 후 매점에 방문해서 음식을 찾아갈게요!"
-                    android:textAppearance="@style/BuyR13"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_time_emo"
-                    app:layout_constraintEnd_toEndOf="@+id/iv_time_box"
-                    app:layout_constraintStart_toEndOf="@+id/iv_time_emo"
-                    app:layout_constraintTop_toTopOf="@id/iv_time_emo" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/tv_address" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

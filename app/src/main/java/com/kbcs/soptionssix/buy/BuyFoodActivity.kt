@@ -59,6 +59,11 @@ class BuyFoodActivity : AppCompatActivity() {
                     finish = ::finish
                 )
             }
+            ivTimeEmo.setOnClickListener {
+                ivTimeEmo.isSelected = !ivTimeEmo.isSelected
+                ivTimeBox.isSelected = !ivTimeBox.isSelected
+                buyViewModel.setIsVisitedStore()
+            }
         }
     }
 }
