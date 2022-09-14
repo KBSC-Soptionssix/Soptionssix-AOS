@@ -70,11 +70,10 @@ class StoreDetailActivity : AppCompatActivity() {
     private fun storeObserver() {
         storeDetailViewModel.storeInfo.observe(this) {
             binding.storeDetailViewModel = it
-            if(it.hasChallenge){
+            if (it.hasChallenge) {
                 binding.tvTag2.visibility = View.VISIBLE
                 binding.tvTag2.text = "용기내챌린지 환영"
-            }
-            else{
+            } else {
                 binding.tvTag2.visibility = View.GONE
             }
 
