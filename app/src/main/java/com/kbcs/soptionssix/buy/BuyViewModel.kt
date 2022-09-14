@@ -1,10 +1,13 @@
 package com.kbcs.soptionssix.buy
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kbsc.data.dto.ProductDto
+import com.kbcs.data.repository.ReceiptRepository
+import com.kbcs.data.repository.StoreRepository
 import com.kbsc.data.dto.StoreDetailDto
-import kotlinx.coroutines.delay
+import com.kbsc.data.entity.request.ReceiptRequest
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,12 +15,17 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import javax.inject.Inject
 
-class BuyViewModel : ViewModel() {
+@HiltViewModel
+class BuyViewModel @Inject constructor(
+    private val storeRepository: StoreRepository,
+    private val receiptRepository: ReceiptRepository
+) : ViewModel() {
     private val _uiState = MutableStateFlow(BuyUiState())
     val uiState = _uiState.asStateFlow()
     val totalPrice = _uiState
-        .map { uiState -> (uiState.foodPrice * uiState.foodDiscount) / 100 * uiState.foodCount }
+        .map { uiState -> (uiState.foodPrice - (uiState.foodPrice * uiState.foodDiscount) / 100) * uiState.foodCount }
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
@@ -52,40 +60,41 @@ class BuyViewModel : ViewModel() {
         0L
     )
 
-    init {
-        viewModelScope.launch { fetchBuyContent() }
+    suspend fun fetchBuyContent(productId: String) {
+        storeRepository.getStoreContent(productId)
+            .onSuccess { result: StoreDetailDto ->
+                _uiState.value = _uiState.value.copy(
+                    storeId = result.id,
+                    productId = result.product.id,
+                    storeName = result.name,
+                    foodImg = result.product.photo,
+                    foodName = result.product.name,
+                    foodDiscount = result.product.discount,
+                    foodPrice = result.product.price,
+                    foodStockCount = result.product.stockCount,
+                    loadAddress = result.loadAddress,
+                    address = result.address,
+                    mapX = result.mapX.toDouble(),
+                    mapY = result.mapY.toDouble()
+                )
+            }
+            .onFailure { Log.d("BuyViewModel", "error: ${it.message}") }
     }
 
-    suspend fun fetchBuyContent() {
-        val tempStoreDetailDto = StoreDetailDto(
-            name = "멕시칸인더보울 명동점",
-            mapX = "37.5005",
-            mapY = "127.0281",
-            product = ProductDto(
-                photo = "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800",
-                name = "상큼 라임 비프 타코 2p",
-                discount = 50,
-                price = 9000,
-                stockCount = 4
-            ),
-            loadAddress = "서울특별시 중구 남대문로 84",
-            address = "명동 445"
-        )
-        delay(300)
-        _uiState.value = _uiState.value.copy(
-            storeId = tempStoreDetailDto.id,
-            productId = tempStoreDetailDto.product.id,
-            storeName = tempStoreDetailDto.name,
-            foodImg = tempStoreDetailDto.product.photo,
-            foodName = tempStoreDetailDto.product.name,
-            foodDiscount = tempStoreDetailDto.product.discount,
-            foodPrice = tempStoreDetailDto.product.price,
-            foodStockCount = tempStoreDetailDto.product.stockCount,
-            loadAddress = tempStoreDetailDto.loadAddress,
-            address = tempStoreDetailDto.address,
-            mapX = tempStoreDetailDto.mapX.toDouble(),
-            mapY = tempStoreDetailDto.mapY.toDouble()
-        )
+    fun postReceipt() {
+        viewModelScope.launch {
+            val receiptRequest = ReceiptRequest(
+                phone = uiState.value.userPhoneNumber,
+                storeId = uiState.value.storeId,
+                productId = uiState.value.productId,
+                productCount = uiState.value.foodCount,
+                pickUpTime = pickUpTime.value,
+                paymentMethod = uiState.value.paymentList[uiState.value.selectPaymentIndex],
+                isChallenge = uiState.value.isChallenge,
+                isDonate = uiState.value.isDonate
+            )
+            receiptRepository.postReceipt(receiptRequest)
+        }
     }
 
     fun setFoodCount(degree: Int) {
@@ -108,6 +117,14 @@ class BuyViewModel : ViewModel() {
 
     fun setIsChallenge() {
         _uiState.value = _uiState.value.copy(isChallenge = !_uiState.value.isChallenge)
+    }
+
+    fun setIsDonate() {
+        _uiState.value = _uiState.value.copy(
+            isDonate = !_uiState.value.isDonate,
+            pickUpTimeIndex = -2
+        )
+        setIsChallenge()
     }
 }
 

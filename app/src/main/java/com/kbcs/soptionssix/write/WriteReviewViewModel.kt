@@ -1,10 +1,12 @@
 package com.kbcs.soptionssix.write
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kbcs.data.repository.ReviewRepository
+import com.kbsc.data.request.WriteRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +15,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class WriteReviewViewModel @Inject constructor() : ViewModel() {
+class WriteReviewViewModel @Inject constructor(
+    private val reviewRepository: ReviewRepository
+) : ViewModel() {
     private val _reviewContent = MutableStateFlow(WriteReviewUiState())
     val reviewContent = _reviewContent.asStateFlow()
 
@@ -21,14 +25,36 @@ class WriteReviewViewModel @Inject constructor() : ViewModel() {
         reviewContent.value.reviewText.isNotEmpty()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(3000), false)
 
-    init {
-        viewModelScope.launch { fetchReviewContent() }
+    fun fetchReviewContent(id: String) {
+        viewModelScope.launch {
+            reviewRepository.getReview(id)
+                .onSuccess { result ->
+                    _reviewContent.value = _reviewContent.value.copy(
+                        foodName = result.receiptPreview.product.name,
+                        storeName = result.receiptPreview.product.storePreview.name,
+                        region = result.region,
+                        receiptId = id,
+                        reviewText = result.content,
+                        isRead = true
+                    )
+                }
+                .onFailure { Log.d("WriteReview", "error: ${it.message}") }
+        }
     }
 
-    suspend fun fetchReviewContent() {
-        _reviewContent.value =
-            _reviewContent.value.copy(foodName = "멕시칸인더보울 명동점", storeName = "멕시칸 치킨 부리또")
-        delay(300)
+    fun fetchWriteReviewContent(
+        receiptId: String,
+        storeName: String,
+        foodName: String,
+        address: String
+    ) {
+        val region = address.split(" ")
+        _reviewContent.value = _reviewContent.value.copy(
+            receiptId = receiptId,
+            storeName = storeName,
+            foodName = foodName,
+            region = "${region[0]} ${region[1]}"
+        )
     }
 
     fun writeReview(text: String) {
@@ -36,12 +62,24 @@ class WriteReviewViewModel @Inject constructor() : ViewModel() {
     }
 
     fun postReview() {
-        /* 통신 작업 */
+        viewModelScope.launch {
+            reviewRepository.postReview(
+                WriteRequest(
+                    region = reviewContent.value.region,
+                    receipt = reviewContent.value.receiptId,
+                    content = reviewContent.value.reviewText,
+                    photo = null
+                )
+            )
+        }
     }
 }
 
 data class WriteReviewUiState(
     val reviewText: String = "",
     val foodName: String = "",
-    val storeName: String = ""
+    val storeName: String = "",
+    val region: String = "",
+    val receiptId: String = "",
+    val isRead: Boolean = false
 )

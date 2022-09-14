@@ -68,7 +68,8 @@ fun FoodDetail(
                 modifier = Modifier
                     .size(84.dp)
                     .clip(RoundedCornerShape(3.dp)),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.FillBounds,
+                error = painterResource(id = R.drawable.ic_x)
             )
             Spacer(Modifier.width(5.dp))
             Column {
@@ -101,7 +102,7 @@ fun FoodDetail(
                     )
                     Spacer(Modifier.width(2.dp))
                     Text(
-                        text = "${decFormatter.format(foodPrice * foodDiscount / 100)}원",
+                        text = "${decFormatter.format(foodPrice - (foodPrice * foodDiscount / 100))}원",
                         style = MaterialTheme.typography.body2
                     )
                 }

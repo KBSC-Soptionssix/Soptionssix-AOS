@@ -4,14 +4,16 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.databinding.ActivityDonateBuyFoodBinding
 import com.kbcs.soptionssix.navermap.NaverMapFragment
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DonateBuyFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDonateBuyFoodBinding
     private val viewModel: BuyViewModel by viewModels()
@@ -27,19 +29,23 @@ class DonateBuyFoodActivity : AppCompatActivity() {
         val bundle = Bundle()
         val naverMapFragment = NaverMapFragment()
 
-        viewModel.uiState
-            .flowWithLifecycle(lifecycle)
-            .onEach { buyUiState ->
-                naverMapFragment.arguments = bundle.apply {
-                    putDouble("latitude", buyUiState.mapX)
-                    putDouble("longitude", buyUiState.mapY)
+        lifecycleScope.launch {
+            val productId = intent.getStringExtra("productId") ?: ""
+            viewModel.fetchBuyContent(productId)
+            viewModel.setIsDonate()
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { buyUiState ->
+                    naverMapFragment.arguments = bundle.apply {
+                        putDouble("latitude", buyUiState.mapX)
+                        putDouble("longitude", buyUiState.mapY)
+                    }
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fcv_buy_naver_map, naverMapFragment)
+                        .commit()
                 }
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fcv_buy_naver_map, naverMapFragment)
-                    .commit()
             }
-            .launchIn(lifecycleScope)
+        }
 
         with(binding) {
             donateBuyTopScreenCv.setContent {

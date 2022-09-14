@@ -2,6 +2,7 @@ package com.kbcs.data.repository
 
 import com.kbcs.data.service.StoreService
 import com.kbsc.data.dto.DiscountStoreDetailDto
+import com.kbsc.data.dto.StoreDetailDto
 import javax.inject.Inject
 
 class StoreRepositoryImpl @Inject constructor(
@@ -9,5 +10,8 @@ class StoreRepositoryImpl @Inject constructor(
 ) : StoreRepository {
     override suspend fun getStoreDetailList(storeId: String): Result<DiscountStoreDetailDto> {
         return runCatching { storeService.getStoreDetailList(storeId) }
+        
+    override suspend fun getStoreContent(id: String): Result<StoreDetailDto> {
+        return runCatching { storeService.getStoreContent(id) }
     }
 }
