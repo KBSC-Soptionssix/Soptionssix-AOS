@@ -52,7 +52,8 @@ fun WriteReviewBox(
             Spacer(modifier = Modifier.height(14.dp))
             WriteReviewTextField(
                 reviewText = reviewContent.reviewText,
-                writeReview = writeReview
+                writeReview = writeReview,
+                isRead = reviewContent.isRead
             )
         }
     }
@@ -62,6 +63,7 @@ fun WriteReviewBox(
 @Composable
 private fun WriteReviewTextField(
     reviewText: String,
+    isRead: Boolean,
     writeReview: (String) -> Unit
 ) {
     val maxChar = 301
@@ -79,7 +81,8 @@ private fun WriteReviewTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(270.dp),
-            cursorBrush = SolidColor(colorResource(id = R.color.black))
+            cursorBrush = SolidColor(colorResource(id = R.color.black)),
+            readOnly = isRead
         ) { innerTextField ->
             if (reviewText.isEmpty()) {
                 Text(
