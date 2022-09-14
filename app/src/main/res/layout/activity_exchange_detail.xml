@@ -424,7 +424,6 @@
                 android:id="@+id/tv_exchange_complete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="교환 완료 "
                 android:textAppearance="@style/BuyB16"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
