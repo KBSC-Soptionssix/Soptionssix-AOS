@@ -18,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
@@ -34,11 +35,7 @@ fun ReviewScreen(
     goStoreDetail: (String) -> Unit
 ) {
     val dummyReviewList = reviewViewModel.reviewList.collectAsState()
-    val dummyDescriptionList = listOf(
-        "지구를 지키고,\n나눔을 실천하는 쉬운 방법",
-        "기부 후기를 널리 알리는 게\n유행하는 이유",
-        "일회용 포장 용기 종류별\n재활용 방법"
-    )
+    val dummyDescriptionList = stringArrayResource(id = R.array.reviewBannerList)
     MaterialTheme(typography = PretendardTypography) {
         LazyColumn(
             modifier = Modifier

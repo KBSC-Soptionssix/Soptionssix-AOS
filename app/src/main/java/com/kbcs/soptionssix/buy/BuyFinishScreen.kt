@@ -18,12 +18,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.loading.LoadingToolBar
-import com.kbcs.soptionssix.util.theme.PretendardTypography
 
 @Composable
 fun BuyFinishScreen(
@@ -52,7 +51,7 @@ fun BuyFinishContent(
     ) {
         Box {}
         Text(
-            text = "결제가 완료되었습니다",
+            text = stringResource(R.string.buyFinish),
             style = MaterialTheme.typography.h3,
             textAlign = TextAlign.Center
         )
@@ -68,21 +67,11 @@ fun BuyFinishContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 15.dp),
-                text = "교환증 보기",
+                text = stringResource(R.string.buyLookReceipt),
                 color = colorResource(id = R.color.white),
                 style = MaterialTheme.typography.h3,
                 textAlign = TextAlign.Center
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LoadingScreenPreview() {
-    MaterialTheme(
-        typography = PretendardTypography
-    ) {
-        BuyFinishScreen({})
     }
 }

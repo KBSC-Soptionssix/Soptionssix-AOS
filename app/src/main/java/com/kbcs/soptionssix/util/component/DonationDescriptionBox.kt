@@ -34,7 +34,7 @@ import kotlinx.coroutines.yield
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HorizontalDescriptionBanner(
-    descriptionList: List<String>
+    descriptionList: Array<String>
 ) {
     val state = rememberPagerState()
     LaunchedEffect(Unit) {

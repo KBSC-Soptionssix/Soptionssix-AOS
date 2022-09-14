@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
 import com.kbcs.soptionssix.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,8 +36,8 @@ class ReadReviewActivity : AppCompatActivity() {
                             WindowInsetsSides.Vertical
                         )
                     ),
-                title = "후기 보기",
-                buttonText = "후기 수정하기",
+                title = stringResource(R.string.readReview),
+                buttonText = stringResource(R.string.readEditReview),
                 writeReviewViewModel = writeReviewViewModel,
                 buttonEvent = ::finish,
                 finish = ::finish

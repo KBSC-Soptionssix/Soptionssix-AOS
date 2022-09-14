@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import java.text.SimpleDateFormat
@@ -43,12 +44,12 @@ fun SelectPickUpTime(
             .padding(16.dp)
     ) {
         Text(
-            text = "도착 예정 시간",
+            text = stringResource(id = R.string.buyVisitedTime),
             style = MaterialTheme.typography.h1
         )
         Spacer(Modifier.height(16.dp))
         Text(
-            text = "도착 예정 시간",
+            text = stringResource(id = R.string.buyVisitedTime),
             style = MaterialTheme.typography.button,
             color = colorResource(id = R.color.dark_gray)
         )
@@ -67,7 +68,7 @@ fun SelectPickUpTime(
         }
         Spacer(Modifier.height(16.dp))
         Text(
-            text = "도착 예정 시간",
+            text = stringResource(id = R.string.buyVisitedTime),
             style = MaterialTheme.typography.button,
             color = colorResource(id = R.color.dark_gray)
         )

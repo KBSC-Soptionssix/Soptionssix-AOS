@@ -14,6 +14,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.ExchangeItem
@@ -58,7 +59,7 @@ fun ExchangeTabToolBar() {
         prefixContent = {
             Text(
                 modifier = Modifier.padding(start = 16.dp, top = 24.dp, bottom = 24.dp),
-                text = "교환증",
+                text = stringResource(R.string.exchangeTabReceipt),
                 style = MaterialTheme.typography.h1
             )
         }
