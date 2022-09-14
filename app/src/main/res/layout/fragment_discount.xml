@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="discountModel"
+            type="com.kbsc.data.dto.DiscountDto" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

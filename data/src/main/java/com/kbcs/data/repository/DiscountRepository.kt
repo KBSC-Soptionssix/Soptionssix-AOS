@@ -1,3 +1,7 @@
 package com.kbcs.data.repository
 
-interface DiscountRepository
+import com.kbsc.data.dto.DiscountDto
+
+interface DiscountRepository {
+    suspend fun getDiscountList(): Result<DiscountDto>
+}
