@@ -25,7 +25,7 @@ class BuyViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(BuyUiState())
     val uiState = _uiState.asStateFlow()
     val totalPrice = _uiState
-        .map { uiState -> (uiState.foodPrice * uiState.foodDiscount) / 100 * uiState.foodCount }
+        .map { uiState -> (uiState.foodPrice - (uiState.foodPrice * uiState.foodDiscount) / 100) * uiState.foodCount }
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
@@ -120,7 +120,10 @@ class BuyViewModel @Inject constructor(
     }
 
     fun setIsDonate() {
-        _uiState.value = _uiState.value.copy(isDonate = !_uiState.value.isDonate)
+        _uiState.value = _uiState.value.copy(
+            isDonate = !_uiState.value.isDonate,
+            pickUpTimeIndex = -2
+        )
         setIsChallenge()
     }
 }

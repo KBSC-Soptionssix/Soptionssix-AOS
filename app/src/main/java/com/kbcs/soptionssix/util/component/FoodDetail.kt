@@ -102,7 +102,7 @@ fun FoodDetail(
                     )
                     Spacer(Modifier.width(2.dp))
                     Text(
-                        text = "${decFormatter.format(foodPrice * foodDiscount / 100)}원",
+                        text = "${decFormatter.format(foodPrice - (foodPrice * foodDiscount / 100))}원",
                         style = MaterialTheme.typography.body2
                     )
                 }

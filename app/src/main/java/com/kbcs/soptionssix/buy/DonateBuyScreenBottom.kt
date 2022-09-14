@@ -42,7 +42,7 @@ fun DonateBuyScreenBottom(
                     .padding(8.dp),
                 isClickable = buyButtonState.value,
                 buttonText = "${decFormatter.format(totalFoodPrice.value)}원 결제하기",
-                onClickEvent = { },
+                onClickEvent = buyViewModel::postReceipt,
                 finish = finish
             )
         }

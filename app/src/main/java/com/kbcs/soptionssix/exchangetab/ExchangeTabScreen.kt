@@ -24,7 +24,7 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 fun ExchangeTabScreen(
     exchangeTabViewModel: ExchangeTabViewModel,
     goExchangeDetail: (String) -> Unit,
-    goWriteReview: (String?) -> Unit,
+    goWriteReview: (String, String, String, String) -> Unit,
     goReadReview: (String?) -> Unit,
     goStoreDetail: (String) -> Unit
 ) {

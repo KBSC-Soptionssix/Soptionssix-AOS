@@ -14,8 +14,9 @@ class ReceiptRepositoryImpl @Inject constructor(
     }
 
     override suspend fun postReceipt(receiptRequest: ReceiptRequest) {
+        Log.d("PostReceipt", "request: $receiptRequest")
         runCatching { receiptService.postReceipt(receiptRequest) }
             .onSuccess { Log.d("PostReceipt", "POST 통신 성공") }
-            .onFailure { Log.d("PostReceipt", "POST 통신 실패") }
+            .onFailure { Log.d("PostReceipt", "POST 통신 실패 ${it.message}") }
     }
 }

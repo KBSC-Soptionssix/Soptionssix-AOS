@@ -41,7 +41,7 @@ fun ExchangeItem(
     receipt: Receipt,
     review: ReviewDto?,
     goExchangeDetail: (String) -> Unit,
-    goWriteReview: (String?) -> Unit,
+    goWriteReview: (String, String, String, String) -> Unit,
     goReadReview: (String?) -> Unit,
     goStoreDetail: (String) -> Unit
 ) {
@@ -61,7 +61,14 @@ fun ExchangeItem(
     }
     val clickEvent: () -> Unit = when (state) {
         1 -> fun() { goExchangeDetail(receipt.id) }
-        2 -> fun() { goWriteReview(review?.id) }
+        2 -> fun() {
+            goWriteReview(
+                receipt.id,
+                receipt.storeName,
+                receipt.productName,
+                receipt.address
+            )
+        }
         else -> fun() { goReadReview(review?.id) }
     }
     Surface(

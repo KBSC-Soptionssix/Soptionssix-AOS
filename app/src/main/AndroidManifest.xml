@@ -21,6 +21,9 @@
             android:name=".buy.BuyFoodActivity"
             android:exported="false" />
         <activity
+            android:name=".buy.DonateBuyFoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".exchange.ExchangeDetailActivity"
             android:exported="false" />
         <activity

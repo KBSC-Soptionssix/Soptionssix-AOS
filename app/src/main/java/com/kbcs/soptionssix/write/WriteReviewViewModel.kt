@@ -6,13 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.kbcs.data.repository.ReviewRepository
 import com.kbsc.data.request.WriteRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class WriteReviewViewModel @Inject constructor(
@@ -42,6 +42,21 @@ class WriteReviewViewModel @Inject constructor(
         }
     }
 
+    fun fetchWriteReviewContent(
+        receiptId: String,
+        storeName: String,
+        foodName: String,
+        address: String
+    ) {
+        val region = address.split(" ")
+        _reviewContent.value = _reviewContent.value.copy(
+            receiptId = receiptId,
+            storeName = storeName,
+            foodName = foodName,
+            region = "${region[0]} ${region[1]}"
+        )
+    }
+
     fun writeReview(text: String) {
         _reviewContent.value = _reviewContent.value.copy(reviewText = text)
     }
@@ -51,7 +66,7 @@ class WriteReviewViewModel @Inject constructor(
             reviewRepository.postReview(
                 WriteRequest(
                     region = reviewContent.value.region,
-                    receiptId = reviewContent.value.receiptId,
+                    receipt = reviewContent.value.receiptId,
                     content = reviewContent.value.reviewText,
                     photo = null
                 )
