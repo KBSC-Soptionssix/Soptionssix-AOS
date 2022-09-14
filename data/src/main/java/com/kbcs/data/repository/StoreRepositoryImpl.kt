@@ -10,7 +10,8 @@ class StoreRepositoryImpl @Inject constructor(
 ) : StoreRepository {
     override suspend fun getStoreDetailList(storeId: String): Result<DiscountStoreDetailDto> {
         return runCatching { storeService.getStoreDetailList(storeId) }
-        
+    }
+
     override suspend fun getStoreContent(id: String): Result<StoreDetailDto> {
         return runCatching { storeService.getStoreContent(id) }
     }
