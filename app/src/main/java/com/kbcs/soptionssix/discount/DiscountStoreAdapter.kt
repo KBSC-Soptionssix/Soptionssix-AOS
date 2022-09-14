@@ -25,6 +25,10 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
 
             // 시간 비교하기
             timeCmp(data.discountStartTime, data)
+
+            binding.root.setOnClickListener {
+                itemClick(data)
+            }
         }
 
         private fun timeCmp(
@@ -49,10 +53,10 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
                         }
                         when {
                             discountStartTime < 720 -> {
-                                binding.tvMaxDiscount.text = "오전 $startHour:$min\n 할인 오픈예정"
+                                binding.tvMaxDiscount.text = "$startHour:$min\n 할인 오픈예정"
                             }
                             else -> {
-                                binding.tvMaxDiscount.text = "오후 $startHour:$min\n 할인 오픈예정"
+                                binding.tvMaxDiscount.text = "$startHour:$min\n 할인 오픈예정"
                             }
                         }
                     }

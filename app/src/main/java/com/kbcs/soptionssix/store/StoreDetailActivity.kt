@@ -7,37 +7,38 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.buy.BuyFoodActivity
 import com.kbcs.soptionssix.buy.DonateBuyFoodActivity
 import com.kbcs.soptionssix.databinding.ActivityStoreDetailBinding
 import com.kbcs.soptionssix.navermap.NaverMapFragment
+import com.kbsc.data.dto.DiscountStoreDetailDto
 import com.kbsc.data.dto.ProductDto
-import com.kbsc.data.dto.StorePreviewDto
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class StoreDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStoreDetailBinding
     private lateinit var discountProductAdapter: DiscountProductAdapter
+    private val storeDetailViewModel: StoreViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
-        val bundle = Bundle()
-        val naverMapFragment = NaverMapFragment()
+        val storeId = intent.getStringExtra("storeId") ?: ""
 
-        naverMapFragment.arguments = bundle.apply {
-            putDouble("latitude", 37.5005)
-            putDouble("longitude", 127.0281)
+        lifecycleScope.launch {
+            storeDetailViewModel.fetchStoreDetailList(storeId)
         }
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fcv_naver_map, naverMapFragment)
-            .commit()
 
         discountDetailAdapter()
+        storeObserver()
         backButton()
         copyPhoneNumber()
         copyRoadClipData()
@@ -45,12 +46,6 @@ class StoreDetailActivity : AppCompatActivity() {
     }
 
     private fun discountDetailAdapter() {
-        val detailList = listOf(
-            ProductDto("1", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "핫페퍼 아보카도 에그 후무스 3p", 3, 12000, 10, 1, 2),
-            ProductDto("2", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "상큼 라임 비프 타코 3p", 3, 9000, 50, 0, 2),
-            ProductDto("3", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "수제 샤워소스 2p", 3, 6000, 30, 1, 0),
-            ProductDto("4", StorePreviewDto(), "https://mblogthumb-phinf.pstatic.net/MjAyMTAxMjRfMjQ0/MDAxNjExNDQ3NDAyOTA0.VkuU0VquRRykzvq_185PZKNnP0lldIsH8oZphIlhGIEg.ybyJQWFmjqIWlu3hTgYn91kOfnPatHmdNcd_BVBpgscg.JPEG.shelly814/IMG_9859.jpg?type=w800", "체다 듬뿍 핫치킨 부리또 1p", 3, 10000, 20, 2, 0)
-        )
         val goBuy: (ProductDto) -> Unit = {
             val intent = Intent(this, BuyFoodActivity::class.java)
             intent.putExtra("productId", it.id)
@@ -69,7 +64,67 @@ class StoreDetailActivity : AppCompatActivity() {
             DiscountProductAdapter(clickBuy = goBuy, clickGive = goGive, clickWait = goWait)
 
         binding.rvProduct.adapter = discountProductAdapter
-        discountProductAdapter.submitList(detailList)
+    }
+
+    private fun storeObserver() {
+        storeDetailViewModel.storeInfo.observe(this) {
+            binding.storeDetailViewModel = it
+
+            if (it.photo != null) {
+                binding.ivShop.load(it.photo)
+            }
+
+            timeSetting(it)
+
+            val bundle = Bundle()
+            val naverMapFragment = NaverMapFragment()
+
+            naverMapFragment.arguments = bundle.apply {
+                putDouble("latitude", it.mapX.toDouble())
+                putDouble("longitude", it.mapY.toDouble())
+            }
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fcv_naver_map, naverMapFragment)
+                .commit()
+
+            if (it != null) discountProductAdapter.submitList(it.products)
+        }
+    }
+
+    private fun timeSetting(it: DiscountStoreDetailDto?) {
+        val breakStartHour = it?.breakStartTime?.div(60)
+        val breakEndHour = it?.breakEndTime?.rem(60)
+        if (breakStartHour != null && breakEndHour != null) {
+            when {
+                breakStartHour > 12 -> {
+                    binding.tvBreakDetail.text = "오후 $breakStartHour" + "시 ~ 오후 $breakEndHour" + "시"
+                }
+                breakEndHour > 12 -> {
+                    binding.tvBreakDetail.text = "오전 $breakStartHour" + "시 ~ 오후 $breakEndHour" + "시"
+                }
+                else -> {
+                    binding.tvBreakDetail.text = "오전 $breakStartHour" + "시 ~ 오전 $breakEndHour" + "시"
+                }
+            }
+        }
+
+        val startHour = it?.startTime?.div(60)
+        val endHour = it?.endTime?.rem(60)
+
+        if (startHour != null && endHour != null) {
+            when {
+                startHour > 12 -> {
+                    binding.tvBreakDetail.text = "오후 $startHour" + "시 ~ 오후 $endHour" + "시"
+                }
+                endHour > 12 -> {
+                    binding.tvBreakDetail.text = "오전 $startHour" + "시 ~ 오후 $endHour" + "시"
+                }
+                else -> {
+                    binding.tvBreakDetail.text = "오전 $startHour" + "시 ~ 오전 $endHour" + "시"
+                }
+            }
+        }
     }
 
     private fun backButton() {
