@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -69,6 +70,13 @@ class StoreDetailActivity : AppCompatActivity() {
     private fun storeObserver() {
         storeDetailViewModel.storeInfo.observe(this) {
             binding.storeDetailViewModel = it
+            if(it.hasChallenge){
+                binding.tvTag2.visibility = View.VISIBLE
+                binding.tvTag2.text = "용기내챌린지 환영"
+            }
+            else{
+                binding.tvTag2.visibility = View.GONE
+            }
 
             if (it.photo != null) {
                 binding.ivShop.load(it.photo)
