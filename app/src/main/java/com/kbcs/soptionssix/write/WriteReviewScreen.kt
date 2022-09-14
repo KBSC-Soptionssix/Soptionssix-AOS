@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kbcs.soptionssix.R
 import com.kbcs.soptionssix.util.component.InvisibleGuestButton
@@ -29,7 +28,10 @@ import com.kbcs.soptionssix.util.theme.PretendardTypography
 @Composable
 fun WriteReviewScreen(
     modifier: Modifier,
+    title: String,
+    buttonText: String,
     writeReviewViewModel: WriteReviewViewModel,
+    buttonEvent: () -> Unit,
     finish: () -> Unit
 ) {
     val reviewContent = writeReviewViewModel.reviewContent.collectAsState()
@@ -39,7 +41,10 @@ fun WriteReviewScreen(
             modifier = modifier
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                WriteToolBar(finish = finish)
+                WriteToolBar(
+                    title = title,
+                    finish = finish
+                )
                 Spacer(Modifier.height(16.dp))
                 WriteReviewBox(
                     modifier = Modifier
@@ -59,8 +64,8 @@ fun WriteReviewScreen(
                     .padding(8.dp)
                     .imePadding(),
                 isClickable = buttonState.value,
-                buttonText = stringResource(id = R.string.writeReviewRegister),
-                onClickEvent = writeReviewViewModel::postReview,
+                buttonText = buttonText,
+                onClickEvent = buttonEvent,
                 finish = finish
             )
         }
@@ -68,7 +73,10 @@ fun WriteReviewScreen(
 }
 
 @Composable
-fun WriteToolBar(finish: () -> Unit) {
+fun WriteToolBar(
+    title: String,
+    finish: () -> Unit
+) {
     InvisibleGuestToolBar(
         prefixContent = {
             Image(
@@ -82,7 +90,7 @@ fun WriteToolBar(finish: () -> Unit) {
         middleContent = {
             Text(
                 modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 32.dp),
-                text = "반짝후기 작성하기",
+                text = title,
                 style = MaterialTheme.typography.h1
             )
         }

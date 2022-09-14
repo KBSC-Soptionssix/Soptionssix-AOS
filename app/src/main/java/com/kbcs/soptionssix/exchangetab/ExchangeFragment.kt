@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kbcs.soptionssix.exchange.ExchangeDetailActivity
 import com.kbcs.soptionssix.store.StoreDetailActivity
+import com.kbcs.soptionssix.write.ReadReviewActivity
 import com.kbcs.soptionssix.write.WriteReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,7 +56,7 @@ class ExchangeFragment : Fragment() {
     }
 
     private fun goReadReview(reviewId: String?) {
-        val intent = Intent(requireActivity(), WriteReviewActivity::class.java)
+        val intent = Intent(requireActivity(), ReadReviewActivity::class.java)
         intent.putExtra("reviewId", reviewId)
         startActivity(intent)
     }

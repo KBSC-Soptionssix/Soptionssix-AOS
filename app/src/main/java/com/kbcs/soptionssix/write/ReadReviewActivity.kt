@@ -18,7 +18,7 @@ import com.kbcs.soptionssix.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WriteReviewActivity : AppCompatActivity() {
+class ReadReviewActivity : AppCompatActivity() {
     private val writeReviewViewModel: WriteReviewViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +35,10 @@ class WriteReviewActivity : AppCompatActivity() {
                             WindowInsetsSides.Vertical
                         )
                     ),
-                title = "후기 작성하기",
-                buttonText = "후기 등록하기",
+                title = "후기 보기",
+                buttonText = "후기 수정하기",
                 writeReviewViewModel = writeReviewViewModel,
-                buttonEvent = writeReviewViewModel::postReview,
+                buttonEvent = ::finish,
                 finish = ::finish
             )
         }

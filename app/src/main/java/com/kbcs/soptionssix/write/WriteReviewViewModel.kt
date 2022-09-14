@@ -33,7 +33,9 @@ class WriteReviewViewModel @Inject constructor(
                         foodName = result.receiptPreview.product.name,
                         storeName = result.receiptPreview.product.storePreview.name,
                         region = result.region,
-                        receiptId = id
+                        receiptId = id,
+                        reviewText = result.content,
+                        isRead = true
                     )
                 }
                 .onFailure { Log.d("WriteReview", "error: ${it.message}") }
@@ -63,5 +65,6 @@ data class WriteReviewUiState(
     val foodName: String = "",
     val storeName: String = "",
     val region: String = "",
-    val receiptId: String = ""
+    val receiptId: String = "",
+    val isRead: Boolean = false
 )

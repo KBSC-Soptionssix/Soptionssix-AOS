@@ -25,7 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".store.StoreDetailActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".discount.DiscountProductAllSeeActivity"
             android:exported="false" />
@@ -42,6 +42,11 @@
         </activity>
         <activity
             android:name=".write.WriteReviewActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".write.ReadReviewActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
