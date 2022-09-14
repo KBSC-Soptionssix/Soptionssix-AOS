@@ -21,7 +21,7 @@ class LoadingActivity : AppCompatActivity() {
             }
         }
         lifecycleScope.launch(Dispatchers.Main) {
-            delay(300)
+            delay(600)
             Intent(
                 this@LoadingActivity,
                 BuyFinishActivity::class.java
