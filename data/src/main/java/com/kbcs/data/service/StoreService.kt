@@ -15,5 +15,4 @@ interface StoreService {
     suspend fun getStoreContent(
         @Path("id") id: String
     ): StoreDetailDto
-
 }
