@@ -5,6 +5,7 @@ import android.content.ClipDescription.MIMETYPE_TEXT_PLAIN
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,8 @@ import com.kbcs.soptionssix.navermap.NaverMapFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class ExchangeDetailActivity : AppCompatActivity() {
@@ -32,7 +35,6 @@ class ExchangeDetailActivity : AppCompatActivity() {
             exchangeDetailViewModel.fetchExchangeDetailList(receiptId)
         }
 
-        formatCost(9000)
         completeExchange()
         copyRoadClipData()
         copyAddressClipData()
@@ -41,11 +43,13 @@ class ExchangeDetailActivity : AppCompatActivity() {
 
     private fun exchangeObserver() {
         exchangeDetailViewModel.exchangeList.observe(this) {
+            val costFormatter = DecimalFormat("###,###")
             binding.exchangeViewModel = it
 
             val discountPrice = it.product.price * it.product.discount / 100
-            binding.tvDiscountPrice.text = discountPrice.toString()
-            binding.tvTotalPrice.text = (it.product.price - discountPrice).toString()
+            val totalPrice = it.product.price - discountPrice
+            binding.tvDiscountPrice.text = costFormatter.format(discountPrice)
+            binding.tvTotalPrice.text = costFormatter.format(totalPrice)
 
             val bundle = Bundle()
             val naverMapFragment = NaverMapFragment()
@@ -59,13 +63,33 @@ class ExchangeDetailActivity : AppCompatActivity() {
                 .replace(R.id.fcv_naver_map, naverMapFragment)
                 .commit()
         }
-    }
 
-    private fun formatCost(costs: Int) {
-        val costFormatter = DecimalFormat("###,###")
+        exchangeDetailViewModel.endTimeList.observe(this) {
+            val date = Date()
+            date.time = it.pickUpTime * 1000L
+            val dayFormatter = SimpleDateFormat("EE")
+            val dayDividerFormatter = SimpleDateFormat("aa")
+            val formatter =
+                SimpleDateFormat(
+                    "yyyy년 MM월 dd일 (${DayFormatter(dayFormatter.format(date))}) ${
+                    DayDividerFormatter(
+                        dayDividerFormatter.format(date)
+                    )
+                    } hh시 mm분 "
+                )
+            binding.tvTime.append(formatter.format(date))
+        }
 
-        binding.tvDiscountPrice.text = costFormatter.format(costs)
-        binding.tvTotalPrice.text = costFormatter.format(costs)
+        exchangeDetailViewModel.remainedList.observe(this) {
+            val date = Date()
+            val currentTime = Calendar.getInstance().timeInMillis / 1000L
+            date.time = (it.pickUpTime - currentTime) * 1000L
+            Log.d("dkslfj", it.pickUpTime.toString())
+            Log.d("dkslfj2", currentTime.toString())
+            val pickUpDateFormatter = SimpleDateFormat("교환 완료 mm분 남음")
+
+            binding.tvExchangeComplete.append(pickUpDateFormatter.format(date))
+        }
     }
 
     private fun completeExchange() {
@@ -73,9 +97,7 @@ class ExchangeDetailActivity : AppCompatActivity() {
             binding.ivCompleteExchange.background =
                 getDrawable(R.drawable.shape_gray_fills_4_rectangle)
 
-            binding.tvExchangeComplete.text = "교환"
-            binding.tvRemainedTime.text = " "
-            binding.tvRemained.text = "완료"
+            binding.tvExchangeComplete.text = "교환 완료"
         }
     }
 
@@ -106,6 +128,25 @@ class ExchangeDetailActivity : AppCompatActivity() {
             !clipManager.hasPrimaryClip() -> false
             !(clipManager.primaryClipDescription?.hasMimeType(MIMETYPE_TEXT_PLAIN))!! -> false
             else -> true
+        }
+    }
+
+    private fun DayFormatter(day: String): String {
+        return when (day) {
+            "Mon" -> "월"
+            "Tue" -> "화"
+            "Wed" -> "수"
+            "Thu" -> "목"
+            "Fri" -> "금"
+            "Sat" -> "토"
+            else -> "일"
+        }
+    }
+
+    private fun DayDividerFormatter(divider: String): String {
+        return when (divider) {
+            "AM" -> "오전"
+            else -> "오후"
         }
     }
 }

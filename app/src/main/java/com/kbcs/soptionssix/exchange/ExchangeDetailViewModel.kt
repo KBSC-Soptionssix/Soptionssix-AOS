@@ -16,10 +16,18 @@ class ExchangeDetailViewModel @Inject constructor(
     private var _exchangeList = MutableLiveData<ReceiptDto>()
     val exchangeList: LiveData<ReceiptDto> get() = _exchangeList
 
+    private var _endTimeList = MutableLiveData<ReceiptDto>()
+    val endTimeList: LiveData<ReceiptDto> get() = _endTimeList
+
+    private var _remainedList = MutableLiveData<ReceiptDto>()
+    val remainedList: LiveData<ReceiptDto> get() = _remainedList
+
     suspend fun fetchExchangeDetailList(id: String) {
         exchangeRepository.getExchangeDetailList(id)
             .onSuccess { ReceiptDto ->
                 _exchangeList.value = ReceiptDto
+                _endTimeList.value = ReceiptDto
+                _remainedList.value = ReceiptDto
             }
             .onFailure {
                 Log.d("ExchangeDetailViewModel", "error: ${it.message}")

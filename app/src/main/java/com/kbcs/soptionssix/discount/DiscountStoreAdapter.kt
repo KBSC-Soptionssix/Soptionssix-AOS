@@ -50,18 +50,19 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
                             Color.parseColor("#525252"),
                             PorterDuff.Mode.MULTIPLY
                         )
-                        val startHour = discountStartTime / 60
-                        val startMin = (discountStartTime % 60)
+                        val startHour: Int = discountStartTime / 60
+                        val startMin: Int = (discountStartTime % 60)
                         var min = startMin.toString()
                         if (startMin < 10) { // 10분 이전인 경우 앞에 0 있어야함
                             min = "0$startMin"
                         }
+
                         when {
-                            discountStartTime < 720 -> {
-                                binding.tvMaxDiscount.text = "$startHour:$min\n 할인 오픈예정"
+                            startHour < 12 -> {
+                                binding.tvMaxDiscount.text = "오전 $startHour:$min\n 할인 오픈예정"
                             }
                             else -> {
-                                binding.tvMaxDiscount.text = "$startHour:$min\n 할인 오픈예정"
+                                binding.tvMaxDiscount.text = "오후 ${startHour - 12}:$min\n 할인 오픈예정"
                             }
                         }
                     }
