@@ -131,7 +131,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
-                android:text="@{exchangeViewModel.store.loadAddress"
+                android:text="@{exchangeViewModel.store.loadAddress}"
                 android:textAppearance="@style/ShopInfoM11"
                 android:textColor="@color/dark_gray_2"
                 app:layout_constraintStart_toEndOf="@+id/tv_road"
@@ -163,46 +163,25 @@
                 tools:text="명동 445" />
 
             <ImageView
-                android:id="@+id/iv_copy_road"
+                android:id="@+id/tv_copy_road"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
+                android:background="@drawable/ic_copyclipboard"
                 app:layout_constraintBottom_toBottomOf="@id/tv_road_detail"
                 app:layout_constraintStart_toEndOf="@+id/tv_road_detail"
                 app:layout_constraintTop_toTopOf="@+id/tv_road_detail" />
 
-            <TextView
-                android:id="@+id/tv_copy_road"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/storeDetailCopy"
-                android:textAppearance="@style/ShopInfoM11"
-                app:layout_constraintBottom_toBottomOf="@id/iv_copy_road"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_copy_road"
-                app:layout_constraintTop_toTopOf="@id/iv_copy_road" />
 
             <ImageView
-                android:id="@+id/iv_copy_address"
+                android:id="@+id/tv_copy_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
+                android:background="@drawable/ic_copyclipboard"
                 app:layout_constraintBottom_toBottomOf="@id/tv_address_detail"
                 app:layout_constraintStart_toEndOf="@+id/tv_address_detail"
                 app:layout_constraintTop_toTopOf="@+id/tv_address_detail" />
-
-            <TextView
-                android:id="@+id/tv_copy_address"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/storeDetailCopy"
-                android:textAppearance="@style/ShopInfoM11"
-                app:layout_constraintBottom_toBottomOf="@id/iv_copy_address"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_copy_address"
-                app:layout_constraintTop_toTopOf="@id/iv_copy_address" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fcv_naver_map"
@@ -243,7 +222,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="2022년 8월 11일 (목) 오후 2시 17분 까지 갈게요!"
                 android:textAppearance="@style/ExchangeM132"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_time_emo"
@@ -318,8 +296,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_order_name"
                 app:layout_constraintEnd_toStartOf="@+id/tv_order_num_ko"
                 app:layout_constraintStart_toEndOf="@+id/tv_order_name"
-                tools:text="2"
-                app:layout_constraintTop_toTopOf="@+id/tv_order_name" />
+                app:layout_constraintTop_toTopOf="@+id/tv_order_name"
+                tools:text="2" />
 
             <TextView
                 android:id="@+id/tv_order_num_ko"
@@ -446,40 +424,16 @@
                 android:id="@+id/tv_exchange_complete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="교환 완료 "
                 android:textAppearance="@style/BuyB16"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
-                app:layout_constraintEnd_toStartOf="@+id/tv_remained_time"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@+id/iv_complete_exchange"
                 app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
 
             <TextView
-                android:id="@+id/tv_remained_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="36"
-                android:textAppearance="@style/BuyB16"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
-                app:layout_constraintEnd_toStartOf="@+id/tv_remained"
-                app:layout_constraintStart_toEndOf="@+id/tv_exchange_complete"
-                app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
-
-            <TextView
-                android:id="@+id/tv_remained"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="분 남음"
-                android:textAppearance="@style/BuyB16"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_complete_exchange"
-                app:layout_constraintEnd_toEndOf="@+id/iv_complete_exchange"
-                app:layout_constraintStart_toEndOf="@+id/tv_remained_time"
-                app:layout_constraintTop_toTopOf="@+id/iv_complete_exchange" />
-
-            <TextView
+                android:id="@+id/tv_explan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
