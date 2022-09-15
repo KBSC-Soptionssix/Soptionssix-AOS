@@ -2,6 +2,7 @@ package com.kbcs.soptionssix.write
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -56,6 +57,7 @@ class WriteReviewActivity : AppCompatActivity() {
     }
 
     private fun goMain() {
+        Toast.makeText(this, "후기 작성이 완료되었습니다.", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("goExchangeTab", true)
         startActivity(intent)
