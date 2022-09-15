@@ -397,7 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="11dp"
-                        android:background="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:background="@drawable/ic_rightmore"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_product_more_see"
                         app:layout_constraintEnd_toEndOf="@+id/iv_product_more_see"
                         app:layout_constraintStart_toEndOf="@+id/tv_product_more_see"

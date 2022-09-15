@@ -74,8 +74,8 @@ private fun DonationDescriptionItem(
 ) {
     val backgroundColor = when (page) {
         0 -> R.color.dark_green
-        1 -> R.color.orange
-        else -> R.color.blue_banner
+        1 -> R.color.dark_yellow
+        else -> R.color.orange
     }
     Box(
         modifier = Modifier
@@ -103,9 +103,10 @@ private fun DonationDescriptionItem(
                 )
                 Spacer(Modifier.size(24.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.ic_temp_right),
+                    painter = painterResource(id = R.drawable.ic_rightmore_white),
                     contentDescription = ""
                 )
+                Spacer(Modifier.size(16.dp))
             }
         }
     }
