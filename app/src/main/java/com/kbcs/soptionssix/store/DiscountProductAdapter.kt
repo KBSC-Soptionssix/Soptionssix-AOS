@@ -1,5 +1,6 @@
 package com.kbcs.soptionssix.store
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,8 @@ class DiscountProductAdapter(
             binding.ivProduct.load(data.photo) {
                 transformations(RoundedCornersTransformation(3f))
             }
+
+            binding.tvOriginalPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG)
 
             if (data.donationCompleteCount == 0) {
                 binding.tvCompleteNum.visibility = View.GONE
