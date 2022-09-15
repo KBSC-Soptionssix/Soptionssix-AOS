@@ -66,6 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_white_line_3_rectangle"
+                    android:scaleType="fitXY"
                     app:layout_constraintTop_toBottomOf="@+id/cl_top" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -345,10 +346,12 @@
                         android:id="@+id/tv_discount_product"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:includeFontPadding="false"
                         android:text="@string/discountProduct"
                         android:textAppearance="@style/ShopB15"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.781"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
