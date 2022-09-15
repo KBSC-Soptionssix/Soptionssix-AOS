@@ -63,7 +63,7 @@ class DiscountFragment : Fragment() {
             startActivity(intent)
         }
         val goWait: (ProductDto) -> Unit = {
-            Toast.makeText(requireContext(), "기부 대기 되셨습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "기부 대기되었습니다! 완료되면 알려드릴게요.", Toast.LENGTH_SHORT).show()
         }
 
         discountAdapter =
