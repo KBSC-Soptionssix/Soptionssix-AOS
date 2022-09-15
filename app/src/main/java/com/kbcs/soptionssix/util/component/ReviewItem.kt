@@ -223,6 +223,7 @@ private fun StoreInformation(
                 contentDescription = "",
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(imgHeight)
                     .clip(RoundedCornerShape(8.dp))
                     .background(Color.Gray),
                 contentScale = ContentScale.FillWidth

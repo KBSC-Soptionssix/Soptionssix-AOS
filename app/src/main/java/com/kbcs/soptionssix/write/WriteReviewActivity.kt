@@ -29,12 +29,12 @@ class WriteReviewActivity : AppCompatActivity() {
         val receiptId = intent.getStringExtra("reviewId") ?: ""
         val storeName = intent.getStringExtra("storeName") ?: ""
         val foodName = intent.getStringExtra("foodName") ?: ""
-        val address = intent.getStringExtra("address") ?: ""
+        val region = intent.getStringExtra("region") ?: ""
         writeReviewViewModel.fetchWriteReviewContent(
             receiptId = receiptId,
             storeName = storeName,
             foodName = foodName,
-            address = address
+            region = region
         )
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {

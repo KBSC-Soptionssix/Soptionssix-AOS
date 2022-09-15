@@ -54,14 +54,14 @@ class ExchangeFragment : Fragment() {
         reviewId: String?,
         storeName: String,
         foodName: String,
-        address: String
+        region: String
     ) {
         val intent = Intent(requireActivity(), WriteReviewActivity::class.java)
         intent.apply {
             putExtra("reviewId", reviewId)
             putExtra("storeName", storeName)
             putExtra("foodName", foodName)
-            putExtra("address", address)
+            putExtra("region", region)
         }
         startActivity(intent)
     }

@@ -37,7 +37,8 @@ class ExchangeTabViewModel @Inject constructor(
                             totalProductPrice = receiptDto.productCount * receiptDto.product.price,
                             exchangeDate = receiptDto.date,
                             pickUpDate = receiptDto.pickUpTime,
-                            address = receiptDto.store.loadAddress,
+                            address = receiptDto.store.address,
+                            loadAddress = receiptDto.store.loadAddress,
                             review = receiptDto.review
                         )
                     }
@@ -53,6 +54,7 @@ data class Receipt(
     val userId: String,
     val storeName: String,
     val address: String,
+    val loadAddress: String,
     val productName: String,
     val totalProductPrice: Int,
     val productCount: Int,
