@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
@@ -45,7 +44,6 @@ fun WriteReviewScreen(
                     title = title,
                     finish = finish
                 )
-                Spacer(Modifier.height(16.dp))
                 WriteReviewBox(
                     modifier = Modifier
                         .fillMaxWidth()

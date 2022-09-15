@@ -22,7 +22,6 @@
             android:id="@+id/iv_store"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:background="@drawable/shape_gray_fill_8_rectangle"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

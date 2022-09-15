@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Soptionssix</string>
+    <string name="app_name">보이지 않는 손님</string>
     <string name="reviewDonationDescription">지구를 지키고,\n나눔을 실천하는 법</string>
     <string name="reviewMakeDonation">기부하기</string>
     <string name="reviewGetDonation">후기 남기기</string>
@@ -46,4 +46,19 @@
     <string name="discountMoreSee">상품 더보기</string>
     <string name="discountChallenge">용기내챌린지 환영</string>
     <string name="storeDetailChallenge">용기내챌린지 환영</string>
+    <string name="buyVisitedTime">도착 예정 시간</string>
+    <string name="buyFinish">결제가 완료되었습니다</string>
+    <string name="buyLookReceipt">교환증 보기</string>
+    <string name="buyText">결제하기</string>
+    <string name="buyingText">결제하는 중입니다 …</string>
+    <string name="exchangeTabReceipt">교환증</string>
+    <string-array name="reviewBannerList">
+        <item>지구를 지키고,\n나눔을 실천하는 쉬운 방법</item>
+        <item>기부 후기를 널리 알리는 게\n유행하는 이유</item>
+        <item>일회용 포장 용기 종류별\n재활용 방법</item>
+    </string-array>
+    <string name="readReview">후기 보기</string>
+    <string name="readEditReview">후기 수정하기</string>
+    <string name="writeReview">후기 작성하기</string>
+    <string name="writePostReview">후기 등록하기</string>
 </resources>

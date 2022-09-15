@@ -8,14 +8,14 @@ import com.kbcs.data.repository.StoreRepository
 import com.kbsc.data.dto.StoreDetailDto
 import com.kbsc.data.entity.request.ReceiptRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.Calendar
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.util.Calendar
-import javax.inject.Inject
 
 @HiltViewModel
 class BuyViewModel @Inject constructor(
@@ -36,7 +36,8 @@ class BuyViewModel @Inject constructor(
             (_uiState.value.userPhoneNumber.length == 11) &&
             (_uiState.value.selectPaymentIndex != -1) &&
             (_uiState.value.pickUpTimeIndex != -1) &&
-            _uiState.value.foodCount > 0
+            _uiState.value.foodCount > 0 &&
+            _uiState.value.isVisitedStore
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -119,10 +120,15 @@ class BuyViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(isChallenge = !_uiState.value.isChallenge)
     }
 
+    fun setIsVisitedStore() {
+        _uiState.value = _uiState.value.copy(isVisitedStore = !_uiState.value.isVisitedStore)
+    }
+
     fun setIsDonate() {
         _uiState.value = _uiState.value.copy(
             isDonate = !_uiState.value.isDonate,
-            pickUpTimeIndex = -2
+            pickUpTimeIndex = -2,
+            isVisitedStore = true
         )
         setIsChallenge()
     }
@@ -143,6 +149,7 @@ data class BuyUiState(
     val address: String = "",
     val isChallenge: Boolean = true,
     val isDonate: Boolean = true,
+    val isVisitedStore: Boolean = false,
     val pickUpTimeList: List<String> = listOf("10분", "20분", "30분", "40분", "50분", "1시간"),
     val pickUpTimeIndex: Int = -1,
     val paymentList: List<String> = listOf("신용/체크카드", "휴대폰결제", "네이버페이", "카카오페이", "토스", "페이코"),

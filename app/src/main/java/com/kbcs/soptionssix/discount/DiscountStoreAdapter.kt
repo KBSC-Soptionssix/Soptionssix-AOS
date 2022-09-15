@@ -25,7 +25,7 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
         fun onBind(data: StoreDto) {
             binding.discountStoreItem = data
             binding.ivStore.load(data.photo) {
-                transformations(RoundedCornersTransformation(3f))
+                transformations(RoundedCornersTransformation(22f))
             }
 
             // 시간 비교하기

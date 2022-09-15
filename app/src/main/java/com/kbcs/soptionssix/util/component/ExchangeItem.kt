@@ -62,11 +62,13 @@ fun ExchangeItem(
     val clickEvent: () -> Unit = when (state) {
         1 -> fun() { goExchangeDetail(receipt.id) }
         2 -> fun() {
+            val firstText = receipt.loadAddress.split(" ")[1]
+            val secondText = receipt.loadAddress.split(" ")[0]
             goWriteReview(
                 receipt.id,
                 receipt.storeName,
                 receipt.productName,
-                receipt.address
+                "$firstText($secondText)"
             )
         }
         else -> fun() { goReadReview(review?.id) }

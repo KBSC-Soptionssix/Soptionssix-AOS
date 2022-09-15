@@ -1,6 +1,8 @@
 package com.kbcs.soptionssix.write
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +15,9 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
+import com.kbcs.soptionssix.MainActivity
 import com.kbcs.soptionssix.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,12 +29,12 @@ class WriteReviewActivity : AppCompatActivity() {
         val receiptId = intent.getStringExtra("reviewId") ?: ""
         val storeName = intent.getStringExtra("storeName") ?: ""
         val foodName = intent.getStringExtra("foodName") ?: ""
-        val address = intent.getStringExtra("address") ?: ""
+        val region = intent.getStringExtra("region") ?: ""
         writeReviewViewModel.fetchWriteReviewContent(
             receiptId = receiptId,
             storeName = storeName,
             foodName = foodName,
-            address = address
+            region = region
         )
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
@@ -43,12 +47,20 @@ class WriteReviewActivity : AppCompatActivity() {
                             WindowInsetsSides.Vertical
                         )
                     ),
-                title = "후기 작성하기",
-                buttonText = "후기 등록하기",
+                title = stringResource(R.string.writeReview),
+                buttonText = stringResource(R.string.writePostReview),
                 writeReviewViewModel = writeReviewViewModel,
                 buttonEvent = writeReviewViewModel::postReview,
-                finish = ::finish
+                finish = ::goMain
             )
         }
+    }
+
+    private fun goMain() {
+        Toast.makeText(this, "후기 작성이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("goExchangeTab", true)
+        startActivity(intent)
+        finishAffinity()
     }
 }

@@ -58,6 +58,10 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
                 isLocationButtonEnabled = false
                 isLogoClickEnabled = false
                 mapType = NaverMap.MapType.Basic
+                isTiltGesturesEnabled = false
+                isRotateGesturesEnabled = false
+                isScrollGesturesEnabled = false
+                isZoomGesturesEnabled = false
             }
             moveCamera(cameraUpdate)
         }

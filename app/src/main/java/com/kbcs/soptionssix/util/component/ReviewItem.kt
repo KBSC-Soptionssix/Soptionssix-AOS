@@ -208,7 +208,7 @@ private fun StoreInformation(
             Text(
                 text = storeName,
                 style = MaterialTheme.typography.body2,
-                color = colorResource(id = R.color.dark_green)
+                color = colorResource(id = R.color.yellow)
             )
             Image(
                 modifier = Modifier.clickable { goStoreDetail(storeId) },
@@ -223,6 +223,7 @@ private fun StoreInformation(
                 contentDescription = "",
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(imgHeight)
                     .clip(RoundedCornerShape(8.dp))
                     .background(Color.Gray),
                 contentScale = ContentScale.FillWidth

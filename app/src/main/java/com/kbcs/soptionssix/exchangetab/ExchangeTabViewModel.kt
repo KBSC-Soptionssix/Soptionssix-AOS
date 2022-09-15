@@ -19,31 +19,32 @@ class ExchangeTabViewModel @Inject constructor(
     val receiptList = _receiptList.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            fetchReceiptList()
-        }
+        fetchReceiptList()
     }
 
-    suspend fun fetchReceiptList() {
-        receiptRepository.getReceiptList()
-            .onSuccess { resultReceiptList ->
-                _receiptList.value = resultReceiptList.map { receiptDto ->
-                    Receipt(
-                        id = receiptDto.id,
-                        storeId = receiptDto.store.id,
-                        userId = receiptDto.userId,
-                        storeName = receiptDto.store.name,
-                        productName = receiptDto.product.name,
-                        productCount = receiptDto.productCount,
-                        totalProductPrice = receiptDto.productCount * receiptDto.product.price,
-                        exchangeDate = receiptDto.date,
-                        pickUpDate = receiptDto.pickUpTime,
-                        address = receiptDto.store.loadAddress,
-                        review = receiptDto.review
-                    )
+    fun fetchReceiptList() {
+        viewModelScope.launch {
+            receiptRepository.getReceiptList()
+                .onSuccess { resultReceiptList ->
+                    _receiptList.value = resultReceiptList.map { receiptDto ->
+                        Receipt(
+                            id = receiptDto.id,
+                            storeId = receiptDto.store.id,
+                            userId = receiptDto.userId,
+                            storeName = receiptDto.store.name,
+                            productName = receiptDto.product.name,
+                            productCount = receiptDto.productCount,
+                            totalProductPrice = receiptDto.productCount * receiptDto.product.price,
+                            exchangeDate = receiptDto.date,
+                            pickUpDate = receiptDto.pickUpTime,
+                            address = receiptDto.store.address,
+                            loadAddress = receiptDto.store.loadAddress,
+                            review = receiptDto.review
+                        )
+                    }
                 }
-            }
-            .onFailure { Log.d("ReceiptViewModel", "error: ${it.message}") }
+                .onFailure { Log.d("ReceiptViewModel", "error: ${it.message}") }
+        }
     }
 }
 
@@ -53,6 +54,7 @@ data class Receipt(
     val userId: String,
     val storeName: String,
     val address: String,
+    val loadAddress: String,
     val productName: String,
     val totalProductPrice: Int,
     val productCount: Int,
