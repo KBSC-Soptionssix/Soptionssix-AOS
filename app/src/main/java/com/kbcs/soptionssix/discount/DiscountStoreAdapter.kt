@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.kbcs.soptionssix.databinding.ItemDiscountStoreBinding
 import com.kbsc.data.dto.StoreDto
 import java.time.LocalDateTime
@@ -22,6 +24,9 @@ class DiscountStoreAdapter(private val itemClick: (StoreDto) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: StoreDto) {
             binding.discountStoreItem = data
+            binding.ivStore.load(data.photo) {
+                transformations(RoundedCornersTransformation(3f))
+            }
 
             // 시간 비교하기
             timeCmp(data.discountStartTime, data)
