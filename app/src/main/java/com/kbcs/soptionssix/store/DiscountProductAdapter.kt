@@ -29,7 +29,7 @@ class DiscountProductAdapter(
         fun onBind(data: ProductDto) {
             binding.discountProductItem = data
             binding.ivProduct.load(data.photo) {
-                transformations(RoundedCornersTransformation(3f))
+                transformations(RoundedCornersTransformation(12f))
             }
 
             if (data.donationCompleteCount == 0) {
