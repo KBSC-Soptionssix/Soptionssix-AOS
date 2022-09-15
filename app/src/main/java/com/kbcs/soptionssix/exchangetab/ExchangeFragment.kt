@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ExchangeFragment : Fragment() {
     private val exchangeTabViewModel: ExchangeTabViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

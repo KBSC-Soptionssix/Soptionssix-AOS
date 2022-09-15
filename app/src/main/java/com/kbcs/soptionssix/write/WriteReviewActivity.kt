@@ -1,5 +1,6 @@
 package com.kbcs.soptionssix.write
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
+import com.kbcs.soptionssix.MainActivity
 import com.kbcs.soptionssix.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,8 +50,15 @@ class WriteReviewActivity : AppCompatActivity() {
                 buttonText = stringResource(R.string.writePostReview),
                 writeReviewViewModel = writeReviewViewModel,
                 buttonEvent = writeReviewViewModel::postReview,
-                finish = ::finish
+                finish = ::goMain
             )
         }
+    }
+
+    private fun goMain() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("goExchangeTab", true)
+        startActivity(intent)
+        finishAffinity()
     }
 }
