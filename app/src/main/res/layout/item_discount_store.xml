@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="discountStoreItem"
             type="com.kbsc.data.dto.StoreDto" />
@@ -30,14 +31,14 @@
             android:id="@+id/tv_max_discount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:textAppearance="@style/BuyB16"
             android:textColor="@color/white"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/iv_store"
-            app:layout_constraintTop_toTopOf="@+id/iv_store"
             app:layout_constraintBottom_toBottomOf="@id/iv_store"
+            app:layout_constraintEnd_toEndOf="@+id/iv_store"
             app:layout_constraintStart_toStartOf="@id/iv_store"
-            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="@+id/iv_store"
             tools:text="오후 9:40\n 할인 오픈예정" />
 
         <TextView
@@ -46,9 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:includeFontPadding="false"
-            android:textColor="@color/black"
             android:text="@{discountStoreItem.name}"
             android:textAppearance="@style/ShopInfoM11"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_store"
             tools:text="캘리인더보울 판교점" />
@@ -73,13 +74,13 @@
             android:id="@+id/tv_tag2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:background="@drawable/shape_light_green_fill_3_rectangle"
             android:includeFontPadding="false"
             android:paddingHorizontal="6dp"
             android:paddingVertical="4dp"
-            android:layout_marginTop="4dp"
-            android:textAppearance="@style/ShopTagSb9"
             android:text="@string/discountChallenge"
+            android:textAppearance="@style/ShopTagSb9"
             android:textColor="@color/text_light_green"
             app:layout_constraintStart_toStartOf="@+id/tv_tag1"
             app:layout_constraintTop_toBottomOf="@id/tv_tag1"
@@ -92,9 +93,9 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/gray"
-            android:textAppearance="@style/ShopM9"
             android:text="@{discountStoreItem.description}"
+            android:textAppearance="@style/ShopM9"
+            android:textColor="@color/gray"
             app:layout_constraintEnd_toEndOf="@+id/iv_store"
             app:layout_constraintStart_toStartOf="@+id/iv_store"
             app:layout_constraintTop_toBottomOf="@id/tv_tag2"

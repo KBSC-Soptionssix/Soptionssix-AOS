@@ -1,5 +1,6 @@
 package com.kbcs.soptionssix.store
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,9 @@ class DiscountProductAdapter(
                 transformations(RoundedCornersTransformation(12f))
             }
 
+            // 취소선
+            binding.tvOriginalPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG)
+
             if (data.donationCompleteCount == 0) {
                 binding.tvCompleteNum.visibility = View.GONE
                 binding.tvCompleteDonation.visibility = View.GONE
@@ -47,6 +51,28 @@ class DiscountProductAdapter(
             binding.tvOriginalPrice.text = costFormatter.format(data.price)
             val discountPrice: Int = data.price * (100 - data.discount) / 100 // 할인 가격 게산
             binding.tvDiscountPrice.text = costFormatter.format(discountPrice)
+            binding.tvOriginalPrice.text = costFormatter.format(data.price)
+
+            // tag 시간 계산
+            val startHour: Int = data.storePreview.endTime / 60
+            val startMin: Int = (data.storePreview.endTime % 60)
+            var min = startMin.toString()
+            if (startMin < 10) { // 10분 이전인 경우 앞에 0 있어야함
+                min = "0$startMin"
+            }
+
+            when {
+                startHour < 12 -> {
+                    binding.tvTag1.text = "오전 $startHour" + "시 마감"
+                }
+                else -> {
+                    binding.tvTag1.text = "오후 ${startHour - 12}" + "시 마감"
+                }
+            }
+
+            // tag2
+            val num = data.stockCount
+            binding.tvTag2.text = "$num" + "개 남음"
 
             binding.btnBuy.setOnClickListener {
                 clickBuy(data)

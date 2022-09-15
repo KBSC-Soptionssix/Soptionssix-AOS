@@ -21,6 +21,7 @@
             android:id="@+id/iv_product"
             android:layout_width="106dp"
             android:layout_height="106dp"
+            android:background="@drawable/shape_gray_fill_5_rectangle"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +75,6 @@
             android:includeFontPadding="false"
             android:paddingHorizontal="6dp"
             android:paddingVertical="4dp"
-            android:text="@{String.valueOf(discountProductItem.storePreview.endTime) + '시' + '마' +'감'}"
             android:textAppearance="@style/ShopR82"
             android:textColor="@color/dark_green"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -91,7 +91,6 @@
             android:includeFontPadding="false"
             android:paddingHorizontal="6dp"
             android:paddingVertical="4dp"
-            android:text="@{String.valueOf(discountProductItem.stockCount)+'개' + '남' + '음'}"
             android:textAppearance="@style/ShopR82"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/tv_tag1"
@@ -100,10 +99,26 @@
 
 
         <TextView
+            android:id="@+id/tv_original_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:textAppearance="@style/ShopM11Decoline"
+            android:textColor="@color/light_gray"
+            app:layout_constraintBottom_toTopOf="@+id/tv_discount_amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/iv_product"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tag1"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="9,000" />
+
+        <TextView
             android:id="@+id/tv_discount_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
+            android:layout_marginTop="1dp"
             android:includeFontPadding="false"
             android:text="@{String.valueOf(discountProductItem.discount)}"
             android:textAppearance="@style/ShopM13"
@@ -148,19 +163,6 @@
             app:layout_constraintStart_toEndOf="@+id/tv_discount_price"
             app:layout_constraintTop_toTopOf="@+id/tv_discount_price" />
 
-        <TextView
-            android:id="@+id/tv_original_price"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:text="@{String.valueOf(discountProductItem.price)}"
-            android:textAppearance="@style/ShopM11Decoline"
-            android:textColor="@color/light_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_product"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tag1"
-            tools:text="9,000" />
 
         <TextView
             android:id="@+id/tv_complete_num"
