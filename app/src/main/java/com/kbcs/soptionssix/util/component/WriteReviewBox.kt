@@ -49,7 +49,6 @@ fun WriteReviewBox(
                 boxIcon = R.drawable.ic_soup,
                 boxText = reviewContent.foodName
             )
-            Spacer(modifier = Modifier.height(14.dp))
             WriteReviewTextField(
                 reviewText = reviewContent.reviewText,
                 writeReview = writeReview,
@@ -70,7 +69,7 @@ private fun WriteReviewTextField(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 22.dp)
+            .padding(horizontal = 22.dp, vertical = 14.dp)
     ) {
         BasicTextField(
             value = reviewText,

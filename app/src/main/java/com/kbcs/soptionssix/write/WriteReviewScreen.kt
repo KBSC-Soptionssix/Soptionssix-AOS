@@ -45,7 +45,6 @@ fun WriteReviewScreen(
                     title = title,
                     finish = finish
                 )
-                Spacer(Modifier.height(16.dp))
                 WriteReviewBox(
                     modifier = Modifier
                         .fillMaxWidth()
