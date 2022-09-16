@@ -1,5 +1,5 @@
 object Constants {
-    const val packageName = "com.kbcs.soptionssix"
+    const val packageName = "com.kbsc.soptionssix"
     const val compileSdk = 32
     const val minSdk = 26
     const val targetSdk = 32

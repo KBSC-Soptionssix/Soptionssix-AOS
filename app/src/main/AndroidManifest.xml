@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.kbcs.soptionssix">
+    package="com.kbsc.soptionssix">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".KBCSApp"
+        android:name="com.kbsc.soptionssix.KBCSApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,22 +18,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".buy.BuyFoodActivity"
+            android:name="com.kbsc.soptionssix.buy.BuyFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".buy.DonateBuyFoodActivity"
+            android:name="com.kbsc.soptionssix.buy.DonateBuyFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".exchange.ExchangeDetailActivity"
+            android:name="com.kbsc.soptionssix.exchange.ExchangeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".store.StoreDetailActivity"
+            android:name="com.kbsc.soptionssix.store.StoreDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".discount.DiscountProductAllSeeActivity"
+            android:name="com.kbsc.soptionssix.discount.DiscountProductAllSeeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.kbsc.soptionssix.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -44,19 +44,19 @@
 
         </activity>
         <activity
-            android:name=".write.WriteReviewActivity"
+            android:name="com.kbsc.soptionssix.write.WriteReviewActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".write.ReadReviewActivity"
+            android:name="com.kbsc.soptionssix.write.ReadReviewActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".loading.LoadingActivity"
+            android:name="com.kbsc.soptionssix.loading.LoadingActivity"
             android:exported="false" />
         <activity
-            android:name=".buy.BuyFinishActivity"
+            android:name="com.kbsc.soptionssix.buy.BuyFinishActivity"
             android:exported="false" />
 
         <meta-data
